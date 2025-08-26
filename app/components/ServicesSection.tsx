@@ -195,18 +195,6 @@ export default function ServicesSection() {
           line-height: 130%;
         }
 
-        .certifications {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 40px;
-          margin-top: 60px;
-        }
-
-        .cert-badge,
-        .pcg-logos {
-          flex-shrink: 0;
-        }
 
         @media (max-width: 1200px) {
           .services-header {
