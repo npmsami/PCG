@@ -83,7 +83,7 @@ export default function HeroSection() {
         .hero-text {
           position: absolute;
           left: 24px;
-          bottom: 24px;
+          bottom: 12px;
           max-width: 450px;
           background: rgba(255, 255, 255, 0.9);
           backdrop-filter: blur(20px);
