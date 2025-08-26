@@ -144,12 +144,12 @@ export default function Navigation() {
         .nav-items {
           display: flex;
           align-items: center;
-          gap: 40px;
+          gap: 24px;
         }
 
         .nav-link {
           display: flex;
-          padding: 9px 52px 10px 51px;
+          padding: 8px 24px;
           justify-content: center;
           align-items: center;
           border-radius: 100px;
