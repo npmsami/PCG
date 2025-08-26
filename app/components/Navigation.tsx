@@ -102,12 +102,12 @@ export default function Navigation() {
       <style jsx>{`
         .nav-container {
           position: fixed;
-          top: 20px;
+          top: 40px;
           left: 50%;
           transform: translateX(-50%);
           width: auto;
           max-width: 800px;
-          padding: 8px 20px;
+          padding: 6px 16px;
           z-index: 1000;
           background: rgba(255, 255, 255, 0.8);
           backdrop-filter: blur(12px);
