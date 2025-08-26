@@ -364,8 +364,11 @@ export default function Navigation() {
             display: none;
           }
 
-          .nav-left.nav-items-open {
+          .nav-left.nav-items-open .mobile-only-items {
             display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
           }
 
           .nav-link span {
