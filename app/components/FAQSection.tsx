@@ -3,14 +3,7 @@
 import { useState, useEffect } from 'react';
 
 export default function FAQSection() {
-  const [openItem, setOpenItem] = useState<number | null>(null); // Start with no items open to match server
-  const [isHydrated, setIsHydrated] = useState(false);
-
-  // Set initial state after hydration to prevent mismatch
-  useEffect(() => {
-    setIsHydrated(true);
-    setOpenItem(0); // Set first item open after hydration
-  }, []);
+  const [openItem, setOpenItem] = useState<number | null>(0); // First item open by default
 
   const faqItems = [
     {
@@ -65,11 +58,11 @@ export default function FAQSection() {
                 <button
                   className="accordion-question"
                   onClick={() => toggleItem(item.id)}
-                  aria-expanded={isHydrated && openItem === item.id}
+                  aria-expanded={openItem === item.id}
                 >
                   <span className="question-text">{item.question}</span>
                   <svg
-                    className={`chevron-icon ${isHydrated && openItem === item.id ? 'chevron-open' : ''}`}
+                    className={`chevron-icon ${openItem === item.id ? 'chevron-open' : ''}`}
                     width="32" 
                     height="32" 
                     viewBox="0 0 32 32" 
@@ -85,7 +78,7 @@ export default function FAQSection() {
                   </svg>
                 </button>
                 
-                <div className={`accordion-answer ${isHydrated && openItem === item.id ? 'answer-open' : ''}`}>
+                <div className={`accordion-answer ${openItem === item.id ? 'answer-open' : ''}`}>
                   <div className="answer-content">
                     <p>{item.answer}</p>
                   </div>

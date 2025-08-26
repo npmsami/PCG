@@ -50,7 +50,7 @@ export default function Navigation() {
             <span>Spanish</span>
             <span className="chevron">􀆊</span>
           </button>
-          {isMounted && isLanguageOpen && (
+          {isLanguageOpen && (
             <div className="language-dropdown">
               <div className="language-option">English</div>
               <div className="language-option">Español</div>
