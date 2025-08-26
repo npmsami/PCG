@@ -69,7 +69,7 @@ export default function ProcessSection() {
           background: var(--primary-orange);
           padding: var(--section-padding) 0;
           border-radius: var(--border-radius-medium);
-          margin: 0 var(--page-padding);
+          margin: 40px var(--page-padding) 0;
         }
 
         .process-header {
