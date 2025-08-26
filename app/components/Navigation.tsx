@@ -324,8 +324,13 @@ export default function Navigation() {
             font-size: 20px;
           }
 
+          .nav-container {
+            width: calc(100% - 40px);
+            max-width: none;
+          }
+
           .nav-content {
-            padding: 0 20px;
+            padding: 0;
           }
 
           .logo img {
