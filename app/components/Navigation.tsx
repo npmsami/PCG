@@ -295,6 +295,11 @@ export default function Navigation() {
             display: flex;
           }
 
+          .nav-content {
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+          }
+
           .nav-left {
             position: fixed;
             top: 0;
@@ -315,9 +320,16 @@ export default function Navigation() {
             transform: translateX(0);
           }
 
-          .nav-items {
-            flex-direction: column;
-            gap: 30px;
+          .nav-center {
+            grid-column: 2;
+          }
+
+          .nav-right {
+            display: none;
+          }
+
+          .nav-left.nav-items-open {
+            display: flex;
           }
 
           .nav-link span {
