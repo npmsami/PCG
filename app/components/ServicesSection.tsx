@@ -107,6 +107,12 @@ export default function ServicesSection() {
           max-width: 600px;
         }
 
+        .years-badge {
+          margin-bottom: 24px;
+          display: flex;
+          justify-content: flex-start;
+        }
+
         .services-title {
           color: var(--white);
           font-family: var(--font-roboto);
