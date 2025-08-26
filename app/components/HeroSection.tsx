@@ -171,7 +171,7 @@ export default function HeroSection() {
             padding: 20px;
             max-width: 340px;
             left: 20px;
-            bottom: 20px;
+            bottom: 10px;
             border-radius: var(--border-radius-medium);
           }
 
