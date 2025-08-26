@@ -76,25 +76,6 @@ export default function ServicesSection() {
           </div>
         </div>
 
-        {/* Certifications */}
-        <div className="certifications">
-          <div className="cert-badge">
-            <Image
-              src="https://api.builder.io/api/v1/image/assets/TEMP/41381a4b237be349d87bd00aadcd8c27ae740efb?width=460"
-              alt="15 Years Certification"
-              width={230}
-              height={182}
-            />
-          </div>
-          <div className="pcg-logos">
-            <Image
-              src="https://api.builder.io/api/v1/image/assets/TEMP/4195618cdb718474caacc38ca053dde31995c89b?width=554"
-              alt="PCG Logo"
-              width={277}
-              height={106}
-            />
-          </div>
-        </div>
       </div>
 
       <style jsx>{`
