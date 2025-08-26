@@ -126,6 +126,7 @@ export default function Navigation() {
           display: flex;
           align-items: center;
           gap: 40px;
+          transform: none;
         }
 
         .nav-right {
