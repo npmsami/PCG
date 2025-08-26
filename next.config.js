@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['api.builder.io'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -11,7 +10,7 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
+  compiler: {
     styledComponents: true
   }
 }
