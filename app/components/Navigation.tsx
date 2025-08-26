@@ -84,13 +84,13 @@ export default function Navigation() {
           top: 20px;
           left: 50%;
           transform: translateX(-50%);
-          width: calc(100% - 4 * var(--page-padding));
-          max-width: 1200px;
-          padding: 16px 32px;
+          width: auto;
+          max-width: 800px;
+          padding: 12px 24px;
           z-index: 1000;
           background: rgba(255, 255, 255, 0.8);
           backdrop-filter: blur(12px);
-          border-radius: 100px;
+          border-radius: 50px;
           border: 1px solid rgba(255, 255, 255, 0.3);
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
@@ -101,7 +101,7 @@ export default function Navigation() {
           justify-content: space-between;
           margin: 0;
           padding: 0;
-          gap: 20px;
+          gap: 16px;
         }
 
         .mobile-menu-btn {
