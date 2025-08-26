@@ -115,7 +115,7 @@ export default function HeroSection() {
         .hero-cta-btn {
           position: relative;
           display: inline-flex;
-          padding: 17px 37px 17px 37px;
+          padding: 12px 28px;
           justify-content: center;
           align-items: center;
           border-radius: 100px;
