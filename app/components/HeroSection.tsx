@@ -195,6 +195,11 @@ export default function HeroSection() {
             margin: 0 16px;
           }
 
+          .hero-text {
+            padding: 24px 20px;
+            border-radius: 20px;
+          }
+
           .hero-title {
             font-size: 28px;
             line-height: 110%;
