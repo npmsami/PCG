@@ -356,6 +356,7 @@ export default function Footer() {
         @media (max-width: 768px) {
           .footer {
             padding: 60px 0;
+            margin: 40px 20px 0;
           }
 
           .footer-main {
