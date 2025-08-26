@@ -193,6 +193,10 @@ export default function TestimonialsSection() {
         }
 
         @media (max-width: 768px) {
+          .testimonials-section {
+            margin: 40px 20px 0;
+          }
+
           .testimonials-title {
             font-size: 32px;
           }
