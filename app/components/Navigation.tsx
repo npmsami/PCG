@@ -107,7 +107,7 @@ export default function Navigation() {
           transform: translateX(-50%);
           width: auto;
           max-width: 800px;
-          padding: 12px 24px;
+          padding: 8px 20px;
           z-index: 1000;
           background: rgba(255, 255, 255, 0.8);
           backdrop-filter: blur(12px);
