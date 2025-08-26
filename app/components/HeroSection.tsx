@@ -4,13 +4,20 @@ export default function HeroSection() {
   return (
     <section className="hero-section">
       <div className="hero-background">
-        <Image
-          src="https://api.builder.io/api/v1/image/assets/TEMP/ef5d90ce328d45584bdfb79dcdb5ddfa44090e9e?width=3340"
-          alt="Roofing professionals at work"
-          fill
-          style={{ objectFit: 'cover' }}
-          priority
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="hero-video"
+          poster="https://api.builder.io/api/v1/image/assets/TEMP/ef5d90ce328d45584bdfb79dcdb5ddfa44090e9e?width=3340"
+        >
+          <source
+            src="https://cdn.builder.io/o/assets%2F701c6aa649cc4d0db8f75aa92ca32a88%2Fc42cf556fe04477abff0163c478a5a87?alt=media&token=0ae050f2-1f6c-4522-a049-f018e671d07d&apiKey=701c6aa649cc4d0db8f75aa92ca32a88"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
         <div className="hero-overlay"></div>
       </div>
       
