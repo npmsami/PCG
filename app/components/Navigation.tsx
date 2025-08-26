@@ -101,7 +101,8 @@ export default function Navigation() {
           justify-content: space-between;
           margin: 0;
           padding: 0;
-          gap: 16px;
+          gap: 12px;
+          min-width: 0;
         }
 
         .mobile-menu-btn {
