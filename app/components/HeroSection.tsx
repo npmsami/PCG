@@ -261,6 +261,12 @@ export default function HeroSection() {
             bottom: 16px;
           }
 
+          @media (max-width: 640px) {
+            .hero-text {
+              left: 11px;
+            }
+          }
+
           .hero-title {
             font-size: 24px;
             line-height: 110%;
