@@ -2,7 +2,7 @@
 
 export default function HeroSection() {
   return (
-    <section className="hero-section">
+    <section className="hero-section" suppressHydrationWarning={true}>
       <div className="hero-background">
         <video
           autoPlay
