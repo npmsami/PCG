@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function FAQSection() {
   const [openItem, setOpenItem] = useState<number | null>(0); // First item open by default
