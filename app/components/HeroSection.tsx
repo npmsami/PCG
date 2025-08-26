@@ -102,8 +102,8 @@ export default function HeroSection() {
           bottom: 24px;
           max-width: 450px;
           z-index: 3;
-          background: rgba(255, 255, 255, 0.85);
-          backdrop-filter: blur(40px);
+          background: rgba(255, 255, 255, 0.8);
+          backdrop-filter: blur(80px);
           border-radius: var(--border-radius-medium);
           padding: 24px;
           border: 1px solid rgba(255, 255, 255, 0.3);
