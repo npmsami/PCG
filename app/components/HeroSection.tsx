@@ -232,6 +232,17 @@ export default function HeroSection() {
             margin: 0 16px;
           }
 
+          .hero-background::after {
+            background:
+              linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.6) 100%),
+              linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.5) 100%);
+          }
+
+          .hero-video {
+            transform: scale(1.1);
+            filter: blur(1px);
+          }
+
           .hero-text {
             padding: 16px;
             border-radius: var(--border-radius-medium);
