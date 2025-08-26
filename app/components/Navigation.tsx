@@ -287,7 +287,7 @@ export default function Navigation() {
             display: flex;
           }
 
-          .nav-items {
+          .nav-left {
             position: fixed;
             top: 0;
             left: 0;
@@ -303,8 +303,13 @@ export default function Navigation() {
             z-index: 1000;
           }
 
-          .nav-items-open {
+          .nav-items-open .nav-left {
             transform: translateX(0);
+          }
+
+          .nav-items {
+            flex-direction: column;
+            gap: 30px;
           }
 
           .nav-link span {
