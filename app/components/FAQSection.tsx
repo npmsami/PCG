@@ -1,9 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function FAQSection() {
-  const [openItem, setOpenItem] = useState<number | null>(0); // First item open by default
+  const [openItem, setOpenItem] = useState<number | null>(null); // Start with all closed for hydration safety
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    setOpenItem(0); // Open first item after hydration
+  }, []);
 
   const faqItems = [
     {
