@@ -273,6 +273,10 @@ export default function ServicesSection() {
             font-size: 24px;
           }
 
+          .certifications {
+            justify-content: center;
+            margin-top: 40px;
+          }
         }
 
         @media (max-width: 480px) {
