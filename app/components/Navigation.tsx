@@ -183,11 +183,11 @@ export default function Navigation() {
           transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .nav-visible {
+        .nav-container.nav-visible {
           transform: translateX(-50%) translateY(0);
         }
 
-        .nav-hidden {
+        .nav-container.nav-hidden {
           transform: translateX(-50%) translateY(-120%);
         }
 
