@@ -340,10 +340,15 @@ export default function Navigation() {
         }
 
         @media (max-width: 480px) {
+          .nav-container {
+            width: calc(100% - 32px);
+            padding: 12px 24px;
+          }
+
           .nav-link {
             padding: 8px 30px;
           }
-          
+
           .language-btn {
             padding: 8px 30px;
           }
