@@ -44,7 +44,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="faq-section">
+    <section className="faq-section" suppressHydrationWarning={true}>
       <div className="faq-background">
         <div className="faq-overlay"></div>
       </div>
