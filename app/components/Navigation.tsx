@@ -371,7 +371,7 @@ export default function Navigation() {
           .nav-container {
             width: calc(100% - 32px);
             max-width: 500px;
-            padding: 8px 16px;
+            padding: 5px 12px;
           }
 
           .nav-link {
