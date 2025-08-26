@@ -354,7 +354,7 @@ export default function Navigation() {
           .nav-container {
             width: calc(100% - 40px);
             max-width: 600px;
-            padding: 10px 20px;
+            padding: 6px 16px;
           }
 
           .nav-content {
@@ -362,8 +362,8 @@ export default function Navigation() {
           }
 
           .logo img {
-            width: 80px;
-            height: 80px;
+            width: 50px;
+            height: 50px;
           }
         }
 
