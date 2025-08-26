@@ -122,7 +122,7 @@ export default function Navigation() {
           align-items: center;
           margin: 0;
           padding: 0;
-          gap: 24px;
+          gap: 16px;
           min-width: 0;
         }
 
