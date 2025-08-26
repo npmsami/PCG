@@ -185,7 +185,7 @@ export default function HeroSection() {
 
           .hero-text {
             padding: 20px;
-            max-width: 340px;
+            max-width: 420px;
             left: 20px;
             bottom: 20px;
             border-radius: var(--border-radius-medium);
