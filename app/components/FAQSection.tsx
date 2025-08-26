@@ -58,13 +58,14 @@ export default function FAQSection() {
             </p>
           </div>
 
-          <div className="faq-accordion">
+          <div className="faq-accordion" suppressHydrationWarning={true}>
             {faqItems.map((item) => (
-              <div key={item.id} className="accordion-item">
+              <div key={item.id} className="accordion-item" suppressHydrationWarning={true}>
                 <button
                   className="accordion-question"
                   onClick={() => toggleItem(item.id)}
                   aria-expanded={openItem === item.id}
+                  suppressHydrationWarning={true}
                 >
                   <span className="question-text">{item.question}</span>
                   <svg
