@@ -251,10 +251,6 @@ export default function ServicesSection() {
             font-size: 24px;
           }
 
-          .certifications {
-            flex-direction: column;
-            gap: 30px;
-          }
         }
 
         @media (max-width: 480px) {
