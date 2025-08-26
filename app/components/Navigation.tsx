@@ -122,6 +122,18 @@ export default function Navigation() {
           transition: 0.3s;
         }
 
+        .nav-left {
+          display: flex;
+          align-items: center;
+          gap: 40px;
+        }
+
+        .nav-right {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+
         .nav-items {
           display: flex;
           align-items: center;
