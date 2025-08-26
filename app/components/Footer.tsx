@@ -121,7 +121,7 @@ export default function Footer() {
             <div className="links-column">
               <h4 className="column-title">Stay Updated</h4>
               <ul className="social-links">
-                {socialIcons.map((socialName, index) => (
+                {isMounted && socialIcons.map((socialName, index) => (
                   <li key={index} className="social-item">
                     <a href="#" className="social-link">
                       {renderSocialIcon(socialName)}
