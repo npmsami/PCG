@@ -62,10 +62,10 @@ export default function FAQSection() {
           <div className="faq-accordion">
             {faqItems.map((item) => (
               <div key={item.id} className="accordion-item">
-                <button 
+                <button
                   className="accordion-question"
                   onClick={() => toggleItem(item.id)}
-                  aria-expanded={openItem === item.id}
+                  aria-expanded={isHydrated && openItem === item.id}
                 >
                   <span className="question-text">{item.question}</span>
                   <svg 
