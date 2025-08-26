@@ -84,6 +84,8 @@ export default function TestimonialsSection() {
         .testimonials-section {
           background: var(--white);
           padding: var(--section-padding) 0;
+          margin: 40px var(--page-padding) 0;
+          border-radius: var(--border-radius-medium);
         }
 
         .testimonials-header {
