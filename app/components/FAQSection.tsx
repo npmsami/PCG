@@ -85,7 +85,7 @@ export default function FAQSection() {
                   </svg>
                 </button>
                 
-                <div className={`accordion-answer ${openItem === item.id ? 'answer-open' : ''}`}>
+                <div className={`accordion-answer ${isHydrated && openItem === item.id ? 'answer-open' : ''}`}>
                   <div className="answer-content">
                     <p>{item.answer}</p>
                   </div>
