@@ -209,7 +209,7 @@ export default function HeroSection() {
             border-radius: var(--border-radius-medium);
             max-width: 280px;
             left: 16px;
-            bottom: 0;
+            bottom: 16px;
           }
 
           .hero-title {
