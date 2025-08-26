@@ -1,25 +1,10 @@
 'use client';
 
-import Navigation from './components/Navigation'
-import HeroSection from './components/HeroSection'
-import ProcessSection from './components/ProcessSection'
-import ServicesSection from './components/ServicesSection'
-import TestimonialsSection from './components/TestimonialsSection'
-import FAQSection from './components/FAQSection'
-import CTASection from './components/CTASection'
-import Footer from './components/Footer'
-
 export default function Home() {
   return (
     <main>
-      <Navigation />
-      <HeroSection />
-      <ProcessSection />
-      <ServicesSection />
-      <TestimonialsSection />
-      <FAQSection />
-      <CTASection />
-      <Footer />
+      <h1>Test Page</h1>
+      <p>If you can see this, the basic setup is working.</p>
     </main>
   )
 }
