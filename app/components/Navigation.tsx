@@ -8,11 +8,21 @@ export default function Navigation() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
   const hideDelay = 2000; // 2 seconds delay before hiding
 
+  // Handle component mounting for hydration
   useEffect(() => {
+    setIsMounted(true);
+    setLastScrollY(window.scrollY);
+  }, []);
+
+  useEffect(() => {
+    // Only run scroll logic after component has mounted (hydrated)
+    if (!isMounted) return;
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const scrollDifference = Math.abs(currentScrollY - lastScrollY);
@@ -50,7 +60,7 @@ export default function Navigation() {
         clearTimeout(hideTimeoutRef.current);
       }
     };
-  }, [lastScrollY]);
+  }, [lastScrollY, isMounted]);
 
   // Keep navbar visible when menu is open
   useEffect(() => {
