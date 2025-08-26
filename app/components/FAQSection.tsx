@@ -68,8 +68,8 @@ export default function FAQSection() {
                   aria-expanded={isHydrated && openItem === item.id}
                 >
                   <span className="question-text">{item.question}</span>
-                  <svg 
-                    className={`chevron-icon ${openItem === item.id ? 'chevron-open' : ''}`}
+                  <svg
+                    className={`chevron-icon ${isHydrated && openItem === item.id ? 'chevron-open' : ''}`}
                     width="32" 
                     height="32" 
                     viewBox="0 0 32 32" 
