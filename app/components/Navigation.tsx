@@ -70,7 +70,7 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* Right side: Services, Language and Phone button */}
+        {/* Right side: Services and Language */}
         <div className="nav-right">
           <div className="nav-link">
             <span>Services</span>
