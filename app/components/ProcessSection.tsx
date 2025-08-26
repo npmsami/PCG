@@ -196,7 +196,7 @@ export default function ProcessSection() {
 
         @media (max-width: 768px) {
           .process-section {
-            margin: 0 20px;
+            margin: 40px 20px 0;
             padding: 60px 0;
           }
 
