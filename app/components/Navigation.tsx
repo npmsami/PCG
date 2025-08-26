@@ -171,7 +171,7 @@ export default function Navigation() {
 
         .nav-link {
           display: flex;
-          padding: 8px 24px;
+          padding: 6px 20px;
           justify-content: center;
           align-items: center;
           border-radius: 100px;
