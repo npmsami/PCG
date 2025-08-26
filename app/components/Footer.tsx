@@ -121,15 +121,19 @@ export default function Footer() {
 
             <div className="links-column">
               <h4 className="column-title">Stay Updated</h4>
-              <ul className="social-links">
-                {isMounted && socialIcons.map((socialName, index) => (
+              <ul className="social-links" suppressHydrationWarning={true}>
+                {isMounted ? socialIcons.map((socialName, index) => (
                   <li key={index} className="social-item">
                     <a href="#" className="social-link">
                       {renderSocialIcon(socialName)}
                       <span>{socialName}</span>
                     </a>
                   </li>
-                ))}
+                )) : (
+                  <li className="social-item">
+                    <span style={{color: 'white', fontSize: '14px'}}>Loading social links...</span>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
