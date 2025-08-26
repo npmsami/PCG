@@ -12,6 +12,9 @@ const nextConfig = {
   },
   compiler: {
     styledComponents: true
+  },
+  experimental: {
+    forceSwcTransforms: true,
   }
 }
 
