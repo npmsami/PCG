@@ -189,6 +189,9 @@ export default function Navigation() {
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
           transform: translateX(-50%) translateY(0);
           transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          /* Ensure default visible state during SSR */
+          opacity: 1;
+          visibility: visible;
         }
 
         .nav-container.nav-visible {
