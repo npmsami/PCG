@@ -1,3 +1,5 @@
+'use client';
+
 export default function CTASection() {
   return (
     <section className="cta-section">
