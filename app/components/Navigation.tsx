@@ -1,11 +1,67 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
+  const hideDelay = 2000; // 2 seconds delay before hiding
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDifference = Math.abs(currentScrollY - lastScrollY);
+
+      // Only trigger if scroll difference is significant enough
+      if (scrollDifference < scrollThreshold) return;
+
+      // Clear any existing timeout
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current);
+        hideTimeoutRef.current = null;
+      }
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down - hide navbar after delay
+        setIsNavVisible(true); // Show immediately while scrolling
+        hideTimeoutRef.current = setTimeout(() => {
+          setIsNavVisible(false);
+        }, hideDelay);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show navbar immediately
+        setIsNavVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current);
+      }
+    };
+  }, [lastScrollY]);
+
+  // Keep navbar visible when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      setIsNavVisible(true);
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current);
+        hideTimeoutRef.current = null;
+      }
+    }
+  }, [isMenuOpen]);
 
   return (
     <nav className="nav-container">
