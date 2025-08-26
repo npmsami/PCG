@@ -147,11 +147,6 @@ export default function Navigation() {
           justify-content: flex-end;
         }
 
-        .nav-items {
-          display: flex;
-          align-items: center;
-          gap: 24px;
-        }
 
         .nav-link {
           display: flex;
