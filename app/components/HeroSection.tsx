@@ -35,14 +35,15 @@ export default function HeroSection() {
       <style jsx>{`
         .hero-section {
           position: relative;
-          width: 100%;
+          left: var(--page-padding);
+          right: var(--page-padding);
+          width: calc(100% - 2 * var(--page-padding));
           height: 100vh;
           min-height: 600px;
           max-height: 900px;
           overflow: hidden;
           display: flex;
           align-items: center;
-          margin: 0 var(--page-padding);
           border-radius: var(--border-radius-medium);
         }
 
