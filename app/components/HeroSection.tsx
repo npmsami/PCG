@@ -180,6 +180,8 @@ export default function HeroSection() {
           .hero-section {
             height: 70vh;
             min-height: 450px;
+            width: calc(100% - 32px);
+            margin: 0 16px;
           }
 
           .hero-title {
