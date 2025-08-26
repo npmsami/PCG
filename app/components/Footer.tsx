@@ -65,7 +65,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="footer">
+    <footer className="footer" suppressHydrationWarning={true}>
       <div className="container">
         <div className="footer-main">
           <div className="newsletter-section">
