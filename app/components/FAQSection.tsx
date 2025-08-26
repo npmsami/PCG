@@ -1,9 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function FAQSection() {
-  const [openItem, setOpenItem] = useState<number | null>(0); // First item open by default
+  const [openItem, setOpenItem] = useState<number | null>(null); // Start with no items open to match server
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Set initial state after hydration to prevent mismatch
+  useEffect(() => {
+    setIsHydrated(true);
+    setOpenItem(0); // Set first item open after hydration
+  }, []);
 
   const faqItems = [
     {
