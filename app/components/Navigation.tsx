@@ -183,10 +183,10 @@ export default function Navigation() {
 
         .language-btn {
           display: flex;
-          padding: 9px 52px 10px 51px;
+          padding: 8px 20px;
           justify-content: center;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
           border-radius: 100px;
           border: 1px solid #4B4949;
           background: transparent;
