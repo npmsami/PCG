@@ -183,6 +183,20 @@ export default function HeroSection() {
             margin: 0 20px;
           }
 
+          .hero-background::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            background:
+              linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.4) 100%),
+              linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.3) 100%);
+            z-index: 1.5;
+          }
+
           .hero-text {
             padding: 20px;
             max-width: 420px;
