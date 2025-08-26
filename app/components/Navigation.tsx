@@ -26,9 +26,9 @@ export default function Navigation() {
         </button>
 
         {/* Left side: Navigation items and Language switcher */}
-        <div className="nav-left">
+        <div className={`nav-left ${isMenuOpen ? 'nav-items-open' : ''}`}>
           {/* Navigation items */}
-          <div className={`nav-items ${isMenuOpen ? 'nav-items-open' : ''}`}>
+          <div className="nav-items">
             <div className="nav-link">
               <span>Home</span>
             </div>
