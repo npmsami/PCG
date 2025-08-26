@@ -124,6 +124,13 @@ export default function ServicesSection() {
         .header-content {
           flex: 1;
           max-width: 600px;
+          position: relative;
+        }
+
+        .years-badge {
+          margin-bottom: 24px;
+          display: flex;
+          justify-content: flex-start;
         }
 
         .services-title {
