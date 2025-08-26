@@ -322,6 +322,10 @@ export default function Navigation() {
           flex-shrink: 0;
         }
 
+        .mobile-only-items {
+          display: none;
+        }
+
         @media (max-width: 768px) {
           .mobile-menu-btn {
             display: flex;
