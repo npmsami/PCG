@@ -36,6 +36,14 @@ export default function ServicesSection() {
         {/* Header with confidence message */}
         <div className="services-header">
           <div className="header-content">
+            <div className="years-badge">
+              <Image
+                src="https://api.builder.io/api/v1/image/assets/TEMP/41381a4b237be349d87bd00aadcd8c27ae740efb?width=460"
+                alt="15 Years Certification"
+                width={120}
+                height={120}
+              />
+            </div>
             <h2 className="services-title">Protect Your Home with Confidence</h2>
             <p className="services-description">
               With over 15 years of dedicated service, PCG Roofing is fully licensed and insured, ensuring peace of mind for homeowners. Our strong relationships with top insurance carriers and certified installers allow us to deliver exceptional roofing solutions quickly and efficiently.
