@@ -209,16 +209,6 @@ export default function ServicesSection() {
           line-height: 130%;
         }
 
-        .certifications {
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-          margin-top: 60px;
-        }
-
-        .cert-badge {
-          flex-shrink: 0;
-        }
 
 
         @media (max-width: 1200px) {
