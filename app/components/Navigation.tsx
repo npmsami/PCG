@@ -289,23 +289,6 @@ export default function Navigation() {
           background: #f5f5f5;
         }
 
-        .phone-btn {
-          display: flex;
-          padding: 5px 8px;
-          align-items: center;
-          gap: 10px;
-          border-radius: 100px;
-          border: 1px solid #302F2F;
-          background: var(--black);
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .phone-btn:hover {
-          background: var(--primary-orange);
-          border-color: var(--primary-orange);
-          transform: translateY(-2px);
-        }
 
         .logo {
           flex-shrink: 0;
