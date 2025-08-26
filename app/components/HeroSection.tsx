@@ -99,7 +99,7 @@ export default function HeroSection() {
           position: absolute;
           left: 24px;
           bottom: 24px;
-          max-width: 450px;
+          max-width: 580px;
           z-index: 3;
           background: rgba(255, 255, 255, 0.8);
           backdrop-filter: blur(80px);
