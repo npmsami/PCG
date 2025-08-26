@@ -73,8 +73,16 @@ export default function Navigation() {
     }
   }, [isMenuOpen]);
 
+  // Build dynamic class name only after mounting
+  const dynamicClass = isMounted
+    ? (isNavVisible ? 'nav-visible' : 'nav-hidden')
+    : '';
+
   return (
-    <nav className={`nav-container ${isMounted ? (isNavVisible ? 'nav-visible' : 'nav-hidden') : 'nav-visible'}`}>
+    <nav
+      className={`nav-container ${dynamicClass}`.trim()}
+      suppressHydrationWarning={true}
+    >
       <div className="nav-content">
         {/* Mobile menu button */}
         <button
