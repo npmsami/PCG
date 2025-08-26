@@ -76,7 +76,7 @@ export default function HeroSection() {
           width: 100%;
           max-width: 1600px;
           margin: 0 auto;
-          padding: 0 var(--page-padding);
+          padding: 0 64px;
         }
 
         .hero-text {
