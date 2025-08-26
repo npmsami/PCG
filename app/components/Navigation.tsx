@@ -303,7 +303,7 @@ export default function Navigation() {
             z-index: 1000;
           }
 
-          .nav-items-open .nav-left {
+          .nav-left.nav-items-open {
             transform: translateX(0);
           }
 
