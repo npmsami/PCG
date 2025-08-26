@@ -343,7 +343,8 @@ export default function Navigation() {
         @media (max-width: 480px) {
           .nav-container {
             width: calc(100% - 32px);
-            padding: 12px 24px;
+            max-width: 500px;
+            padding: 8px 16px;
           }
 
           .nav-link {
