@@ -226,21 +226,24 @@ export default function HeroSection() {
 
         @media (max-width: 480px) {
           .hero-section {
-            height: 70vh;
-            min-height: 450px;
+            height: 60vh;
+            min-height: 400px;
             width: calc(100% - 32px);
             margin: 0 16px;
           }
 
           .hero-background::after {
             background:
-              linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.6) 100%),
-              linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.5) 100%);
+              linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.4) 100%),
+              linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.3) 100%);
           }
 
           .hero-video {
-            transform: scale(1.1);
-            filter: blur(1px);
+            object-fit: contain;
+            transform: none;
+            filter: none;
+            width: 100%;
+            height: 100%;
           }
 
           .hero-text {
