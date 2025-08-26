@@ -44,6 +44,7 @@ export default function HeroSection() {
           align-items: center;
           margin: 0 var(--page-padding);
           border-radius: var(--border-radius-medium);
+          margin-top: 0;
         }
 
         .hero-background {
