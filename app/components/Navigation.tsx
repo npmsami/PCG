@@ -74,7 +74,7 @@ export default function Navigation() {
   }, [isMenuOpen]);
 
   return (
-    <nav className={`nav-container ${isNavVisible ? 'nav-visible' : 'nav-hidden'}`}>
+    <nav className={`nav-container ${isMounted ? (isNavVisible ? 'nav-visible' : 'nav-hidden') : 'nav-visible'}`}>
       <div className="nav-content">
         {/* Mobile menu button */}
         <button
