@@ -96,20 +96,20 @@ export default function HeroSection() {
         .hero-title {
           color: var(--black);
           font-family: var(--font-roboto);
-          font-size: 50px;
+          font-size: 36px;
           font-weight: 700;
           line-height: 120%;
-          margin-bottom: 24px;
+          margin-bottom: 16px;
         }
 
         .hero-description {
           color: var(--black);
           font-family: var(--font-roboto);
-          font-size: 20px;
+          font-size: 16px;
           font-weight: 400;
           line-height: 150%;
-          margin-bottom: 40px;
-          max-width: 521px;
+          margin-bottom: 24px;
+          max-width: 100%;
         }
 
         .hero-cta-btn {
