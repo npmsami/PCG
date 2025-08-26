@@ -81,22 +81,26 @@ export default function Navigation() {
       <style jsx>{`
         .nav-container {
           position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          width: 100%;
-          padding: 20px 0;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: calc(100% - 4 * var(--page-padding));
+          max-width: 1200px;
+          padding: 16px 32px;
           z-index: 1000;
-          background: transparent;
+          background: rgba(255, 255, 255, 0.8);
+          backdrop-filter: blur(12px);
+          border-radius: 100px;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .nav-content {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          max-width: 1600px;
-          margin: 0 auto;
-          padding: 0 var(--page-padding);
+          margin: 0;
+          padding: 0;
           gap: 20px;
         }
 
