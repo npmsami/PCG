@@ -81,13 +81,14 @@ export default function Footer() {
               Subscribe to our newsletter for the latest updates on roofing services and offers.
             </p>
             <div className="newsletter-form">
-              <div className="form-group">
-                <input 
-                  type="email" 
-                  placeholder="Your Email Here" 
+              <div className="form-group" suppressHydrationWarning={true}>
+                <input
+                  type="email"
+                  placeholder="Your Email Here"
                   className="email-input"
+                  suppressHydrationWarning={true}
                 />
-                <button className="join-btn">Join</button>
+                <button className="join-btn" suppressHydrationWarning={true}>Join</button>
               </div>
               <p className="newsletter-disclaimer">
                 By subscribing, you consent to receive updates and agree to our Privacy Policy.
