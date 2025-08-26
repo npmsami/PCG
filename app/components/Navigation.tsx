@@ -131,14 +131,20 @@ export default function Navigation() {
           align-items: center;
           gap: 24px;
           transform: none;
-          flex-shrink: 0;
+          justify-content: flex-start;
+        }
+
+        .nav-center {
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .nav-right {
           display: flex;
           align-items: center;
           gap: 12px;
-          flex-shrink: 0;
+          justify-content: flex-end;
         }
 
         .nav-items {
