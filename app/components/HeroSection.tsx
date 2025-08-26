@@ -131,7 +131,7 @@ export default function HeroSection() {
           z-index: 2;
           color: var(--white);
           font-family: var(--font-open-sans);
-          font-size: 23px;
+          font-size: 18px;
           font-weight: 700;
           line-height: 111.66%;
         }
