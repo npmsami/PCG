@@ -160,7 +160,6 @@ export default function Navigation() {
           position: fixed;
           top: 40px;
           left: 50%;
-          transform: translateX(-50%);
           width: auto;
           max-width: 800px;
           padding: 6px 16px;
@@ -170,6 +169,16 @@ export default function Navigation() {
           border-radius: 50px;
           border: 1px solid rgba(255, 255, 255, 0.3);
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          transform: translateX(-50%) translateY(0);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-visible {
+          transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-hidden {
+          transform: translateX(-50%) translateY(-120%);
         }
 
         .nav-content {
