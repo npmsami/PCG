@@ -17,19 +17,20 @@ export default function HeroSection() {
       </div>
       
       <div className="hero-content">
-        <div className="hero-text">
-          <h1 className="hero-title">
-            Restore Your Roof<br />
-            Restore Your Peace of Mind
-          </h1>
-          <p className="hero-description">
-            Roof damage can be overwhelming, but it doesn't have to be. At PCG, we prioritize your family's safety by efficiently restoring your roof and managing the repair process.
-          </p>
-          <button className="hero-cta-btn">
-            <span>Call Us Today</span>
-            <div className="btn-glow"></div>
-          </button>
-        </div>
+      </div>
+
+      <div className="hero-text">
+        <h1 className="hero-title">
+          Restore Your Roof<br />
+          Restore Your Peace of Mind
+        </h1>
+        <p className="hero-description">
+          Roof damage can be overwhelming, but it doesn't have to be. At PCG, we prioritize your family's safety by efficiently restoring your roof and managing the repair process.
+        </p>
+        <button className="hero-cta-btn">
+          <span>Call Us Today</span>
+          <div className="btn-glow"></div>
+        </button>
       </div>
 
       <style jsx>{`
