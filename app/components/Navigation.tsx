@@ -96,12 +96,12 @@ export default function Navigation() {
         }
 
         .nav-content {
-          display: flex;
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
           align-items: center;
-          justify-content: space-between;
           margin: 0;
           padding: 0;
-          gap: 12px;
+          gap: 24px;
           min-width: 0;
         }
 
