@@ -168,25 +168,27 @@ export default function HeroSection() {
           }
 
           .hero-text {
-            padding: 32px 24px;
+            padding: 20px;
+            max-width: 340px;
+            bottom: 20px;
           }
 
           .hero-title {
-            font-size: 36px;
-            margin-bottom: 20px;
+            font-size: 28px;
+            margin-bottom: 12px;
           }
 
           .hero-description {
-            font-size: 18px;
-            margin-bottom: 32px;
+            font-size: 14px;
+            margin-bottom: 20px;
           }
 
           .hero-cta-btn {
-            padding: 15px 32px;
+            padding: 10px 24px;
           }
 
           .hero-cta-btn span {
-            font-size: 20px;
+            font-size: 16px;
           }
         }
 
