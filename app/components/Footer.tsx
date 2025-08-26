@@ -143,9 +143,9 @@ export default function Footer() {
       <style jsx>{`
         .footer {
           background: var(--dark-gray);
-          padding: 80px 0;
-          border-radius: 25px 25px 0 0;
-          margin-top: 0;
+          padding: var(--section-padding) 0;
+          border-radius: var(--border-radius-medium);
+          margin: 40px var(--page-padding) 0;
         }
 
         .footer-main {
