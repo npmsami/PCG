@@ -70,8 +70,8 @@ export default function Navigation() {
             <Image
               src="https://api.builder.io/api/v1/image/assets/TEMP/c0456d8bbbc4e627a852ee0e8821dccdb98970d0?width=244"
               alt="PCG Logo"
-              width={122}
-              height={122}
+              width={80}
+              height={80}
               priority
             />
           </div>
