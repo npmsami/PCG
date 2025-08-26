@@ -42,6 +42,8 @@ export default function HeroSection() {
           overflow: hidden;
           display: flex;
           align-items: center;
+          margin: 0 var(--page-padding);
+          border-radius: var(--border-radius-medium);
         }
 
         .hero-background {
