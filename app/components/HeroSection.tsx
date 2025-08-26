@@ -81,11 +81,14 @@ export default function HeroSection() {
         }
 
         .hero-text {
-          max-width: 657px;
+          position: absolute;
+          left: 0;
+          bottom: 40px;
+          max-width: 450px;
           background: rgba(255, 255, 255, 0.9);
           backdrop-filter: blur(20px);
-          border-radius: 24px;
-          padding: 40px;
+          border-radius: 20px;
+          padding: 24px;
           border: 1px solid rgba(255, 255, 255, 0.3);
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
