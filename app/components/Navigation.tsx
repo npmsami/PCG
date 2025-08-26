@@ -171,7 +171,7 @@ export default function Navigation() {
         .nav-link span {
           color: var(--black);
           font-family: var(--font-open-sans);
-          font-size: 25px;
+          font-size: 18px;
           font-weight: 400;
           line-height: normal;
           transition: color 0.3s ease;
