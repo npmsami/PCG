@@ -1,15 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function FAQSection() {
-  const [openItem, setOpenItem] = useState<number | null>(null); // Start with all closed for hydration safety
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    setOpenItem(0); // Open first item after hydration
-  }, []);
+  const [openItem, setOpenItem] = useState<number | null>(0);
 
   const faqItems = [
     {
@@ -44,7 +38,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="faq-section" suppressHydrationWarning={true}>
+    <section className="faq-section">
       <div className="faq-background">
         <div className="faq-overlay"></div>
       </div>
@@ -58,14 +52,13 @@ export default function FAQSection() {
             </p>
           </div>
 
-          <div className="faq-accordion" suppressHydrationWarning={true}>
+          <div className="faq-accordion">
             {faqItems.map((item) => (
-              <div key={item.id} className="accordion-item" suppressHydrationWarning={true}>
+              <div key={item.id} className="accordion-item">
                 <button
                   className="accordion-question"
                   onClick={() => toggleItem(item.id)}
                   aria-expanded={openItem === item.id}
-                  suppressHydrationWarning={true}
                 >
                   <span className="question-text">{item.question}</span>
                   <svg
@@ -87,7 +80,6 @@ export default function FAQSection() {
                 
                 <div
                   className={`accordion-answer ${openItem === item.id ? 'answer-open' : ''}`}
-                  suppressHydrationWarning={true}
                 >
                   <div className="answer-content">
                     <p>{item.answer}</p>
