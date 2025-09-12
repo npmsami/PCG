@@ -1,14 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 export default function Footer() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
   const quickLinks = [
     'Home Page',
     'About Us', 
@@ -65,7 +59,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="footer" suppressHydrationWarning={true}>
+    <footer className="footer">
       <div className="container">
         <div className="footer-main">
           <div className="newsletter-section">
@@ -81,14 +75,13 @@ export default function Footer() {
               Subscribe to our newsletter for the latest updates on roofing services and offers.
             </p>
             <div className="newsletter-form">
-              <div className="form-group" suppressHydrationWarning={true}>
+              <div className="form-group">
                 <input
                   type="email"
                   placeholder="Your Email Here"
                   className="email-input"
-                  suppressHydrationWarning={true}
                 />
-                <button className="join-btn" suppressHydrationWarning={true}>Join</button>
+                <button className="join-btn">Join</button>
               </div>
               <p className="newsletter-disclaimer">
                 By subscribing, you consent to receive updates and agree to our Privacy Policy.
@@ -121,19 +114,15 @@ export default function Footer() {
 
             <div className="links-column">
               <h4 className="column-title">Stay Updated</h4>
-              <ul className="social-links" suppressHydrationWarning={true}>
-                {isMounted ? socialIcons.map((socialName, index) => (
+              <ul className="social-links">
+                {socialIcons.map((socialName, index) => (
                   <li key={index} className="social-item">
                     <a href="#" className="social-link">
                       {renderSocialIcon(socialName)}
                       <span>{socialName}</span>
                     </a>
                   </li>
-                )) : (
-                  <li className="social-item">
-                    <span style={{color: 'white', fontSize: '14px'}}>Loading social links...</span>
-                  </li>
-                )}
+                ))}
               </ul>
             </div>
           </div>
