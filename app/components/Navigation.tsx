@@ -81,7 +81,6 @@ export default function Navigation() {
   return (
     <nav
       className={`nav-container ${dynamicClass}`.trim()}
-      suppressHydrationWarning={true}
     >
       <div className="nav-content">
         {/* Mobile menu button */}
