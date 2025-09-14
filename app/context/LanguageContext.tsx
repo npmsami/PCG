@@ -104,7 +104,12 @@ const translations = {
     'footer.links.services': 'Services',
     'footer.links.testimonials': 'Testimonials',
     'footer.links.faq': 'FAQ',
-    'footer.copyright': '© 2025 PCG Roofing. All rights reserved.'
+    'footer.copyright': '© 2025 PCG Roofing. All rights reserved.',
+    
+    // 404 Page
+    'notFound.title': 'Page Not Found',
+    'notFound.message': 'The page you are looking for doesn\'t exist or has been moved.',
+    'notFound.button': 'Back to Home'
   },
   es: {
     // Navigation
@@ -197,7 +202,12 @@ const translations = {
     'footer.links.services': 'Servicios',
     'footer.links.testimonials': 'Testimonios',
     'footer.links.faq': 'Preguntas Frecuentes',
-    'footer.copyright': '© 2025 PCG Roofing. Todos los derechos reservados.'
+    'footer.copyright': '© 2025 PCG Roofing. Todos los derechos reservados.',
+    
+    // 404 Page
+    'notFound.title': 'Página No Encontrada',
+    'notFound.message': 'La página que estás buscando no existe o ha sido movida.',
+    'notFound.button': 'Volver al Inicio'
   }
 };
 
