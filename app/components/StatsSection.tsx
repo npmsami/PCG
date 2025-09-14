@@ -1,6 +1,9 @@
 'use client';
 
+import { useLanguage } from '../context/LanguageContext';
+
 export default function StatsSection() {
+  const { t } = useLanguage();
   const stats = [
     {
       icon: (
@@ -9,9 +12,7 @@ export default function StatsSection() {
           <path d="M20 24H28V28H20V24Z" fill="white"/>
         </svg>
       ),
-      title: "Insurance",
-      subtitle: "Claim",
-      description: "Assistance"
+      titleKey: "stats.insurance"
     },
     {
       icon: (
@@ -20,9 +21,7 @@ export default function StatsSection() {
           <path d="M24 12V24L32 32L34.8 29.2L28 22.4V12H24Z" fill="white"/>
         </svg>
       ),
-      title: "Fast",
-      subtitle: "Turnaround",
-      description: "Times"
+      titleKey: "stats.satisfaction"
     },
     {
       icon: (
@@ -30,9 +29,7 @@ export default function StatsSection() {
           <path d="M24 36L12.7 42.4L15.2 29.9L5.4 20.6L18.1 18.8L24 7L29.9 18.8L42.6 20.6L32.8 29.9L35.3 42.4L24 36Z" fill="white"/>
         </svg>
       ),
-      title: "15+ Years",
-      subtitle: "of",
-      description: "Experience"
+      titleKey: "stats.years"
     },
     {
       icon: (
@@ -42,9 +39,7 @@ export default function StatsSection() {
           <path d="M24 12L30 18V28L24 32V12Z" fill="white"/>
         </svg>
       ),
-      title: "Thousands",
-      subtitle: "of Roofs",
-      description: "Restored"
+      titleKey: "stats.projects"
     }
   ];
 
@@ -58,9 +53,7 @@ export default function StatsSection() {
                 {stat.icon}
               </div>
               <div className="stat-content">
-                <h3 className="stat-title">{stat.title}</h3>
-                <p className="stat-subtitle">{stat.subtitle}</p>
-                <p className="stat-description">{stat.description}</p>
+                <h3 className="stat-title">{t(stat.titleKey)}</h3>
               </div>
             </div>
           ))}

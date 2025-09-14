@@ -1,36 +1,38 @@
 'use client';
 
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function ProcessSection() {
+  const { t } = useLanguage();
   const processSteps = [
     {
       id: 1,
-      title: "Step 1: Free Roof Inspection",
-      description: "We document the damage with detailed photos and a comprehensive report.",
+      titleKey: "process.step1.title",
+      descriptionKey: "process.step1.description",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/c9534831ad3921a74bf4d58466b8742783360484?width=722"
     },
     {
       id: 2,
-      title: "Step 2: Insurance Claim and Contract Signing",
-      description: "We handle the claim process and provide a transparent contract—no surprises, just peace of mind.",
+      titleKey: "process.step2.title",
+      descriptionKey: "process.step2.description",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/a0052aeeccaef6bb464025d7cd6fbe6a3d8200d3?width=722"
     },
     {
       id: 3,
-      title: "Step 3: Roof Restore",
-      description: "Licensed crew, warranty included, peace of mind delivered.",
+      titleKey: "process.step3.title",
+      descriptionKey: "process.step3.description",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/66ceb427bd3a65770d3aeeaad24020ce37b8b368?width=722"
     }
   ];
 
   return (
-    <section className="process-section">
+    <section id="process-section" className="process-section">
       <div className="process-container">
         <div className="process-header">
-          <h2 className="process-title">Our Proven Process: Simple and Effective</h2>
+          <h2 className="process-title">{t('process.title')}</h2>
           <p className="process-subtitle">
-            At PCG Roofing, we simplify the roof repair process. Our proven three-steps approach ensures you receive the best service while we handle your insurance claim. Experience a stress-free journey from inspection to completion.
+            {t('process.subtitle')}
           </p>
         </div>
 
@@ -40,7 +42,7 @@ export default function ProcessSection() {
               <div className="step-image">
                 <Image
                   src={step.image}
-                  alt={step.title}
+                  alt={t(step.titleKey)}
                   width={361}
                   height={202}
                   style={{ objectFit: 'cover', maxWidth: '100%' }}
@@ -48,8 +50,8 @@ export default function ProcessSection() {
                 />
               </div>
               <div className="step-content">
-                <h3 className="step-title">{step.title}</h3>
-                <p className="step-description">{step.description}</p>
+                <h3 className="step-title">{t(step.titleKey)}</h3>
+                <p className="step-description">{t(step.descriptionKey)}</p>
               </div>
             </div>
           ))}

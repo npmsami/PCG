@@ -1,16 +1,19 @@
 'use client';
 
+import { useLanguage } from '../context/LanguageContext';
+
 export default function CTASection() {
+  const { t } = useLanguage();
   return (
     <section className="cta-section">
       <div className="container">
         <div className="cta-content">
-          <h2 className="cta-title">Protect Your Home Today</h2>
+          <h2 className="cta-title">{t('cta.title')}</h2>
           <p className="cta-subtitle">
-            Ensure your roof is safe and secure with our expert services—insurance pays for it!
+            {t('cta.description')}
           </p>
           <button className="cta-button">
-            <span>Book a Call</span>
+            <span>{t('cta.button')}</span>
           </button>
         </div>
       </div>

@@ -1,37 +1,39 @@
 'use client';
 
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function ServicesSection() {
+  const { t } = useLanguage();
   const services = [
     {
-      title: "Roofing Repairs",
+      titleKey: "services.residential.title",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/f6236692f79bebe3f92a08329f72112d49f892a1?width=722"
     },
     {
-      title: "Roof Replacements",
+      titleKey: "services.commercial.title",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/d5676b2f651575ad0183c0ddc95e21eed74ec271?width=722"
     },
     {
-      title: "Roofing Insurance Claims",
+      titleKey: "services.insurance.title",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/f80eb218a6215c804c6f6a5b4a0190fa0dbcea61?width=722"
     },
     {
-      title: "Shingle Roofing Installation",
+      titleKey: "services.emergency.title",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/c38331bc8ceda2967705f6b6288b77fc6e12d5bf?width=722"
     },
     {
-      title: "Tile Roofing Installation",
+      titleKey: "services.residential.title",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/d389c25419b297d99c00930e39d324a50447ba3f?width=722"
     },
     {
-      title: "Emergency Tarping Services",
+      titleKey: "services.emergency.title",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/b6491b01922b2e5f70adb1165c523e552d0c9715?width=722"
     }
   ];
 
   return (
-    <section className="services-section">
+    <section id="services-section" className="services-section">
       <div className="services-container">
         {/* Header with confidence message */}
         <div className="services-header">
@@ -44,12 +46,12 @@ export default function ServicesSection() {
                 height={120}
               />
             </div>
-            <h2 className="services-title">Protect Your Home with Confidence</h2>
+            <h2 className="services-title">{t('services.title')}</h2>
             <p className="services-description">
-              With over 15 years of dedicated service, PCG Roofing is fully licensed and insured, ensuring peace of mind for homeowners. Our strong relationships with top insurance carriers and certified installers allow us to deliver exceptional roofing solutions quickly and efficiently.
+              {t('services.subtitle')}
             </p>
             <button className="services-cta-btn">
-              <span>Book an Appointment</span>
+              <span>{t('hero.cta')}</span>
             </button>
           </div>
           <div className="header-image">
@@ -73,14 +75,14 @@ export default function ServicesSection() {
                 <div className="service-image">
                   <Image
                     src={service.image}
-                    alt={service.title}
+                    alt={t(service.titleKey)}
                     width={361}
                     height={202}
                     style={{ objectFit: 'cover', maxWidth: '100%' }}
                     priority={index === 0}
                   />
                 </div>
-                <h4 className="service-title">{service.title}</h4>
+                <h4 className="service-title">{t(service.titleKey)}</h4>
               </div>
             ))}
           </div>

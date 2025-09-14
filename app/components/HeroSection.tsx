@@ -1,8 +1,11 @@
 'use client';
 
+import { useLanguage } from '../context/LanguageContext';
+
 export default function HeroSection() {
+  const { t } = useLanguage();
   return (
-    <section className="hero-section" suppressHydrationWarning={true}>
+    <section id="hero-section" className="hero-section" suppressHydrationWarning={true}>
       <div className="hero-background">
         <video
           autoPlay
@@ -27,14 +30,14 @@ export default function HeroSection() {
 
       <div className="hero-text">
         <h1 className="hero-title">
-          <span className="hero-title-line">Restore Your Roof</span>
-          <span className="hero-title-line">Restore Your Peace of Mind</span>
+          <span className="hero-title-line">{t('hero.title.line1')}</span>
+          <span className="hero-title-line">{t('hero.title.line2')}</span>
         </h1>
         <p className="hero-description">
-          Roof damage can be overwhelming, but it doesn't have to be. At PCG, we prioritize your family's safety by efficiently restoring your roof and managing the repair process.
+          {t('hero.description')}
         </p>
         <button className="hero-cta-btn">
-          <span>Call Us Today</span>
+          <span>{t('hero.cta')}</span>
           <div className="btn-glow"></div>
         </button>
       </div>
@@ -272,10 +275,50 @@ export default function HeroSection() {
           @media (max-width: 640px) {
             .hero-text {
               left: 16px;
-              padding: 20px 24px;
+              right: 16px;
+              padding: 20px;
               bottom: 16px;
-              max-width: 360px;
+              max-width: none;
               width: calc(100% - 32px);
+            }
+          }
+          
+          @media (max-width: 390px) {
+            .hero-text {
+              left: 10px;
+              right: 10px;
+              padding: 24px 24px;
+              width: calc(100% - 20px);
+              margin: 0 auto;
+              border-radius: 38px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            
+            .hero-title {
+              padding: 0;
+              margin-bottom: 14px;
+              text-align: center;
+            }
+            
+            .hero-description {
+              padding: 0 8px;
+              margin-bottom: 20px;
+              font-size: 14px;
+              line-height: 1.4;
+              text-align: center;
+            }
+            
+            .hero-cta-btn {
+              padding: 12px 28px;
+              border-radius: 100px;
+              margin: 0 auto;
+            }
+            
+            .hero-cta-btn span {
+              font-size: 18px;
+              font-weight: 700;
             }
           }
 

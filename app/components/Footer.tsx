@@ -2,19 +2,21 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Footer() {
+  const { t } = useLanguage();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
   const quickLinks = [
-    'Home Page',
-    'About Us', 
-    'Contact Us',
-    'Services',
-    'Testimonials'
+    { key: 'footer.links.home' },
+    { key: 'footer.links.about' },
+    { key: 'footer.links.services' },
+    { key: 'footer.links.testimonials' },
+    { key: 'footer.links.faq' }
   ];
 
   const connectLinks = [
@@ -98,11 +100,11 @@ export default function Footer() {
 
           <div className="footer-links">
             <div className="links-column">
-              <h4 className="column-title">Quick Links</h4>
+              <h4 className="column-title">{t('footer.links.title')}</h4>
               <ul className="links-list">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
-                    <a href="#" className="footer-link">{link}</a>
+                    <a href="#" className="footer-link">{t(link.key)}</a>
                   </li>
                 ))}
               </ul>
@@ -141,7 +143,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <div className="copyright">
-            <p>© 2025 PCG Roofing. All rights reserved.</p>
+            <p>{t('footer.copyright')}</p>
           </div>
           <div className="legal-links">
             <a href="#" className="legal-link">Privacy Policy</a>
