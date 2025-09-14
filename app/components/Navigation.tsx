@@ -8,20 +8,14 @@ export default function Navigation() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
   const hideDelay = 2000; // 2 seconds delay before hiding
 
-  // Handle component mounting for hydration
+  // Initialize scroll position and set up scroll handler
   useEffect(() => {
-    setIsMounted(true);
     setLastScrollY(window.scrollY);
-  }, []);
 
-  useEffect(() => {
-    // Only run scroll logic after component has mounted (hydrated)
-    if (!isMounted) return;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -60,7 +54,7 @@ export default function Navigation() {
         clearTimeout(hideTimeoutRef.current);
       }
     };
-  }, [lastScrollY, isMounted]);
+  }, [lastScrollY]);
 
   // Keep navbar visible when menu is open
   useEffect(() => {
@@ -73,10 +67,8 @@ export default function Navigation() {
     }
   }, [isMenuOpen]);
 
-  // Build dynamic class name only after mounting
-  const dynamicClass = isMounted
-    ? (isNavVisible ? 'nav-visible' : 'nav-hidden')
-    : '';
+  // Build dynamic class name deterministically (SSR/CSR)
+  const dynamicClass = isNavVisible ? 'nav-visible' : 'nav-hidden';
 
   return (
     <nav
@@ -117,7 +109,11 @@ export default function Navigation() {
                   <span>ES</span>
                 </div>
                 <span>Spanish</span>
-                <span className="chevron">􀆊</span>
+                <span className="chevron" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5L15 12L8 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
               </button>
               {isLanguageOpen && (
                 <div className="language-dropdown">
@@ -159,7 +155,11 @@ export default function Navigation() {
                 <span>ES</span>
               </div>
               <span>Spanish</span>
-              <span className="chevron">􀆊</span>
+              <span className="chevron" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 5L15 12L8 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
             </button>
             {isLanguageOpen && (
               <div className="language-dropdown">
@@ -341,12 +341,12 @@ export default function Navigation() {
         }
 
         .chevron {
-          transform: rotate(90deg);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
           color: var(--black);
-          font-family: 'SF Pro', -apple-system, Roboto, Helvetica, sans-serif;
-          font-size: 15px;
-          font-weight: 590;
-          line-height: 20px;
+          width: 16px;
+          height: 16px;
           transition: color 0.3s ease;
         }
 
