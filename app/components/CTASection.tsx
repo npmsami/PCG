@@ -1,6 +1,7 @@
 'use client';
 
 import { useLanguage } from '../context/LanguageContext';
+import CalendlyButton from './CalendlyButton';
 
 export default function CTASection() {
   const { t } = useLanguage();
@@ -12,9 +13,10 @@ export default function CTASection() {
           <p className="cta-subtitle">
             {t('cta.description')}
           </p>
-          <button className="cta-button">
-            <span>{t('cta.button')}</span>
-          </button>
+          <CalendlyButton 
+            text={t('cta.button')} 
+            className="cta-button"
+          />
         </div>
       </div>
 

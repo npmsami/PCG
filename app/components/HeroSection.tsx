@@ -1,6 +1,7 @@
 'use client';
 
 import { useLanguage } from '../context/LanguageContext';
+import CalendlyButton from './CalendlyButton';
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -36,10 +37,10 @@ export default function HeroSection() {
         <p className="hero-description">
           {t('hero.description')}
         </p>
-        <button className="hero-cta-btn">
-          <span>{t('hero.cta')}</span>
-          <div className="btn-glow"></div>
-        </button>
+        <CalendlyButton 
+          text={t('hero.cta')} 
+          className="hero-cta-btn"
+        />
       </div>
 
       <style jsx>{`

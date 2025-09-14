@@ -51,7 +51,7 @@ export default function CalendlyButton({ text, className = '' }: CalendlyButtonP
             </div>
             <div 
               className="calendly-inline-widget" 
-              data-url="https://calendly.com/ims-n8n/30min?primary_color=ff4b00" 
+              data-url="https://calendly.com/ims-n8n/30min?primary_color=ff5200" 
               style={{ minWidth: '320px', height: '700px' }}
             />
           </div>

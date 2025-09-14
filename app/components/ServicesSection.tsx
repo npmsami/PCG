@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useLanguage } from '../context/LanguageContext';
+import CalendlyButton from './CalendlyButton';
 
 export default function ServicesSection() {
   const { t } = useLanguage();
@@ -50,9 +51,10 @@ export default function ServicesSection() {
             <p className="services-description">
               {t('services.subtitle')}
             </p>
-            <button className="services-cta-btn">
-              <span>{t('hero.cta')}</span>
-            </button>
+            <CalendlyButton 
+              text={t('hero.cta')} 
+              className="services-cta-btn"
+            />
           </div>
           <div className="header-image">
                           <Image
