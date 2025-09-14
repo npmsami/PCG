@@ -6,7 +6,9 @@ import StatsSection from './components/StatsSection'
 import TestimonialsSection from './components/TestimonialsSection'
 import FAQSection from './components/FAQSection'
 import CTASection from './components/CTASection'
-import Footer from './components/Footer'
+import dynamic from 'next/dynamic'
+
+const Footer = dynamic(() => import('./components/Footer'), { ssr: false })
 
 export default function Home() {
   return (
