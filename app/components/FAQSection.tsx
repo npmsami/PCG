@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import CalendlyButton from './CalendlyButton';
 
 export default function FAQSection() {
   const { t } = useLanguage();
@@ -103,9 +104,10 @@ export default function FAQSection() {
             <div className="cta-content">
               <h3 className="cta-title">{t('faq.5.question')}</h3>
               <p className="cta-subtitle">{t('faq.5.answer')}</p>
-              <button className="contact-btn">
-                <span>{t('cta.button')}</span>
-              </button>
+              <CalendlyButton 
+                text={t('cta.button')} 
+                className="contact-btn"
+              />
             </div>
           </div>
         </div>
@@ -271,7 +273,7 @@ export default function FAQSection() {
 
         .contact-btn {
           display: inline-flex;
-          width: 156px;
+          width: 220px;
           padding: 12px 24px;
           justify-content: center;
           align-items: center;
@@ -330,7 +332,7 @@ export default function FAQSection() {
 
           .contact-btn {
             width: 100%;
-            max-width: 200px;
+            max-width: 260px;
           }
         }
 
