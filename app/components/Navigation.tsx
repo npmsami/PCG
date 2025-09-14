@@ -93,117 +93,38 @@ const Navigation = () => {
     : '';
 
   return (
-    <div className={`nav-container ${dynamicClass}`.trim()}>
-      <div className="nav-content">
-        {/* Logo */}
-        <div className="logo">
-          <Image
-            src="https://api.builder.io/api/v1/image/assets/TEMP/c0456d8bbbc4e627a852ee0e8821dccdb98970d0?width=244"
-            alt="PCG Logo"
-            width={65}
-            height={65}
-            className="logo-image"
-            priority
-          />
-        </div>
-
-        {/* Desktop Navigation */}
-        <div className="desktop-nav center-nav">
-          <div className="nav-links">
-            <div className="nav-link" onClick={() => scrollToSection('hero-section')}>
-              <span>{t('nav.home')}</span>
-            </div>
-            <div className="nav-link" onClick={() => scrollToSection('process-section')}>
-              <span>{t('nav.about')}</span>
-            </div>
-            <div className="nav-link" onClick={() => scrollToSection('services-section')}>
-              <span>{t('nav.services')}</span>
-            </div>
-            <div className="nav-link" onClick={() => scrollToSection('testimonials-section')}>
-              <span>{t('nav.testimonials')}</span>
-            </div>
-            <div className="nav-link" onClick={() => scrollToSection('faq-section')}>
-              <span>{t('nav.faq')}</span>
+    <>
+      {/* Logo - Separated from navbar */}
+      <div className="logo">
+        <Image
+          src="https://api.builder.io/api/v1/image/assets/TEMP/c0456d8bbbc4e627a852ee0e8821dccdb98970d0?width=244"
+          alt="PCG Logo"
+          width={65}
+          height={65}
+          className="logo-image"
+          priority
+        />
+      </div>
+      
+      <div className={`nav-container ${dynamicClass}`.trim()}>
+        <div className="nav-content">
+          {/* Desktop Navigation */}
+          <div className="desktop-nav center-nav">
+            <div className="nav-links">
+              <div className="nav-link" onClick={() => scrollToSection('hero-section')}>
+                <span>{t('nav.home')}</span>
+              </div>
+              <div className="nav-link" onClick={() => scrollToSection('process-section')}>
+                <span>{t('nav.about')}</span>
+              </div>
+              <div className="nav-link" onClick={() => scrollToSection('services-section')}>
+                <span>{t('nav.services')}</span>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div className="desktop-nav right-nav">
-          <div className="language-switcher desktop-only">
-            <button
-              className="language-btn"
-              onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-            >
-              <div className="language-flag">
-                <span>{language === 'en' ? 'EN' : 'ES'}</span>
-              </div>
-              <span>{language === 'en' ? t('language.english') : t('language.spanish')}</span>
-              <svg className="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            {isLanguageOpen && (
-              <div className="language-dropdown">
-                <div 
-                  className={`language-option ${language === 'en' ? 'active' : ''}`} 
-                  onClick={() => {
-                    setLanguage('en');
-                    setIsLanguageOpen(false);
-                  }}
-                >
-                  {t('language.english')}
-                </div>
-                <div 
-                  className={`language-option ${language === 'es' ? 'active' : ''}`}
-                  onClick={() => {
-                    setLanguage('es');
-                    setIsLanguageOpen(false);
-                  }}
-                >
-                  {t('language.spanish')}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Mobile menu button */}
-        <button
-          className={`mobile-menu-btn ${isMenuOpen ? 'open' : ''}`}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        
-        {/* Mobile menu overlay */}
-        <div 
-          className={`mobile-menu ${isMenuOpen ? 'open' : ''}`} 
-          onClick={() => setIsMenuOpen(false)}
-        >
-          <div 
-            className="mobile-menu-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="nav-link" onClick={() => scrollToSection('hero-section')}>
-              <span>{t('nav.home')}</span>
-            </div>
-            <div className="nav-link" onClick={() => scrollToSection('process-section')}>
-              <span>{t('nav.about')}</span>
-            </div>
-            <div className="nav-link" onClick={() => scrollToSection('services-section')}>
-              <span>{t('nav.services')}</span>
-            </div>
-            <div className="nav-link" onClick={() => scrollToSection('testimonials-section')}>
-              <span>{t('nav.testimonials')}</span>
-            </div>
-            <div className="nav-link" onClick={() => scrollToSection('faq-section')}>
-              <span>{t('nav.faq')}</span>
-            </div>
-
-            <div className="language-switcher">
+          
+          <div className="desktop-nav right-nav">
+            <div className="language-switcher desktop-only">
               <button
                 className="language-btn"
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
@@ -219,7 +140,7 @@ const Navigation = () => {
               {isLanguageOpen && (
                 <div className="language-dropdown">
                   <div 
-                    className={`language-option ${language === 'en' ? 'active' : ''}`}
+                    className={`language-option ${language === 'en' ? 'active' : ''}`} 
                     onClick={() => {
                       setLanguage('en');
                       setIsLanguageOpen(false);
@@ -240,9 +161,78 @@ const Navigation = () => {
               )}
             </div>
           </div>
+
+          {/* Mobile menu button */}
+          <button
+            className={`mobile-menu-btn ${isMenuOpen ? 'open' : ''}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </div>
-    </div>
+        
+      {/* Mobile menu overlay */}
+      <div 
+        className={`mobile-menu ${isMenuOpen ? 'open' : ''}`} 
+        onClick={() => setIsMenuOpen(false)}
+      >
+        <div 
+          className="mobile-menu-content"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="nav-link" onClick={() => scrollToSection('hero-section')}>
+            <span>{t('nav.home')}</span>
+          </div>
+          <div className="nav-link" onClick={() => scrollToSection('process-section')}>
+            <span>{t('nav.about')}</span>
+          </div>
+          <div className="nav-link" onClick={() => scrollToSection('services-section')}>
+            <span>{t('nav.services')}</span>
+          </div>
+
+          <div className="language-switcher">
+            <button
+              className="language-btn"
+              onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+            >
+              <div className="language-flag">
+                <span>{language === 'en' ? 'EN' : 'ES'}</span>
+              </div>
+              <span>{language === 'en' ? t('language.english') : t('language.spanish')}</span>
+              <svg className="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            {isLanguageOpen && (
+              <div className="language-dropdown">
+                <div 
+                  className={`language-option ${language === 'en' ? 'active' : ''}`}
+                  onClick={() => {
+                    setLanguage('en');
+                    setIsLanguageOpen(false);
+                  }}
+                >
+                  {t('language.english')}
+                </div>
+                <div 
+                  className={`language-option ${language === 'es' ? 'active' : ''}`}
+                  onClick={() => {
+                    setLanguage('es');
+                    setIsLanguageOpen(false);
+                  }}
+                >
+                  {t('language.spanish')}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

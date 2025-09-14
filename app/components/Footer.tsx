@@ -164,8 +164,8 @@ export default function Footer() {
         .footer-main {
           display: flex;
           gap: 128px;
-          margin-bottom: 80px;
-          padding: 48px;
+          margin-bottom: 60px;
+          padding: 0px 48px 48px;
           border-radius: var(--border-radius-large);
           background: var(--dark-gray);
         }
@@ -173,12 +173,16 @@ export default function Footer() {
         .newsletter-section {
           flex: 1;
           max-width: 500px;
+          padding-top: 10px;
         }
 
         .company-logo {
           width: 84px;
           height: 36px;
           margin-bottom: 24px;
+          margin-top: -70px;
+          position: relative;
+          top: -30px;
         }
 
         .newsletter-description {
@@ -252,6 +256,7 @@ export default function Footer() {
 
         .links-column {
           flex: 1;
+          padding-top: 60px;
         }
 
         .column-title {
