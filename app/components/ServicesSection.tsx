@@ -52,7 +52,7 @@ export default function ServicesSection() {
               {t('services.subtitle')}
             </p>
             <CalendlyButton 
-              text={t('hero.cta')} 
+              text="Book an Appointment" 
               className="services-cta-btn"
             />
           </div>

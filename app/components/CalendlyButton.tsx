@@ -19,10 +19,17 @@ export default function CalendlyButton({ text, className = '' }: CalendlyButtonP
       script.src = 'https://assets.calendly.com/assets/external/widget.js';
       script.async = true;
       document.body.appendChild(script);
+      
+      // Prevent body scrolling when modal is open
+      document.body.style.overflow = 'hidden';
 
       return () => {
         // Clean up script when component unmounts
-        document.body.removeChild(script);
+        if (script.parentNode) {
+          script.parentNode.removeChild(script);
+        }
+        // Restore body scrolling
+        document.body.style.overflow = '';
       };
     }
   }, [showCalendly]);
@@ -51,8 +58,8 @@ export default function CalendlyButton({ text, className = '' }: CalendlyButtonP
             </div>
             <div 
               className="calendly-inline-widget" 
-              data-url="https://calendly.com/ims-n8n/30min?primary_color=ff5200" 
-              style={{ minWidth: '320px', height: '700px' }}
+              data-url="https://calendly.com/ims-n8n/30min?primary_color=ff5200&hide_gdpr_banner=1" 
+              style={{ width: '100%', height: '100%', minHeight: '700px' }}
             />
           </div>
         </div>

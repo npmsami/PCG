@@ -27,7 +27,7 @@ const translations = {
     'hero.title.line1': 'Restore Your Roof',
     'hero.title.line2': 'Restore Your Peace of Mind',
     'hero.description': 'Roof damage can be overwhelming, but it doesn\'t have to be. At PCG, we prioritize your family\'s safety by efficiently restoring your roof and managing the repair process.',
-    'hero.cta': 'Book an Appointment',
+    'hero.cta': 'Learn More',
     
     // Process Section
     'process.title': 'Our Process',
@@ -125,7 +125,7 @@ const translations = {
     'hero.title.line1': 'Restaura Tu Techo',
     'hero.title.line2': 'Restaura Tu Tranquilidad',
     'hero.description': 'Los daños en el techo pueden ser abrumadores, pero no tiene por qué ser así. En PCG, priorizamos la seguridad de su familia restaurando eficientemente su techo y gestionando el proceso de reparación.',
-    'hero.cta': 'Reservar una Cita',
+    'hero.cta': 'Saber Más',
     
     // Process Section
     'process.title': 'Nuestro Proceso',

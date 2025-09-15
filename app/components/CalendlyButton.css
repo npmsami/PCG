@@ -46,10 +46,13 @@
   border-radius: 12px;
   width: 100%;
   max-width: 800px;
-  max-height: 90vh;
+  height: 90vh;
+  max-height: 800px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
 }
 
 .calendly-popup-header {
@@ -78,14 +81,26 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.calendly-inline-widget {
+  flex: 1;
+  overflow: auto;
+}
+
 @media (max-width: 768px) {
   .calendly-popup {
     max-width: 95%;
-    max-height: 80vh;
+    height: 80vh;
   }
   
   .calendly-btn {
     width: 100%;
     max-width: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendly-popup {
+    height: 85vh;
+    max-height: none;
   }
 }

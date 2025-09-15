@@ -1,10 +1,17 @@
 'use client';
 
 import { useLanguage } from '../context/LanguageContext';
-import CalendlyButton from './CalendlyButton';
 
 export default function HeroSection() {
   const { t } = useLanguage();
+  
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services-section');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="hero-section" className="hero-section" suppressHydrationWarning={true}>
       <div className="hero-background">
@@ -37,10 +44,10 @@ export default function HeroSection() {
         <p className="hero-description">
           {t('hero.description')}
         </p>
-        <CalendlyButton 
-          text={t('hero.cta')} 
-          className="hero-cta-btn"
-        />
+        <button className="hero-cta-btn" onClick={scrollToServices}>
+          <span>{t('hero.cta')}</span>
+          <div className="btn-glow"></div>
+        </button>
       </div>
 
       <style jsx>{`
