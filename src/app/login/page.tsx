@@ -52,7 +52,7 @@ export default function LoginPage() {
       // Redirect to original page or admin dashboard
       const redirect = searchParams.get("redirect") || "/admin";
       router.push(redirect);
-    } catch (error) {
+    } catch {
       setError("An error occurred. Please try again.");
     } finally {
       setIsLoading(false);

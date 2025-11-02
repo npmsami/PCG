@@ -11,6 +11,36 @@ type UploadResult = {
   appointmentBooked?: boolean;
 };
 
+type LeadRow = {
+  fullname?: string;
+  full_name?: string;
+  "Full Name"?: string;
+  "First Name"?: string;
+  firstName?: string;
+  first_name?: string;
+  lastName?: string;
+  last_name?: string;
+  "Last Name"?: string;
+  first?: string;
+  last?: string;
+  name?: string;
+  email?: string;
+  Email?: string;
+  "Email Address"?: string;
+  phone?: string;
+  Phone?: string;
+  "Phone Number"?: string;
+  "Phone number"?: string;
+  PhoneNumber?: string;
+  phone_number?: string;
+  phonenumber?: string;
+  mobile?: string;
+  Mobile?: string;
+  Cell?: string;
+  "Cell Phone"?: string;
+  [key: string]: unknown;
+};
+
 export default function AdminDashboard() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -20,10 +50,10 @@ export default function AdminDashboard() {
   const [mode, setMode] = useState<"prod" | "test">("prod");
   const [batch, setBatch] = useState(false);
   const [callAgg, setCallAgg] = useState<{ total: number; successfulCalls: number; failedCalls: number; appointments: number; unknown: number } | null>(null);
-  const [parsedRows, setParsedRows] = useState<any[] | null>(null);
+  const [parsedRows, setParsedRows] = useState<LeadRow[] | null>(null);
   const [validCount, setValidCount] = useState(0);
-  const [validRowsList, setValidRowsList] = useState<any[] | null>(null);
-  const [invalidRows, setInvalidRows] = useState<any[] | null>(null);
+  const [validRowsList, setValidRowsList] = useState<LeadRow[] | null>(null);
+  const [invalidRows, setInvalidRows] = useState<(LeadRow & { _missing?: { full?: boolean; email?: boolean; phone?: boolean } })[] | null>(null);
   const [sendOnlyValid, setSendOnlyValid] = useState(true);
   const [previewTab, setPreviewTab] = useState<"valid" | "invalid">("invalid");
   const [abortController, setAbortController] = useState<AbortController | null>(null);
@@ -127,7 +157,7 @@ export default function AdminDashboard() {
     try {
       const controller = new AbortController();
       setAbortController(controller);
-      let rows: any[] = parsedRows ?? [];
+      let rows: LeadRow[] = parsedRows ?? [];
       if (!rows.length) {
         const ext = selectedFile.name.toLowerCase();
         if (ext.endsWith(".csv")) {
@@ -172,7 +202,7 @@ export default function AdminDashboard() {
     }
   }
 
-  function pick<T = any>(row: Record<string, any>, keys: string[], fallbackRegex?: RegExp): T | "" {
+  function pick<T = unknown>(row: Record<string, unknown>, keys: string[], fallbackRegex?: RegExp): T | "" {
     for (const k of keys) {
       if (row[k] != null && String(row[k]).trim() !== "") return row[k] as T;
     }
@@ -185,12 +215,12 @@ export default function AdminDashboard() {
         }
       }
     }
-    return "" as any;
+    return "" as T;
   }
 
-  function validateRows(rows: any[]) {
-    const validRows: any[] = [];
-    const invalidRows: any[] = [];
+  function validateRows(rows: LeadRow[]) {
+    const validRows: LeadRow[] = [];
+    const invalidRows: (LeadRow & { _missing?: { full?: boolean; email?: boolean; phone?: boolean } })[] = [];
     for (const r of rows) {
       const full = (pick(r, ["fullname", "full_name", "Full Name", "First Name"], /(full)?name/) || `${pick(r, ["firstName","first_name","First Name"], /^(first|firstname)$/)} ${pick(r, ["lastName","last_name","Last Name"], /^(last|lastname)$/)}`)?.toString().trim();
       const email = pick(r, ["email", "Email", "Email Address"], /email/);
@@ -490,7 +520,7 @@ export default function AdminDashboard() {
               )}
               <div className="flex items-center gap-2 text-sm">
                 <label className="opacity-80">Mode</label>
-                <select value={mode} onChange={(e) => setMode(e.target.value as any)} className="glass rounded-lg px-3 py-2">
+                <select value={mode} onChange={(e) => setMode(e.target.value as "prod" | "test")} className="glass rounded-lg px-3 py-2">
                   <option value="prod">Production</option>
                   <option value="test">Test</option>
                 </select>

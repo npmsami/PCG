@@ -1,6 +1,6 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 const SECRET_KEY = process.env.AUTH_SECRET || "default-secret-key-change-in-production";
 const JWT_SECRET = new TextEncoder().encode(SECRET_KEY);
