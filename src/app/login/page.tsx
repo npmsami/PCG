@@ -1,8 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function LoginPage() {
+function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -13,6 +13,7 @@ export default function LoginPage() {
   useEffect(() => {
     // Check if already logged in
     checkSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function checkSession() {
@@ -25,8 +26,8 @@ export default function LoginPage() {
           router.push(redirect);
         }
       }
-    } catch (error) {
-      console.error("Session check error:", error);
+    } catch {
+      // Silently handle session check errors
     }
   }
 
@@ -129,6 +130,25 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen w-full flex items-center justify-center text-gray-100 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+        <div className="glass-card rounded-3xl p-8 w-full max-w-md">
+          <div className="text-center">
+            <div className="h-16 w-16 rounded-2xl animated-gradient flex items-center justify-center text-3xl mx-auto mb-4 animate-pulse">
+              🔐
+            </div>
+            <p className="text-sm text-gray-300/80">Loading...</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }
 
