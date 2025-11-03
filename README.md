@@ -50,6 +50,25 @@ This dashboard requires admin authentication:
 - Sessions last 7 days
 - All routes except `/login` and `/api/auth/*` are protected
 
+## Netlify Deployment
+
+**Configuration**: When deploying to Netlify:
+
+1. **Publish Directory**: Set in `netlify.toml` to `.next`
+   - The `netlify.toml` file already has `publish = ".next"` configured
+   - **DO NOT** override this in the Netlify UI - leave it empty or match `.next`
+   - The `@netlify/plugin-nextjs` processes the `.next` directory and creates the final deployment
+
+2. **The `@netlify/plugin-nextjs` automatically handles**:
+   - Processing the `.next` build output
+   - Function routing and serverless functions
+   - Static file serving
+
+3. **If deployment fails**:
+   - Ensure Netlify UI "Publish directory" is either empty or set to `.next`
+   - Clear build cache and redeploy
+   - Check that `netlify.toml` has `publish = ".next"` set
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
