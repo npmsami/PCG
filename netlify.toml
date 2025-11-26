@@ -2,6 +2,20 @@
   command = "npm run build"
   publish = "out"
 
+# Explicitly handle the root path with highest priority
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+  force = true
+
+# Handle admin path separately
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# Then handle all other paths
 [[redirects]]
   from = "/*"
   to = "/index.html"
