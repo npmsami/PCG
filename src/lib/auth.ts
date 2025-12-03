@@ -23,7 +23,11 @@ export async function signToken(user: AdminUser): Promise<string> {
 export async function verifyToken(token: string): Promise<AdminUser | null> {
   try {
     const { payload } = await jwtVerify(token, JWT_SECRET);
-    return payload as AdminUser;
+    // Validate payload has required fields
+    if (typeof payload.username === 'string' && payload.role === 'admin') {
+      return { username: payload.username, role: payload.role };
+    }
+    return null;
   } catch {
     return null;
   }

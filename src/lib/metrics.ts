@@ -67,20 +67,35 @@ class MetricsStore {
 
 	// Enhanced call metrics
 	private callDurations: number[] = [];
-	private callOutcomes: { [key: string]: number } = {
+	private callOutcomes: {
+		success: number;
+		noInterest: number;
+		wrongNumber: number;
+		followUpRequired: number;
+		other: number;
+	} = {
 		success: 0,
 		noInterest: 0,
 		wrongNumber: 0,
 		followUpRequired: 0,
 		other: 0
 	};
-	private hangupReasons: { [key: string]: number } = {
+	private hangupReasons: {
+		userEnd: number;
+		aiTimeout: number;
+		systemDrop: number;
+		other: number;
+	} = {
 		userEnd: 0,
 		aiTimeout: 0,
 		systemDrop: 0,
 		other: 0
 	};
-	private callStatuses: { [key: string]: number } = {
+	private callStatuses: {
+		answered: number;
+		unanswered: number;
+		voicemail: number;
+	} = {
 		answered: 0,
 		unanswered: 0,
 		voicemail: 0

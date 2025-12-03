@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Papa from "papaparse";
 import * as XLSX from "xlsx";
-import axios from "axios";
 import { metricsStore, type LeadPostResult } from "@/lib/metrics";
 
 const DEFAULT_PROD = "https://weareims.app.n8n.cloud/webhook/roofing-leads-webhook";
@@ -92,40 +91,73 @@ export async function POST(request: NextRequest) {
 
 		if (sendAsBatch) {
 			// Send as an array of simplified objects similar to your screenshot
-			const items = rows.map((r, i) => ({
-				name: r.name ?? r.firstName ?? `item_${i + 1}`,
-				code: Number(r.code ?? i + 1),
-				original: r,
-			}));
-			try {
-				const res = await axios.post(webhookUrl, items, { headers: { "Content-Type": "application/json" }, timeout: 20000 });
-				const body = typeof res.data === "string" ? res.data : JSON.stringify(res.data);
-				results.push({ index: 0, status: "success", responseSnippet: body.slice(0, 300) });
-			} catch (err: any) {
-				const message = err?.response?.data ? JSON.stringify(err.response.data) : (err?.message ?? "Request failed");
-				results.push({ index: 0, status: "error", message: message.slice(0, 300) });
-			}
+      const items = rows.map((r, i) => ({
+        name: r.name ?? r.firstName ?? `item_${i + 1}`,
+        code: Number(r.code ?? i + 1),
+        original: r,
+      }));
+      try {
+        const res = await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(items),
+        });
+        const body = await res.text();
+        if (!res.ok) {
+          results.push({
+            index: 0,
+            status: "error",
+            message: body.slice(0, 300) || `Request failed with status ${res.status}`,
+          });
+        } else {
+          results.push({
+            index: 0,
+            status: "success",
+            responseSnippet: body.slice(0, 300),
+          });
+        }
+      } catch (err: unknown) {
+        const error = err as { message?: string };
+        results.push({
+          index: 0,
+          status: "error",
+          message: String(error?.message ?? "Request failed").slice(0, 300),
+        });
+      }
 		} else {
 			for (let i = 0; i < rows.length; i++) {
-				const row = rows[i];
-				const payload = coerceLead(row);
-				try {
-					const res = await axios.post(webhookUrl, payload, {
-						headers: { "Content-Type": "application/json" },
-						timeout: 20000,
-					});
-					const body = typeof res.data === "string" ? res.data : JSON.stringify(res.data);
-					const appointmentBooked = /appointment/i.test(body) || !!(res.data?.appointmentBooked);
-					results.push({
-						index: i,
-						status: "success",
-						responseSnippet: body?.slice(0, 300),
-						appointmentBooked,
-					});
-				} catch (err: any) {
-					const message = err?.response?.data ? JSON.stringify(err.response.data) : (err?.message ?? "Request failed");
-					results.push({ index: i, status: "error", message: message?.slice(0, 300) });
-				}
+        const row = rows[i];
+        const payload = coerceLead(row);
+        try {
+          const res = await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const body = await res.text();
+          if (!res.ok) {
+            results.push({
+              index: i,
+              status: "error",
+              message: body.slice(0, 300) || `Request failed with status ${res.status}`,
+            });
+          } else {
+            const appointmentBooked = /appointment/i.test(body);
+            results.push({
+              index: i,
+              status: "success",
+              responseSnippet: body?.slice(0, 300),
+              appointmentBooked,
+            });
+          }
+        } catch (err: unknown) {
+          const error = err as { message?: string };
+          results.push({
+            index: i,
+            status: "error",
+            message: String(error?.message ?? "Request failed").slice(0, 300),
+          });
+        }
 			}
 		}
 

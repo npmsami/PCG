@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import axios from "axios";
 import { metricsStore, type LeadPostResult } from "@/lib/metrics";
 
 const DEFAULT_PROD = "https://weareims.app.n8n.cloud/webhook/roofing-leads-webhook";
@@ -83,28 +82,67 @@ export async function POST(request: NextRequest) {
 				code: Number(r.code ?? i + 1),
 				original: r,
 			}));
-			try {
-				const res = await axios.post(webhookUrl, items, { headers: { "Content-Type": "application/json" }, timeout: 30000 });
-				const body = typeof res.data === "string" ? res.data : JSON.stringify(res.data);
-				results.push({ index: 0, status: "success", responseSnippet: body.slice(0, 300) });
-			} catch (err: unknown) {
-				const error = err as { response?: { data?: unknown }; message?: string };
-				const message = error?.response?.data ? JSON.stringify(error.response.data) : (error?.message ?? "Request failed");
-				results.push({ index: 0, status: "error", message: String(message).slice(0, 300) });
-			}
+      try {
+        const res = await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(items),
+        });
+        const body = await res.text();
+        if (!res.ok) {
+          results.push({
+            index: 0,
+            status: "error",
+            message: body.slice(0, 300) || `Request failed with status ${res.status}`,
+          });
+        } else {
+          results.push({
+            index: 0,
+            status: "success",
+            responseSnippet: body.slice(0, 300),
+          });
+        }
+      } catch (err: unknown) {
+        const error = err as { message?: string };
+        results.push({
+          index: 0,
+          status: "error",
+          message: String(error?.message ?? "Request failed").slice(0, 300),
+        });
+      }
 		} else {
 			for (let i = 0; i < rows.length; i++) {
-				const payload = coerceLead(rows[i] as LeadInputRow);
-				try {
-					const res = await axios.post(webhookUrl, payload, { headers: { "Content-Type": "application/json" }, timeout: 30000 });
-					const body = typeof res.data === "string" ? res.data : JSON.stringify(res.data);
-					const appointmentBooked = /appointment/i.test(body) || !!(res.data?.appointmentBooked);
-					results.push({ index: i, status: "success", responseSnippet: body.slice(0, 300), appointmentBooked });
-				} catch (err: unknown) {
-					const error = err as { response?: { data?: unknown }; message?: string };
-					const message = error?.response?.data ? JSON.stringify(error.response.data) : (error?.message ?? "Request failed");
-					results.push({ index: i, status: "error", message: String(message).slice(0, 300) });
-				}
+        const payload = coerceLead(rows[i] as LeadInputRow);
+        try {
+          const res = await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const body = await res.text();
+          if (!res.ok) {
+            results.push({
+              index: i,
+              status: "error",
+              message: body.slice(0, 300) || `Request failed with status ${res.status}`,
+            });
+          } else {
+            const appointmentBooked = /appointment/i.test(body);
+            results.push({
+              index: i,
+              status: "success",
+              responseSnippet: body.slice(0, 300),
+              appointmentBooked,
+            });
+          }
+        } catch (err: unknown) {
+          const error = err as { message?: string };
+          results.push({
+            index: i,
+            status: "error",
+            message: String(error?.message ?? "Request failed").slice(0, 300),
+          });
+        }
 			}
 		}
 

@@ -32,7 +32,8 @@ export const viewport = {
   maximumScale: 5,
 }
 
-export const themeColor = '#E04826'
+// Local constant for theme color (do not export, to satisfy Next.js layout type constraints)
+const themeColor = '#E04826'
 
 export default function RootLayout({
   children,
