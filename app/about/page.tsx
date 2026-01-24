@@ -1,5 +1,6 @@
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
+import '../styles/about.css'
 
 export const metadata = {
   title: 'About Us',
