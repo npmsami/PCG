@@ -6,24 +6,27 @@ export default function TestimonialsSection() {
   const testimonials = [
     {
       id: 1,
-      quote: "Insurance approved my claim fast, and PCG had my roof done in a week. I paid $0.",
+      quote: "Insurance approved my claim fast, and PCG Roofing had my roof repaired in a week. I paid $0.",
       name: "Maria G.",
       location: "Homeowner, San Antonio",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/992:313"
+      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/992:313",
+      avatarAlt: "Homeowner from San Antonio who used PCG Roofing services"
     },
     {
       id: 2,
-      quote: "They explained everything clearly and handled all the insurance headaches. Highly recommend.",
+      quote: "They explained everything clearly and handled all the insurance headaches. Highly recommend PCG Roofing.",
       name: "Ken R.",
       location: "Homeowner, San Antonio",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/992:327"
+      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/992:327",
+      avatarAlt: "San Antonio homeowner who worked with PCG Roofing"
     },
     {
       id: 3,
       quote: "PCG Roofing made the entire process stress-free and quick!",
       name: "John D.",
       location: "Business Owner, Local",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/992:341"
+      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/992:341",
+      avatarAlt: "Another Homeowner from San Antonio who used PCG Roofing services"
     }
   ];
 
