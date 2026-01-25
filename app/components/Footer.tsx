@@ -4,11 +4,11 @@ import Image from 'next/image';
 
 export default function Footer() {
   const quickLinks = [
-    'Home Page',
-    'About Us', 
-    'Contact Us',
-    'Services',
-    'Testimonials'
+    { label: 'Home Page', href: '/' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Contact Us', href: '#' },
+    { label: 'Services', href: '#' },
+    { label: 'Testimonials', href: '#' }
   ];
 
   const connectLinks = [
