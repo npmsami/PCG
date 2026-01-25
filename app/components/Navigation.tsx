@@ -157,9 +157,12 @@ export default function Navigation() {
 
         {/* Right side: Services and Language */}
         <div className="nav-right">
-          <div className="nav-link">
+          <button
+            className="nav-link nav-scroll-link"
+            onClick={() => handleSmoothScroll('services-section')}
+          >
             <span>Services</span>
-          </div>
+          </button>
 
           {/* Language switcher */}
           <div className="language-switcher">
