@@ -95,7 +95,7 @@ export default function Footer() {
               <ul className="links-list">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
-                    <a href="#" className="footer-link">{link}</a>
+                    <a href={link.href} className="footer-link">{link.label}</a>
                   </li>
                 ))}
               </ul>
