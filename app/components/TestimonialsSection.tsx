@@ -63,12 +63,14 @@ export default function TestimonialsSection() {
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="testimonial-card">
               <StarRating />
-              <blockquote className="testimonial-quote">
-                &ldquo;{testimonial.quote}&rdquo;
-              </blockquote>
+              <div className="testimonial-quote-wrapper">
+                <blockquote className="testimonial-quote">
+                  &ldquo;{testimonial.quote}&rdquo;
+                </blockquote>
+              </div>
               <div className="testimonial-author">
                 <div className="author-avatar">
-                  <div className="avatar-placeholder"></div>
+                  <div className="avatar-placeholder" alt={testimonial.avatarAlt}></div>
                 </div>
                 <div className="author-info">
                   <div className="author-name">{testimonial.name}</div>
