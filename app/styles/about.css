@@ -12,6 +12,10 @@
   margin-bottom: 24px;
 }
 
+.about-hero h1 p {
+  margin: 0;
+}
+
 .about-hero .text-large {
   color: var(--dark-gray);
   line-height: 160%;
