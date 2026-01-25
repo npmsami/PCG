@@ -97,12 +97,15 @@ export default function Navigation() {
 
         {/* Left side: Home and About */}
         <div className={`nav-left ${isMenuOpen ? 'nav-items-open' : ''}`}>
-          <div className="nav-link">
+          <Link href="/" className="nav-link">
             <span>Home</span>
-          </div>
-          <div className="nav-link">
+          </Link>
+          <button
+            className="nav-link nav-scroll-link"
+            onClick={() => handleSmoothScroll('process-section')}
+          >
             <span>About</span>
-          </div>
+          </button>
 
           {/* Mobile menu items - only visible on mobile */}
           <div className="mobile-only-items">
