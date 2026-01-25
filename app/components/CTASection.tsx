@@ -5,10 +5,10 @@ export default function CTASection() {
     <section className="cta-section">
       <div className="container">
         <div className="cta-content">
-          <h2 className="cta-title">Protect Your Home Today</h2>
-          <p className="cta-subtitle">
-            Ensure your roof is safe and secure with our expert services—insurance pays for it!
-          </p>
+          <h2 className="cta-title"><p>Protect Your Home Today</p></h2>
+          <blockquote className="cta-subtitle">
+            Ensure your roof is safe and secure with our expert roofing services. In many cases, insurance may cover the cost.
+          </blockquote>
           <button className="cta-button">
             <span>Book a Call</span>
           </button>
