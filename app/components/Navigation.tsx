@@ -69,6 +69,12 @@ export default function Navigation() {
     }
   }, [isMenuOpen]);
 
+  // Handle home navigation
+  const handleNavigateHome = () => {
+    router.push('/');
+    setIsMenuOpen(false); // Close mobile menu after navigation
+  };
+
   // Handle smooth scrolling to sections
   const handleSmoothScroll = (sectionId: string) => {
     const section = document.getElementById(sectionId);
