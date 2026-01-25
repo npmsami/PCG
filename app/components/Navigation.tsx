@@ -109,9 +109,12 @@ export default function Navigation() {
 
           {/* Mobile menu items - only visible on mobile */}
           <div className="mobile-only-items">
-            <div className="nav-link">
+            <button
+              className="nav-link nav-scroll-link"
+              onClick={() => handleSmoothScroll('services-section')}
+            >
               <span>Services</span>
-            </div>
+            </button>
 
             <div className="language-switcher">
               <button
