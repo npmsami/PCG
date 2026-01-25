@@ -135,6 +135,10 @@ export default function TestimonialsSection() {
           gap: 4px;
         }
 
+        .testimonial-quote-wrapper {
+          font-weight: 700;
+        }
+
         .testimonial-quote {
           color: var(--black);
           font-family: var(--font-roboto);
