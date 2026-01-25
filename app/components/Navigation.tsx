@@ -192,6 +192,10 @@ export default function Navigation() {
       </div>
 
       <style jsx>{`
+        html {
+          scroll-behavior: smooth;
+        }
+
         .nav-container {
           position: fixed;
           top: 40px;
