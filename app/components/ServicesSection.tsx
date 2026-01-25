@@ -31,7 +31,7 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section className="services-section">
+    <section id="services-section" className="services-section">
       <div className="container">
         {/* Header with confidence message */}
         <div className="services-header">
