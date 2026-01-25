@@ -169,6 +169,10 @@
     padding-bottom: 24px;
   }
 
+  .about-hero h1 {
+    font-size: 28px;
+  }
+
   .about-section {
     margin-bottom: 24px;
     padding-bottom: 20px;
@@ -177,6 +181,18 @@
   .about-section h3 {
     margin-top: 20px;
     margin-bottom: 12px;
+  }
+
+  .about-subheading {
+    font-size: 20px;
+  }
+
+  .about-subheading-large {
+    font-size: 22px;
+  }
+
+  .about-highlight {
+    font-size: 20px;
   }
 
   .about-cta {
