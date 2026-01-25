@@ -307,6 +307,11 @@ export default function Navigation() {
           transition: color 0.3s ease;
         }
 
+        .nav-scroll-link {
+          font-family: inherit;
+          padding: 6px 20px;
+        }
+
         .language-switcher {
           position: relative;
         }
