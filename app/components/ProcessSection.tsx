@@ -25,7 +25,7 @@ export default function ProcessSection() {
   ];
 
   return (
-    <section className="process-section">
+    <section id="process-section" className="process-section">
       <div className="container">
         <div className="process-header">
           <h2 className="process-title">Our Proven Process: Simple and Effective</h2>
