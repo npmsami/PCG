@@ -68,6 +68,15 @@ export default function Navigation() {
     }
   }, [isMenuOpen]);
 
+  // Handle smooth scrolling to sections
+  const handleSmoothScroll = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false); // Close mobile menu after navigation
+    }
+  };
+
   // Build dynamic class name deterministically (SSR/CSR)
   const dynamicClass = isNavVisible ? 'nav-visible' : 'nav-hidden';
 
