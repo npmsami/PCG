@@ -1,39 +1,36 @@
 'use client';
 
 import Image from 'next/image';
-import { useLanguage } from '../context/LanguageContext';
-import CalendlyButton from './CalendlyButton';
 
 export default function ProcessSection() {
-  const { t } = useLanguage();
   const processSteps = [
     {
       id: 1,
-      titleKey: "process.step1.title",
-      descriptionKey: "process.step1.description",
+      title: "Step 1: Free Roof Inspection",
+      description: "We document the damage with detailed photos and a comprehensive report.",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/c9534831ad3921a74bf4d58466b8742783360484?width=722"
     },
     {
       id: 2,
-      titleKey: "process.step2.title",
-      descriptionKey: "process.step2.description",
+      title: "Step 2: Insurance Claim and Contract Signing",
+      description: "We handle the claim process and provide a transparent contract—no surprises, just peace of mind.",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/a0052aeeccaef6bb464025d7cd6fbe6a3d8200d3?width=722"
     },
     {
       id: 3,
-      titleKey: "process.step3.title",
-      descriptionKey: "process.step3.description",
+      title: "Step 3: Roof Restore",
+      description: "Licensed crew, warranty included, peace of mind delivered.",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/66ceb427bd3a65770d3aeeaad24020ce37b8b368?width=722"
     }
   ];
 
   return (
     <section id="process-section" className="process-section">
-      <div className="process-container">
+      <div className="container">
         <div className="process-header">
-          <h2 className="process-title">{t('process.title')}</h2>
+          <h2 className="process-title">Our Proven Process: Simple and Effective</h2>
           <p className="process-subtitle">
-            {t('process.subtitle')}
+            At PCG Roofing, we simplify the roof repair process. Our proven three-steps approach ensures you receive the best service while we handle your insurance claim. Experience a stress-free journey from inspection to completion.
           </p>
         </div>
 
@@ -43,26 +40,27 @@ export default function ProcessSection() {
               <div className="step-image">
                 <Image
                   src={step.image}
-                  alt={t(step.titleKey)}
+                  alt={step.title}
                   width={361}
                   height={202}
-                  style={{ objectFit: 'cover', maxWidth: '100%' }}
-                  priority={step.id === 1}
+                  style={{ objectFit: 'cover' }}
                 />
               </div>
               <div className="step-content">
-                <h3 className="step-title">{t(step.titleKey)}</h3>
-                <p className="step-description">{t(step.descriptionKey)}</p>
+                <h3 className="step-title">{step.title}</h3>
+                <p className="step-description">{step.description}</p>
               </div>
             </div>
           ))}
         </div>
 
         <div className="process-actions">
-          <CalendlyButton 
-            text="Book an Appointment" 
-            className="book-appointment-btn"
-          />
+          <button className="book-appointment-btn">
+            <span>Book an Appointment</span>
+            <svg className="arrow-icon" width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.44238 0.5C1.69602 0.500038 1.90352 0.585183 2.09082 0.771484L10.2188 8.85742C10.3316 8.96969 10.3984 9.073 10.4365 9.16406C10.4778 9.26252 10.5 9.3696 10.5 9.48926C10.5 9.57889 10.4873 9.6612 10.4639 9.73828L10.4365 9.81445C10.3984 9.90553 10.3316 10.0088 10.2188 10.1211L2.0498 18.248C1.86283 18.434 1.66766 18.5073 1.43945 18.499C1.19789 18.4901 0.988169 18.4012 0.792969 18.207C0.605899 18.0208 0.521572 17.8153 0.521484 17.5654C0.521484 17.3153 0.605735 17.1092 0.792969 16.9229L7.9082 9.84375L8.26465 9.48926L7.9082 9.13477L0.751953 2.01465C0.565112 1.82867 0.492723 1.63565 0.500977 1.41113C0.509811 1.17306 0.597897 0.965647 0.792969 0.771484C0.980352 0.585043 1.1886 0.5 1.44238 0.5Z" fill="white" stroke="white"/>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -72,14 +70,6 @@ export default function ProcessSection() {
           padding: var(--section-padding) 0;
           border-radius: var(--border-radius-medium);
           margin: 40px var(--page-padding) 0;
-          overflow: hidden;
-        }
-
-        .process-container {
-          max-width: var(--container-max-width);
-          margin: 0 auto;
-          padding: 0 var(--page-padding);
-          width: 100%;
         }
 
         .process-header {
@@ -109,7 +99,7 @@ export default function ProcessSection() {
 
         .process-steps {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
           gap: 48px;
           margin-bottom: 80px;
         }
@@ -122,7 +112,6 @@ export default function ProcessSection() {
 
         .step-image {
           width: 100%;
-          max-width: 100%;
           height: 202px;
           border-radius: var(--border-radius-small);
           overflow: hidden;
@@ -133,7 +122,6 @@ export default function ProcessSection() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          max-width: 100%;
         }
 
         .step-content {
@@ -209,8 +197,7 @@ export default function ProcessSection() {
         @media (max-width: 768px) {
           .process-section {
             margin: 40px 20px 0;
-            padding: 60px 20px;
-            width: calc(100% - 40px);
+            padding: 60px 0;
           }
 
           .process-title {
@@ -240,30 +227,15 @@ export default function ProcessSection() {
             width: 100%;
             max-width: 286px;
           }
-
-          .process-container {
-            padding: 0 15px;
-            width: 100%;
-          }
         }
 
         @media (max-width: 480px) {
-          .process-section {
-            margin: 20px 10px 0;
-            padding: 40px 10px;
-            width: calc(100% - 20px);
-          }
-
           .process-title {
             font-size: 24px;
           }
 
           .process-subtitle {
             font-size: 16px;
-          }
-
-          .step-image {
-            height: 180px;
           }
 
           .step-title {
@@ -274,16 +246,8 @@ export default function ProcessSection() {
             font-size: 14px;
           }
 
-          .book-appointment-btn {
-            max-width: 100%;
-          }
-
           .book-appointment-btn span {
             font-size: 16px;
-          }
-
-          .process-header {
-            margin-bottom: 40px;
           }
         }
       `}</style>

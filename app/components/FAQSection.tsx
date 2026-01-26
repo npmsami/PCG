@@ -1,44 +1,35 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import CalendlyButton from './CalendlyButton';
+import { useState } from 'react';
 
 export default function FAQSection() {
-  const { t } = useLanguage();
-  const [openItem, setOpenItem] = useState<number | null>(null); // Start with all closed for hydration safety
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    setOpenItem(0); // Open first item after hydration
-  }, []);
+  const [openItem, setOpenItem] = useState<number | null>(0);
 
   const faqItems = [
     {
       id: 0,
-      questionKey: "faq.1.question",
-      answerKey: "faq.1.answer"
+      question: "Do I really pay $0?",
+      answer: "Yes, if your claim is approved, the insurance covers the entire cost of the repairs. You won't pay anything out of pocket. We handle all the paperwork to ensure a smooth process."
     },
     {
       id: 1,
-      questionKey: "faq.2.question",
-      answerKey: "faq.2.answer"
+      question: "What if my claim is denied?",
+      answer: "If your claim is denied, we will provide you with a clear explanation of your options. Our team will offer a fair quote for the necessary repairs. We are committed to helping you navigate the situation."
     },
     {
       id: 2,
-      questionKey: "faq.3.question",
-      answerKey: "faq.3.answer"
+      question: "How fast is the process?",
+      answer: "Typically, most roofs are restored within 1 to 2 weeks after your claim is approved. Our efficient process ensures minimal disruption to your home. We prioritize getting your roof repaired quickly and effectively."
     },
     {
       id: 3,
-      questionKey: "faq.4.question",
-      answerKey: "faq.4.answer"
+      question: "Are you licensed and insured?",
+      answer: "Absolutely! PCG Roofing is fully licensed and insured. With over 15 years of experience, we are a trusted name in the San Antonio area."
     },
     {
       id: 4,
-      questionKey: "faq.5.question",
-      answerKey: "faq.5.answer"
+      question: "Still have questions?",
+      answer: "We're here to help you."
     }
   ];
 
@@ -47,7 +38,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq-section" className="faq-section" suppressHydrationWarning={true}>
+    <section className="faq-section">
       <div className="faq-background">
         <div className="faq-overlay"></div>
       </div>
@@ -61,16 +52,15 @@ export default function FAQSection() {
             </p>
           </div>
 
-          <div className="faq-accordion" suppressHydrationWarning={true}>
+          <div className="faq-accordion">
             {faqItems.map((item) => (
-              <div key={item.id} className="accordion-item" suppressHydrationWarning={true}>
+              <div key={item.id} className="accordion-item">
                 <button
                   className="accordion-question"
                   onClick={() => toggleItem(item.id)}
                   aria-expanded={openItem === item.id}
-                  suppressHydrationWarning={true}
                 >
-                  <span className="question-text">{t(item.questionKey)}</span>
+                  <span className="question-text">{item.question}</span>
                   <svg
                     className={`chevron-icon ${openItem === item.id ? 'chevron-open' : ''}`}
                     width="32" 
@@ -90,10 +80,9 @@ export default function FAQSection() {
                 
                 <div
                   className={`accordion-answer ${openItem === item.id ? 'answer-open' : ''}`}
-                  suppressHydrationWarning={true}
                 >
                   <div className="answer-content">
-                    <p>{t(item.answerKey)}</p>
+                    <p>{item.answer}</p>
                   </div>
                 </div>
               </div>
@@ -102,12 +91,11 @@ export default function FAQSection() {
 
           <div className="faq-cta">
             <div className="cta-content">
-              <h3 className="cta-title">{t('faq.5.question')}</h3>
-              <p className="cta-subtitle">{t('faq.5.answer')}</p>
-              <CalendlyButton 
-                text={t('cta.button')} 
-                className="contact-btn"
-              />
+              <h3 className="cta-title">Still have questions?</h3>
+              <p className="cta-subtitle">We're here to help you.</p>
+              <button className="contact-btn">
+                <span>Contact us Today</span>
+              </button>
             </div>
           </div>
         </div>
@@ -273,7 +261,7 @@ export default function FAQSection() {
 
         .contact-btn {
           display: inline-flex;
-          width: 220px;
+          width: 156px;
           padding: 12px 24px;
           justify-content: center;
           align-items: center;
@@ -332,7 +320,7 @@ export default function FAQSection() {
 
           .contact-btn {
             width: 100%;
-            max-width: 260px;
+            max-width: 200px;
           }
         }
 

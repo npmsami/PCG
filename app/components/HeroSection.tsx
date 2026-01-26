@@ -1,19 +1,8 @@
 'use client';
 
-import { useLanguage } from '../context/LanguageContext';
-
 export default function HeroSection() {
-  const { t } = useLanguage();
-  
-  const scrollToServices = () => {
-    const servicesSection = document.getElementById('services-section');
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section id="hero-section" className="hero-section" suppressHydrationWarning={true}>
+    <section className="hero-section">
       <div className="hero-background">
         <video
           autoPlay
@@ -22,7 +11,6 @@ export default function HeroSection() {
           playsInline
           className="hero-video"
           poster="https://api.builder.io/api/v1/image/assets/TEMP/ef5d90ce328d45584bdfb79dcdb5ddfa44090e9e?width=3340"
-          suppressHydrationWarning={true}
         >
           <source
             src="https://cdn.builder.io/o/assets%2F701c6aa649cc4d0db8f75aa92ca32a88%2Fc42cf556fe04477abff0163c478a5a87?alt=media&token=0ae050f2-1f6c-4522-a049-f018e671d07d&apiKey=701c6aa649cc4d0db8f75aa92ca32a88"
@@ -38,14 +26,14 @@ export default function HeroSection() {
 
       <div className="hero-text">
         <h1 className="hero-title">
-          <span className="hero-title-line">{t('hero.title.line1')}</span>
-          <span className="hero-title-line">{t('hero.title.line2')}</span>
+          Restore Your Roof<br />
+          Restore Your Peace of Mind
         </h1>
         <p className="hero-description">
-          {t('hero.description')}
+          Roof damage can be overwhelming, but it doesn't have to be. At PCG, we prioritize your family's safety by efficiently restoring your roof and managing the repair process.
         </p>
-        <button className="hero-cta-btn" onClick={scrollToServices}>
-          <span>{t('hero.cta')}</span>
+        <button className="hero-cta-btn">
+          <span>Call Us Today</span>
           <div className="btn-glow"></div>
         </button>
       </div>
@@ -116,7 +104,7 @@ export default function HeroSection() {
           background: rgba(255, 255, 255, 0.8);
           backdrop-filter: blur(80px);
           border-radius: var(--border-radius-medium);
-          padding: 40px 45px;
+          padding: 24px;
           border: 1px solid rgba(255, 255, 255, 0.3);
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
@@ -128,12 +116,6 @@ export default function HeroSection() {
           font-weight: 700;
           line-height: 120%;
           margin-bottom: 16px;
-          display: flex;
-          flex-direction: column;
-        }
-        
-        .hero-title-line {
-          display: block;
         }
 
         .hero-description {
@@ -216,7 +198,7 @@ export default function HeroSection() {
           }
 
           .hero-text {
-            padding: 30px 35px;
+            padding: 20px;
             max-width: 420px;
             left: 20px;
             bottom: 20px;
@@ -247,7 +229,7 @@ export default function HeroSection() {
             height: 70vh;
             min-height: 450px;
             width: calc(100% - 32px);
-            margin: 16px 16px 0;
+            margin: 0 16px;
             background: #000;
           }
 
@@ -272,61 +254,16 @@ export default function HeroSection() {
           }
 
           .hero-text {
-            padding: 25px 30px;
+            padding: 16px;
             border-radius: var(--border-radius-medium);
-            max-width: 380px;
+            max-width: 320px;
             left: 16px;
-            bottom: 20px;
-            top: auto;
+            bottom: 16px;
           }
 
           @media (max-width: 640px) {
             .hero-text {
-              left: 16px;
-              right: 16px;
-              padding: 20px;
-              bottom: 16px;
-              max-width: none;
-              width: calc(100% - 32px);
-            }
-          }
-          
-          @media (max-width: 390px) {
-            .hero-text {
-              left: 10px;
-              right: 10px;
-              padding: 24px 24px;
-              width: calc(100% - 20px);
-              margin: 0 auto;
-              border-radius: 38px;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-            }
-            
-            .hero-title {
-              padding: 0;
-              margin-bottom: 14px;
-              text-align: center;
-            }
-            
-            .hero-description {
-              padding: 0 8px;
-              margin-bottom: 20px;
-              font-size: 14px;
-              line-height: 1.4;
-              text-align: center;
-            }
-            
-            .hero-cta-btn {
-              padding: 12px 28px;
-              border-radius: 100px;
-              margin: 0 auto;
-            }
-            
-            .hero-cta-btn span {
-              font-size: 18px;
-              font-weight: 700;
+              left: 11px;
             }
           }
 
@@ -334,11 +271,6 @@ export default function HeroSection() {
             font-size: 24px;
             line-height: 110%;
             margin-bottom: 10px;
-            white-space: nowrap;
-          }
-          
-          .hero-title-line {
-            white-space: nowrap;
           }
 
           .hero-description {

@@ -1,41 +1,38 @@
 'use client';
 
 import Image from 'next/image';
-import { useLanguage } from '../context/LanguageContext';
-import CalendlyButton from './CalendlyButton';
 
 export default function ServicesSection() {
-  const { t } = useLanguage();
   const services = [
     {
-      titleKey: "services.residential.title",
+      title: "Roofing Repairs",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/f6236692f79bebe3f92a08329f72112d49f892a1?width=722"
     },
     {
-      titleKey: "services.commercial.title",
+      title: "Roof Replacements",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/d5676b2f651575ad0183c0ddc95e21eed74ec271?width=722"
     },
     {
-      titleKey: "services.insurance.title",
+      title: "Roofing Insurance Claims",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/f80eb218a6215c804c6f6a5b4a0190fa0dbcea61?width=722"
     },
     {
-      titleKey: "services.emergency.title",
+      title: "Shingle Roofing Installation",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/c38331bc8ceda2967705f6b6288b77fc6e12d5bf?width=722"
     },
     {
-      titleKey: "services.residential.title",
+      title: "Tile Roofing Installation",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/d389c25419b297d99c00930e39d324a50447ba3f?width=722"
     },
     {
-      titleKey: "services.emergency.title",
+      title: "Emergency Tarping Services",
       image: "https://api.builder.io/api/v1/image/assets/TEMP/b6491b01922b2e5f70adb1165c523e552d0c9715?width=722"
     }
   ];
 
   return (
     <section id="services-section" className="services-section">
-      <div className="services-container">
+      <div className="container">
         {/* Header with confidence message */}
         <div className="services-header">
           <div className="header-content">
@@ -47,23 +44,21 @@ export default function ServicesSection() {
                 height={120}
               />
             </div>
-            <h2 className="services-title">{t('services.title')}</h2>
+            <h2 className="services-title">Protect Your Home with Confidence</h2>
             <p className="services-description">
-              {t('services.subtitle')}
+              With over 15 years of dedicated service, PCG Roofing is fully licensed and insured, ensuring peace of mind for homeowners. Our strong relationships with top insurance carriers and certified installers allow us to deliver exceptional roofing solutions quickly and efficiently.
             </p>
-            <CalendlyButton 
-              text="Book an Appointment" 
-              className="services-cta-btn"
-            />
+            <button className="services-cta-btn">
+              <span>Book an Appointment</span>
+            </button>
           </div>
           <div className="header-image">
-                          <Image
+            <Image
               src="https://api.builder.io/api/v1/image/assets/TEMP/d6ef8f1c47d87444e36b9547bae45863b8a2ff5d?width=1200"
               alt="PCG Roofing professionals discussing with homeowner"
               width={600}
               height={640}
-              style={{ objectFit: 'cover', maxWidth: '100%' }}
-              priority
+              style={{ objectFit: 'cover' }}
             />
           </div>
         </div>
@@ -77,14 +72,13 @@ export default function ServicesSection() {
                 <div className="service-image">
                   <Image
                     src={service.image}
-                    alt={t(service.titleKey)}
+                    alt={service.title}
                     width={361}
                     height={202}
-                    style={{ objectFit: 'cover', maxWidth: '100%' }}
-                    priority={index === 0}
+                    style={{ objectFit: 'cover' }}
                   />
                 </div>
-                <h4 className="service-title">{t(service.titleKey)}</h4>
+                <h4 className="service-title">{service.title}</h4>
               </div>
             ))}
           </div>
@@ -99,14 +93,6 @@ export default function ServicesSection() {
           border-radius: var(--border-radius-medium);
           margin: 40px var(--page-padding) 0;
           position: relative;
-          overflow: hidden;
-        }
-        
-        .services-container {
-          max-width: var(--container-max-width);
-          margin: 0 auto;
-          padding: 0 var(--page-padding);
-          width: 100%;
         }
 
         .services-header {
@@ -198,7 +184,7 @@ export default function ServicesSection() {
 
         .services-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
           gap: 48px;
         }
 
@@ -210,18 +196,9 @@ export default function ServicesSection() {
 
         .service-image {
           width: 100%;
-          max-width: 100%;
           height: 202px;
           border-radius: var(--border-radius-small);
           overflow: hidden;
-          position: relative;
-        }
-        
-        .service-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          max-width: 100%;
         }
 
         .service-title {
@@ -255,8 +232,7 @@ export default function ServicesSection() {
         @media (max-width: 768px) {
           .services-section {
             margin: 40px 20px 0;
-            padding: 60px 20px;
-            width: calc(100% - 40px);
+            padding: 60px 0;
           }
 
           .services-title {
@@ -290,23 +266,9 @@ export default function ServicesSection() {
             font-size: 24px;
           }
 
-          .services-container {
-            padding: 0 15px;
-            width: 100%;
-          }
-
-          .header-content {
-            max-width: 100%;
-          }
         }
 
         @media (max-width: 480px) {
-          .services-section {
-            margin: 20px 10px 0;
-            padding: 40px 10px;
-            width: calc(100% - 20px);
-          }
-
           .services-title {
             font-size: 24px;
           }
@@ -315,39 +277,16 @@ export default function ServicesSection() {
             font-size: 16px;
           }
 
-          .services-cta-btn {
-            height: 50px;
-            max-width: 100%;
-          }
-
           .services-cta-btn span {
             font-size: 20px;
           }
 
           .services-grid-title {
             font-size: 22px;
-            margin-bottom: 32px;
           }
 
           .service-title {
             font-size: 20px;
-          }
-
-          .service-image {
-            height: 180px;
-          }
-
-          .services-header {
-            margin-bottom: 60px;
-            gap: 30px;
-          }
-
-          .header-image {
-            height: 300px;
-          }
-
-          .years-badge {
-            justify-content: center;
           }
         }
       `}</style>

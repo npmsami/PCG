@@ -15,16 +15,13 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-    unoptimized: true
   },
   compiler: {
     styledComponents: true
   },
   experimental: {
     forceSwcTransforms: true,
-  },
-  output: 'export',
-  distDir: 'out'
+  }
 }
 
 module.exports = nextConfig

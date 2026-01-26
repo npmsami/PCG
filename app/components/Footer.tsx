@@ -1,23 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useLanguage } from '../context/LanguageContext';
-import './Footer.css';
 
 export default function Footer() {
-  const { t } = useLanguage();
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
   const quickLinks = [
-    { key: 'footer.links.home' },
-    { key: 'footer.links.about' },
-    { key: 'footer.links.services' },
-    { key: 'footer.links.testimonials' },
-    { key: 'footer.links.faq' }
+    { label: 'Home Page', href: '/' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Blogs', href: '/blogs' },
+    { label: 'Contact Us', href: '#' },
+    { label: 'Services', href: '#' },
+    { label: 'Testimonials', href: '#' }
   ];
 
   const connectLinks = [
@@ -68,7 +60,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="footer" suppressHydrationWarning={true}>
+    <footer className="footer">
       <div className="container">
         <div className="footer-main">
           <div className="newsletter-section">
@@ -84,14 +76,13 @@ export default function Footer() {
               Subscribe to our newsletter for the latest updates on roofing services and offers.
             </p>
             <div className="newsletter-form">
-              <div className="form-group" suppressHydrationWarning={true}>
+              <div className="form-group">
                 <input
                   type="email"
                   placeholder="Your Email Here"
                   className="email-input"
-                  suppressHydrationWarning={true}
                 />
-                <button className="join-btn" suppressHydrationWarning={true}>Join</button>
+                <button className="join-btn">Join</button>
               </div>
               <p className="newsletter-disclaimer">
                 By subscribing, you consent to receive updates and agree to our Privacy Policy.
@@ -101,11 +92,11 @@ export default function Footer() {
 
           <div className="footer-links">
             <div className="links-column">
-              <h4 className="column-title">{t('footer.links.title')}</h4>
+              <h4 className="column-title">Quick Links</h4>
               <ul className="links-list">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
-                    <a href="#" className="footer-link">{t(link.key)}</a>
+                    <a href={link.href} className="footer-link">{link.label}</a>
                   </li>
                 ))}
               </ul>
@@ -124,19 +115,15 @@ export default function Footer() {
 
             <div className="links-column">
               <h4 className="column-title">Stay Updated</h4>
-              <ul className="social-links" suppressHydrationWarning={true}>
-                {isMounted ? socialIcons.map((socialName, index) => (
+              <ul className="social-links">
+                {socialIcons.map((socialName, index) => (
                   <li key={index} className="social-item">
                     <a href="#" className="social-link">
                       {renderSocialIcon(socialName)}
                       <span>{socialName}</span>
                     </a>
                   </li>
-                )) : (
-                  <li className="social-item">
-                    <span style={{color: 'white', fontSize: '14px'}}>Loading social links...</span>
-                  </li>
-                )}
+                ))}
               </ul>
             </div>
           </div>
@@ -144,7 +131,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <div className="copyright">
-            <p>{t('footer.copyright')}</p>
+            <p>© 2025 PCG Roofing. All rights reserved.</p>
           </div>
           <div className="legal-links">
             <a href="#" className="legal-link">Privacy Policy</a>
@@ -154,6 +141,273 @@ export default function Footer() {
         </div>
       </div>
 
+      <style jsx>{`
+        .footer {
+          background: var(--dark-gray);
+          padding: var(--section-padding) 0;
+          border-radius: var(--border-radius-medium);
+          margin: 40px var(--page-padding) 0;
+        }
+
+        .footer-main {
+          display: flex;
+          gap: 128px;
+          margin-bottom: 80px;
+          padding: 48px;
+          border-radius: var(--border-radius-large);
+          background: var(--dark-gray);
+        }
+
+        .newsletter-section {
+          flex: 1;
+          max-width: 500px;
+        }
+
+        .company-logo {
+          width: 84px;
+          height: 36px;
+          margin-bottom: 24px;
+        }
+
+        .newsletter-description {
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 150%;
+          margin-bottom: 24px;
+        }
+
+        .form-group {
+          display: flex;
+          gap: 16px;
+          margin-bottom: 12px;
+        }
+
+        .email-input {
+          flex: 1;
+          padding: 12px;
+          border-radius: 30px;
+          border: 1px solid var(--white);
+          background: transparent;
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 16px;
+          line-height: 150%;
+        }
+
+        .email-input::placeholder {
+          color: var(--white);
+        }
+
+        .email-input:focus {
+          outline: none;
+          border-color: var(--primary-orange);
+        }
+
+        .join-btn {
+          padding: 12px 24px;
+          border-radius: 35px;
+          border: 1px solid var(--white);
+          background: transparent;
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 150%;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .join-btn:hover {
+          background: var(--primary-orange);
+          border-color: var(--primary-orange);
+        }
+
+        .newsletter-disclaimer {
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 150%;
+        }
+
+        .footer-links {
+          display: flex;
+          gap: 40px;
+          flex: 1;
+        }
+
+        .links-column {
+          flex: 1;
+        }
+
+        .column-title {
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 150%;
+          margin-bottom: 16px;
+        }
+
+        .links-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .links-list li {
+          padding: 8px 0;
+        }
+
+        .footer-link {
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 150%;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+          color: var(--primary-orange);
+        }
+
+        .social-links {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .social-item {
+          padding: 8px 0;
+        }
+
+        .social-link {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 150%;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+          color: var(--primary-orange);
+        }
+
+        .social-link svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        .footer-bottom {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-top: 1px solid #555;
+          padding-top: 32px;
+        }
+
+        .copyright p {
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 150%;
+          margin: 0;
+        }
+
+        .legal-links {
+          display: flex;
+          gap: 24px;
+        }
+
+        .legal-link {
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 150%;
+          text-decoration: underline;
+          transition: color 0.3s ease;
+        }
+
+        .legal-link:hover {
+          color: var(--primary-orange);
+        }
+
+        @media (max-width: 1200px) {
+          .footer-main {
+            flex-direction: column;
+            gap: 60px;
+          }
+
+          .footer-links {
+            gap: 32px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .footer {
+            padding: 60px 0;
+            margin: 40px 20px 0;
+          }
+
+          .footer-main {
+            padding: 32px;
+          }
+
+          .footer-links {
+            flex-direction: column;
+            gap: 32px;
+          }
+
+          .form-group {
+            flex-direction: column;
+            gap: 12px;
+          }
+
+          .footer-bottom {
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+          }
+
+          .legal-links {
+            flex-direction: column;
+            gap: 12px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .footer {
+            margin: 40px 16px 0;
+          }
+
+          .footer-main {
+            padding: 20px;
+          }
+
+          .newsletter-description,
+          .footer-link,
+          .social-link,
+          .copyright p,
+          .legal-link {
+            font-size: 12px;
+          }
+
+          .column-title {
+            font-size: 14px;
+          }
+        }
+      `}</style>
     </footer>
   );
 }
