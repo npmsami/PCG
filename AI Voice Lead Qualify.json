@@ -1,0 +1,2559 @@
+{
+  "name": "AI Voice Lead Qualify",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "roofing-leads-webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "8379a52b-59f8-4ca8-9173-89d108e20539",
+      "name": "Lead Import Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        16,
+        640
+      ],
+      "typeVersion": 2.1,
+      "webhookId": "roofing-leads-import"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "id": "2e230c14-bd06-471c-847d-c4075c0526b2",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        240,
+        640
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "lead-init",
+              "name": "lead_id",
+              "type": "string",
+              "value": "={{ $json.fullname.split(\" \").last() }}_{{ $now.toUnixInteger() }}"
+            },
+            {
+              "id": "email-sent",
+              "name": "emails_sent",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "id": "calls-made",
+              "name": "calls_attempted",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "id": "email-response",
+              "name": "email_replied",
+              "type": "boolean",
+              "value": false
+            },
+            {
+              "id": "call-answered",
+              "name": "call_answered",
+              "type": "boolean",
+              "value": false
+            },
+            {
+              "id": "ai-qualified",
+              "name": "ai_qualified",
+              "type": "boolean",
+              "value": false
+            },
+            {
+              "id": "start-time",
+              "name": "start_time",
+              "type": "string",
+              "value": "={{ $now.toISO() }}"
+            },
+            {
+              "id": "7a3aabee-57a4-49f2-aa58-2c2813c66cf5",
+              "name": "full_name",
+              "value": "={{ $json.fullname || $json.body.full_name}}",
+              "type": "string"
+            },
+            {
+              "id": "c8b92c09-6c39-4ae7-84b9-e2dc20155635",
+              "name": "email",
+              "value": "={{ $json.email || $json.body.email}}",
+              "type": "string"
+            },
+            {
+              "id": "046e972a-d11d-436e-9cdf-9e9025c22567",
+              "name": "phone",
+              "value": "={{ $json.phone || $json.body.phone}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "86933e65-8648-48c5-ba8c-440185333744",
+      "name": "Initialize Lead Data",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        656,
+        480
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "email-subject",
+              "name": "email_subject",
+              "type": "string",
+              "value": "={{ $json['Emails Sent'] === 0 ? 'Free Roof Inspection - Limited Time Offer' : $json['Emails Sent'] === 1 ? 'Your Neighbors Are Getting New Roofs' : $json['Emails Sent'] === 2 ? 'Last Chance: Storm Damage Assessment' : 'Final Notice: Roofing Special Expires Soon' }}"
+            },
+            {
+              "id": "email-html",
+              "name": "email_html",
+              "type": "string",
+              "value": "={{ $json['Emails Sent'] === 0 ? '<h2>Free Roof Inspection - Limited Time Offer</h2><p>Hi ' + $json['Full Name'] + ',</p><p>We noticed potential storm damage in your area. We are offering free roof inspections.</p><p><strong>Limited time offer:</strong> Schedule your free inspection today!</p><a href=\"https://example.com/book?lead=' + $json.ID + '\">Book Now</a>' : $json['Emails Sent'] === 1 ? '<h2>Your Neighbors Are Getting New Roofs</h2><p>Hi ' + $json['Full Name'] + ',</p><p>We have been busy in your neighborhood! Three of your neighbors have chosen us.</p><p>Do not wait - get your free assessment today.</p><a href=\"https://example.com/book?lead=' + $json.ID + '\">Schedule Assessment</a>' : $json['Emails Sent'] === 2 ? '<h2>Last Chance: Storm Damage Assessment</h2><p>Hi ' + $json['Full Name'] + ',</p><p>Weather reports show more storms coming. This is your last chance for a free assessment.</p><a href=\"https://example.com/book?lead=' + $json.ID + '\">Get Assessment</a>' : '<h2>Final Notice: Roofing Special Expires Soon</h2><p>Hi ' + $json['Full Name'] + ',</p><p>This is our final attempt. Our special pricing expires in 48 hours.</p><a href=\"https://example.com/book?lead=' + $json.ID + '\">Claim Discount</a>' }}"
+            },
+            {
+              "id": "a5efca7b-7b62-4c30-9bdd-5b8f969ea118",
+              "name": "lead_data",
+              "value": "={{ $json }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "7c5cee4d-27bd-4591-8c75-b42c30a0035b",
+      "name": "Select Email Template",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1008,
+        -16
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "amount": 30,
+        "unit": "seconds"
+      },
+      "id": "a7b779da-0b30-4488-a5cd-219faa1c587c",
+      "name": "Wait 24 Hours",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        1632,
+        -16
+      ],
+      "typeVersion": 1,
+      "webhookId": "54bfc8f4-00a6-4f2c-9fbe-7b3e9398c009"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dead-status",
+              "name": "lead_status",
+              "type": "string",
+              "value": "dead_email"
+            },
+            {
+              "id": "dead-reason",
+              "name": "dead_reason",
+              "type": "string",
+              "value": "No email response after 4 attempts"
+            },
+            {
+              "id": "completion-time",
+              "name": "email_channel_completed_at",
+              "type": "string",
+              "value": "={{ $now.toISO() }}"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "af1ccf10-b4bf-463c-8bd7-7cf8ab1c3768",
+      "name": "Tag Dead Email Lead",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        3392,
+        0
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dead-status",
+              "name": "lead_status",
+              "type": "string",
+              "value": "dead_call"
+            },
+            {
+              "id": "dead-reason",
+              "name": "dead_reason",
+              "type": "string",
+              "value": "No answer/qualification after 4 AI call attempts"
+            },
+            {
+              "id": "completion-time",
+              "name": "call_channel_completed_at",
+              "type": "string",
+              "value": "={{ $now.toISO() }}"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "112ea3da-dee2-4750-b442-3516c139b199",
+      "name": "Tag Dead Call Lead",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        3392,
+        880
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "stop-flag",
+              "name": "other_channel_responded",
+              "type": "boolean",
+              "value": true
+            },
+            {
+              "id": "responding-channel",
+              "name": "responding_channel",
+              "type": "string",
+              "value": "={{ $json.email_replied ? 'email' : 'call' }}"
+            },
+            {
+              "id": "response-time",
+              "name": "response_received_at",
+              "type": "string",
+              "value": "={{ $now.toISO() }}"
+            },
+            {
+              "id": "lead-status-qualified",
+              "name": "lead_status",
+              "type": "string",
+              "value": "qualified"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "84fa6b78-3720-44bb-a38d-a703e010ce18",
+      "name": "Stop Other Channel",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        3392,
+        432
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "workflow-complete",
+              "name": "workflow_status",
+              "type": "string",
+              "value": "completed"
+            },
+            {
+              "id": "completion-time",
+              "name": "completed_at",
+              "type": "string",
+              "value": "={{ $now.toISO() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d785ef7e-4607-4b58-b482-91d240265645",
+      "name": "Mark Complete",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        3776,
+        880
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "content": "## 🏠 Roofing Company Lead Qualification Automation\n\nThis workflow automates lead nurturing through parallel email and call channels with intelligent qualification and CRM integration.\n\n### Features:\n- **Dual Channel Outreach**: Parallel email sequences and call attempts\n- **Smart Stop Rules**: Automatically stops other channel when response received\n- **Lead Qualification**: AI-powered qualification with booking integration\n- **Full CRM Sync**: All lead statuses tracked in CRM\n\n### Required Setup:\n1. Configure email service (SendGrid/Gmail)\n2. Set up calling service (Twilio/Bland.ai)\n3. Connect CRM (HubSpot/Pipedrive)\n4. Upload lead CSV or connect to CRM\n5. Customize email templates and call scripts",
+        "height": 480,
+        "width": 584,
+        "color": 3
+      },
+      "id": "79fdde56-3ca3-4ded-bce4-86fd900a0a6e",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        256,
+        -192
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "abf98566-c388-432c-a8a1-7f47d0439581",
+              "leftValue": "={{ $json.fullname || $json.body.full_name}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ac71acbe-5ad1-4b33-a8bd-93c5babd21d2",
+              "leftValue": "={{ $json.email || $json.body.email}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00437108-53a7-4ba2-9d91-804846528fd9",
+              "leftValue": "={{ $json.phone || $json.body.phone}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        496
+      ],
+      "id": "689d2bd6-6503-4e5e-a6e5-dcc8499b0324",
+      "name": "Validate Lead Data"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cf7cbfe6-1076-472d-9c89-cd2ce08621af",
+              "name": "invalid_reason",
+              "value": "Missing required lead data (email or name)",
+              "type": "string"
+            },
+            {
+              "id": "d8e1c809-0f48-497e-add0-f1c3c2161d85",
+              "name": "status",
+              "value": "invalid",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3392,
+        1088
+      ],
+      "id": "4724b0d3-b5f4-4ec4-96b4-56a1d66cd8c1",
+      "name": "Mark Invalid Lead"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "={{ $json.email_subject }}",
+        "message": "={{ $json.email_html }}",
+        "options": {
+          "replyTo": "ims.n8n@gmail.com"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1184,
+        -16
+      ],
+      "id": "6d7296d9-3fbe-4602-8fd8-a595e6088a18",
+      "name": "Send a message",
+      "webhookId": "378ebc25-82f5-4251-bc33-2010aa118548",
+      "executeOnce": false,
+      "alwaysOutputData": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "BENLxixscNmwVCGV",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2d285a6c-07ef-4472-9454-e60b1ff244cd",
+              "leftValue": "={{ $json.emails_sent }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2976,
+        -16
+      ],
+      "id": "6aa4f380-a1e3-44fa-8f5c-fa4120e11489",
+      "name": "Max Emails Sent"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d3a89ebc-d56a-4188-9be4-0abaef59dce9",
+              "leftValue": "={{ $json.calls_attempted }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2112,
+        752
+      ],
+      "id": "1164c83d-9722-42ea-a8db-aaf90167987a",
+      "name": "Max Calls Made"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "84bad081-63fd-49b3-8890-46c62bf00490",
+              "name": "email_replied",
+              "value": "={{ $json.email_replied }}",
+              "type": "string"
+            },
+            {
+              "id": "0eb8f0df-d9cc-4bef-b9a9-737356f25569",
+              "name": "other_channel_responded",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "id": "3a2128dd-bf42-4c7c-a1dd-06dc32d8bde6",
+              "name": "lead_data",
+              "value": "={{ $('Set Email Counter').item.json.lead_data }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3168,
+        304
+      ],
+      "id": "6585e784-10c0-43b7-8247-2c864cfde2b3",
+      "name": "Set Email Status"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9781affd-d5b3-44f4-822d-a8c79c0dc0ce",
+              "leftValue": "={{ $json.messages.length }}",
+              "rightValue": "=1",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2080,
+        -16
+      ],
+      "id": "8cc5c2c2-c0a1-47ed-945e-38f050467561",
+      "name": "Detect Email Response"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "058cb39b-78fb-41dd-866b-9b39284deb33",
+              "name": "call_answered",
+              "value": "={{ $json.call_answered}}",
+              "type": "string"
+            },
+            {
+              "id": "25075814-db82-4097-987d-58b2666cad52",
+              "name": "other_channel_responded",
+              "value": true,
+              "type": "boolean"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3168,
+        544
+      ],
+      "id": "5af3d33f-b609-4cdc-af67-65b16106b8fb",
+      "name": "Set Call Status"
+    },
+    {
+      "parameters": {
+        "resource": "thread",
+        "operation": "get",
+        "threadId": "={{ $('Send a message').item.json.threadId }}",
+        "simple": false,
+        "options": {
+          "returnOnlyMessages": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1856,
+        -16
+      ],
+      "id": "fcbdfca8-3aba-4de1-89f0-868957683b58",
+      "name": "Get a thread",
+      "webhookId": "deb2c5a3-ccb7-4691-8e21-d6daf4eaa3d3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "BENLxixscNmwVCGV",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ",
+          "mode": "list",
+          "cachedResultName": "CRM Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Status": "={{ $json.status }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Full Name",
+              "displayName": "Full Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Qualified",
+              "displayName": "Qualified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Emails Sent",
+              "displayName": "Emails Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calls Made",
+              "displayName": "Calls Made",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email Replied",
+              "displayName": "Email Replied",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Call Answered",
+              "displayName": "Call Answered",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3616,
+        880
+      ],
+      "id": "d5a4d7f1-0d68-4a31-9e8d-37cc951cedde",
+      "name": "Log interaction",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "NYMSvfOrE3LeHKgU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.retellai.com/v2/create-phone-call",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpCustomAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"from_number\": \"+18884403593\",\n  \"to_number\": \"{{ $json.Phone }}\",\n  \"retell_llm_dynamic_variables\": {\n    \"lead_name\": \"{{ $json['Full Name'] }}\",\n    \"email\": \"{{ $json.Email }}\",\n    \"phone_number\": \"{{ $json.Phone }}\"\n  },\n  \"override_agent_id\": \"agent_1569eb5e0ca245665128b8657d\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1008,
+        752
+      ],
+      "id": "05c16d9d-5e09-4e20-97ed-5570c58e5e4e",
+      "name": "Make Call",
+      "credentials": {
+        "httpCustomAuth": {
+          "id": "BPb2JLnBixUt42WE",
+          "name": "Custom Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ",
+          "mode": "list",
+          "cachedResultName": "CRM Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $json.email }}",
+            "Full Name": "={{ $json.full_name }}",
+            "Phone": "={{ $json.phone }}",
+            "Qualified": "={{ $json.ai_qualified }}",
+            "ID": "={{ $json.lead_id }}",
+            "Emails Sent": "={{ $json.emails_sent }}",
+            "Calls Made": "={{ $json.calls_attempted }}",
+            "Email Replied": "={{ $json.email_replied }}",
+            "Call Answered": "={{ $json.call_answered }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Full Name",
+              "displayName": "Full Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Qualified",
+              "displayName": "Qualified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Emails Sent",
+              "displayName": "Emails Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calls Made",
+              "displayName": "Calls Made",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email Replied",
+              "displayName": "Email Replied",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Call Answered",
+              "displayName": "Call Answered",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        816,
+        480
+      ],
+      "id": "d55fe040-af93-40a5-8d71-d0819e601784",
+      "name": "Save Initial Data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "NYMSvfOrE3LeHKgU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ",
+          "mode": "list",
+          "cachedResultName": "CRM Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('Select Email Template').item.json.ID }}",
+            "Emails Sent": "={{ $('Set Email Counter').item.json.emails_sent + 1 }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Full Name",
+              "displayName": "Full Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Qualified",
+              "displayName": "Qualified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Emails Sent",
+              "displayName": "Emails Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Calls Made",
+              "displayName": "Calls Made",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Replied",
+              "displayName": "Email Replied",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Call Answered",
+              "displayName": "Call Answered",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2304,
+        -16
+      ],
+      "id": "682b4216-91df-48b0-b6b5-2edf967c5793",
+      "name": "Update Email Attempt",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "NYMSvfOrE3LeHKgU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "increment-emails",
+              "name": "emails_sent",
+              "type": "number",
+              "value": "={{ $('Select Email Template').item.json['Emails Sent'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8e4665af-dd38-4d1d-a280-671c1cf39566",
+      "name": "Set Email Counter",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1408,
+        -16
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "increment-calls",
+              "name": "calls_attempted",
+              "type": "number",
+              "value": "={{ $('Save Initial Data').item.json['Calls Made'] }}"
+            },
+            {
+              "id": "call-status",
+              "name": "call_status",
+              "type": "string",
+              "value": "={{ $('Make Call').item.json.call_status }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "383fbefc-a347-47eb-83d4-0c7f2190e8f8",
+      "name": "Set Call Counter",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1200,
+        752
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ",
+          "mode": "list",
+          "cachedResultName": "CRM Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('Save Initial Data').item.json.ID }}",
+            "Calls Made": "={{ $('Save Initial Data').item.json['Calls Made'] + 1 }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Full Name",
+              "displayName": "Full Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Qualified",
+              "displayName": "Qualified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Emails Sent",
+              "displayName": "Emails Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Calls Made",
+              "displayName": "Calls Made",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Replied",
+              "displayName": "Email Replied",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Call Answered",
+              "displayName": "Call Answered",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1392,
+        752
+      ],
+      "id": "b13b438b-d5b2-4c37-8bea-402eec6b7bb2",
+      "name": "Update Call Attempt",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "NYMSvfOrE3LeHKgU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "call-result",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        2112,
+        1008
+      ],
+      "id": "7446fde6-202e-4ca9-a2a9-e1d802644b62",
+      "name": "Call Result",
+      "webhookId": "48186f41-7ba8-475a-8662-14035edbec11"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cb2a4b79-d07c-447f-b1b3-820186ad900f",
+              "name": "Call ID",
+              "value": "={{ $json.body.call.call_id }}",
+              "type": "string"
+            },
+            {
+              "id": "f277b952-f62f-404e-9208-d7b472c9fa60",
+              "name": "Duration in seconds",
+              "value": "={{ $json.body.call.call_cost.total_duration_seconds }}",
+              "type": "number"
+            },
+            {
+              "id": "c78c2b08-390d-4c65-a9b8-43a46b79b921",
+              "name": "Call Summary",
+              "value": "={{ $json.body.call.call_analysis.call_summary }}",
+              "type": "string"
+            },
+            {
+              "id": "4b08eb87-7820-4db3-85a8-6426d61e199c",
+              "name": "Transcript",
+              "value": "={{ $json.body.call.transcript }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2480,
+        1008
+      ],
+      "id": "a36776e0-d048-442d-8900-7fc0ef833f25",
+      "name": "Extract Fields"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        16,
+        896
+      ],
+      "id": "f58a830b-66a1-4f28-9f97-cbfee77f282a",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "sendTo": "ims.n8n@gmail.com",
+        "subject": "Error in Lead Gen Workflow",
+        "message": "=In workflow {{  $workflow.name }}  an error ocurred.\n\nPlease check it and take a look at the logs.\nHere are some additional details:\n{{ $execution.id }}\n{{ $execution.mode }}\n{{ $execution.resumeUrl }}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        256,
+        896
+      ],
+      "id": "446df083-e37a-4035-a817-436771082288",
+      "name": "Forward Error",
+      "webhookId": "ec873ef2-4659-44a7-87d0-3a06118a05f4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "BENLxixscNmwVCGV",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ",
+          "mode": "list",
+          "cachedResultName": "CRM Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "ID",
+              "lookupValue": "={{ $json.ID }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2528,
+        -16
+      ],
+      "id": "9f4fba10-2d24-45f9-82f3-0b2ee83842f7",
+      "name": "Get Current Data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "NYMSvfOrE3LeHKgU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae95cf7f-8053-46cc-ad18-54165095437d",
+              "name": "lead_id",
+              "value": "={{ $json.ID }}",
+              "type": "string"
+            },
+            {
+              "id": "54e5f1ab-3b77-4352-bc4a-1c7e040cb254",
+              "name": "email",
+              "value": "={{ $json.Email }}",
+              "type": "string"
+            },
+            {
+              "id": "05fccaac-357c-4362-a610-d9b97e9c6b88",
+              "name": "full_name",
+              "value": "={{ $json['Full Name'] }}",
+              "type": "string"
+            },
+            {
+              "id": "afb47821-529c-40f6-bbe7-bd02c2fa5a14",
+              "name": "phone",
+              "value": "={{ $json.Phone }}",
+              "type": "number"
+            },
+            {
+              "id": "1fd905a3-9657-4387-a720-ef771d4cd563",
+              "name": "address",
+              "value": "={{ $json.Address }}",
+              "type": "string"
+            },
+            {
+              "id": "55ec8a94-62d1-49db-afb1-514abb0c545d",
+              "name": "ai_qualified",
+              "value": "={{ $json.Qualified }}",
+              "type": "boolean"
+            },
+            {
+              "id": "33b8a131-0ec4-4387-ba43-2858a50f5054",
+              "name": "status",
+              "value": "={{ $json.Status }}",
+              "type": "string"
+            },
+            {
+              "id": "4979d97b-5a4b-4360-a7a7-8fdc49b8e9c3",
+              "name": "emails_sent",
+              "value": "={{ $json['Emails Sent'] }}",
+              "type": "number"
+            },
+            {
+              "id": "728fc06b-5740-49fb-98b6-643dc781bb04",
+              "name": "calls_attempted",
+              "value": "={{ $json['Calls Made'] }}",
+              "type": "number"
+            },
+            {
+              "id": "79176cf1-ed58-4ba6-b7d1-0d748d3783aa",
+              "name": "email_replied",
+              "value": "={{ $json['Email Replied'] }}",
+              "type": "boolean"
+            },
+            {
+              "id": "32e72e08-35ab-4543-8f17-c465575f0ef2",
+              "name": "call_answered",
+              "value": "={{ $json['Call Answered'] }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2752,
+        -16
+      ],
+      "id": "9a2b13b6-4c42-4145-a40b-a9a5162c66d7",
+      "name": "Update Lead Data"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "001a3b84-e050-4083-8204-cff22de900d7",
+              "name": "lead_id",
+              "value": "={{ $json.ID }}",
+              "type": "string"
+            },
+            {
+              "id": "d67f45fc-22e7-4178-a915-abf9ef9c3b3f",
+              "name": "email",
+              "value": "={{ $json.Email }}",
+              "type": "string"
+            },
+            {
+              "id": "c7958e6a-8869-4183-a95a-452b56568b91",
+              "name": "full_name",
+              "value": "={{ $json['Full Name'] }}",
+              "type": "string"
+            },
+            {
+              "id": "ca18eece-584a-47d7-bac0-679c3a10975c",
+              "name": "phone",
+              "value": "={{ $json.Phone }}",
+              "type": "number"
+            },
+            {
+              "id": "e833ae34-9ce2-43fa-bf5c-96bb3c168c0a",
+              "name": "address",
+              "value": "={{ $json.Address }}",
+              "type": "string"
+            },
+            {
+              "id": "c17986d2-bf8d-42fc-b6b8-bbee735fd69f",
+              "name": "ai_qualified",
+              "value": "={{ $json.Qualified }}",
+              "type": "boolean"
+            },
+            {
+              "id": "2114c0bd-af6f-43d9-919d-be4d0b733981",
+              "name": "status",
+              "value": "={{ $json.Status }}",
+              "type": "string"
+            },
+            {
+              "id": "d0b052f1-1085-43a1-9025-f6f54f59bd41",
+              "name": "emails_sent",
+              "value": "={{ $json['Emails Sent'] }}",
+              "type": "number"
+            },
+            {
+              "id": "b7483710-10b0-4817-99aa-0dfa44fd2f68",
+              "name": "calls_attempted",
+              "value": "={{ $json['Calls Made'] }}",
+              "type": "number"
+            },
+            {
+              "id": "5cabb1e6-bca6-4cf9-bb06-ffd58e917c7f",
+              "name": "email_replied",
+              "value": "={{ $json['Email Replied'] }}",
+              "type": "boolean"
+            },
+            {
+              "id": "9744b9db-4777-41d8-b55a-29a0d116d3df",
+              "name": "call_answered",
+              "value": "={{ $json['Call Answered'] }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1872,
+        752
+      ],
+      "id": "865fc9b0-9722-4d17-a688-f32974deb498",
+      "name": "Set Updated Data"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ",
+          "mode": "list",
+          "cachedResultName": "CRM Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-llgfTX2GO7L_IR6NNiTPrBHbT-JTqsdGc4o2WktwoQ/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "ID",
+              "lookupValue": "={{ $json.ID }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1632,
+        752
+      ],
+      "id": "180ca019-1034-4055-9030-93bc137ade56",
+      "name": "Sync Lead Data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "NYMSvfOrE3LeHKgU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "702ad24d-13bd-49f6-9736-de2c05dbc334",
+              "leftValue": "={{ $json.email_replied }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "c3b4b397-704e-4dc1-8f13-511c5807870e",
+              "leftValue": "={{ $json.call_answered }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3168,
+        112
+      ],
+      "id": "5da9c51a-a67e-4788-bcbb-f385abea21c2",
+      "name": "Call Channel Responded"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9e8e106b-b43c-4275-bb64-421fcddfb265",
+              "leftValue": "={{ $json.email_replied }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "5e9f32d6-de02-4d4b-8eb8-ce40c113b6af",
+              "leftValue": "={{ $json.call_answered && $json.ai_qualified }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3168,
+        736
+      ],
+      "id": "fd97afcb-c817-400a-983f-32dccd449883",
+      "name": "Email Channel Responded"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c4da3a17-2ec3-4ff6-8ddf-b12e6cb9589e",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "call_analyzed",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        2304,
+        1008
+      ],
+      "id": "4c968631-ba17-40b3-8cb8-af8904369a8f",
+      "name": "Analyzed Call"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "01967127-e315-4110-8daa-de8dd3e3a9cb",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "call_ended",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        2304,
+        1152
+      ],
+      "id": "998ea7c1-b061-46c0-9421-feed26c50a20",
+      "name": "Ended Call"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6496c202-d5e4-493b-8a4d-e3d102c97f1c",
+              "leftValue": "={{ $json.body.call.disconnection_reason }}",
+              "rightValue": "voicemail_reached",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2480,
+        1152
+      ],
+      "id": "f842a5ee-348d-45d6-9689-e54a19fdd313",
+      "name": "Detect Response"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.retellai.com/v2/create-phone-call",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpCustomAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"from_number\": \"+18884403593\",\n  \"to_number\": \"{{ $json.Phone }}\",\n  \"retell_llm_dynamic_variables\": {\n    \"lead_name\": \"{{ $json['Full Name'] }}\",\n    \"email\": \"{{ $json.Email }}\",\n    \"phone_number\": \"{{ $json.Phone }}\"\n  },\n  \"override_agent_id\": \"agent_1569eb5e0ca245665128b8657d\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2864,
+        1104
+      ],
+      "id": "649ad93d-245c-4056-861d-d1063ea7f7fd",
+      "name": "Retry Call",
+      "credentials": {
+        "httpCustomAuth": {
+          "id": "BPb2JLnBixUt42WE",
+          "name": "Custom Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2688,
+        1104
+      ],
+      "id": "c18e1f54-7121-4772-bfa4-15252be95d05",
+      "name": "Wait 3 Hours",
+      "webhookId": "2ab66330-324f-417a-9e44-8137dc1d6800"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "386e7900-88e0-4f3a-a81d-6facf8ecc3e0",
+              "name": "fullname",
+              "value": "={{ $json.fullname }}",
+              "type": "string"
+            },
+            {
+              "id": "b20d3e99-e6e7-4cff-b01e-dff76d751cbf",
+              "name": "email",
+              "value": "={{ $json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "b1617e73-e417-419d-9f24-5332683e659b",
+              "name": "phone",
+              "value": "={{ $json.phone }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        336
+      ],
+      "id": "09549d66-51a7-4537-bea8-2420e1bf8495",
+      "name": "Parse Extracted Data"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -48,
+        464
+      ],
+      "id": "8088a8dc-dbd0-42ee-b5f0-4512d7578fec",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "OIw5PY6cGwr496UD",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.text }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "fullname",
+              "description": "Lead's full name",
+              "required": true
+            },
+            {
+              "name": "email",
+              "description": "Lead's email address",
+              "required": true
+            },
+            {
+              "name": "phone",
+              "description": "Lead's phone number",
+              "required": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        -80,
+        256
+      ],
+      "id": "4e111934-4d81-49f1-9b65-d30993e27c79",
+      "name": "Information Extractor",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour",
+              "minute": 5
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -240,
+        256
+      ],
+      "id": "080e3986-f0a6-43b4-b48a-68682ab41593",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "BENLxixscNmwVCGV",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Lead Import Webhook": [
+      {
+        "json": {
+          "fullname": "ALex",
+          "email": "jessica123@gmail.com",
+          "phone": "+17472740110"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Lead Import Webhook": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Response": {
+      "main": [
+        [
+          {
+            "node": "Validate Lead Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Initialize Lead Data": {
+      "main": [
+        [
+          {
+            "node": "Save Initial Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select Email Template": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 24 Hours": {
+      "main": [
+        [
+          {
+            "node": "Get a thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tag Dead Email Lead": {
+      "main": [
+        [
+          {
+            "node": "Log interaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tag Dead Call Lead": {
+      "main": [
+        [
+          {
+            "node": "Log interaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Other Channel": {
+      "main": [
+        [
+          {
+            "node": "Log interaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Lead Data": {
+      "main": [
+        [
+          {
+            "node": "Initialize Lead Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Invalid Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Set Email Counter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Max Emails Sent": {
+      "main": [
+        [
+          {
+            "node": "Tag Dead Email Lead",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Call Channel Responded",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Max Calls Made": {
+      "main": [
+        [
+          {
+            "node": "Tag Dead Call Lead",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Email Channel Responded",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Email Status": {
+      "main": [
+        [
+          {
+            "node": "Stop Other Channel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detect Email Response": {
+      "main": [
+        [
+          {
+            "node": "Set Email Status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update Email Attempt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Call Status": {
+      "main": [
+        [
+          {
+            "node": "Stop Other Channel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a thread": {
+      "main": [
+        [
+          {
+            "node": "Detect Email Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log interaction": {
+      "main": [
+        [
+          {
+            "node": "Mark Complete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Make Call": {
+      "main": [
+        [
+          {
+            "node": "Set Call Counter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Initial Data": {
+      "main": [
+        [
+          {
+            "node": "Select Email Template",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Make Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Email Attempt": {
+      "main": [
+        [
+          {
+            "node": "Get Current Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Email Counter": {
+      "main": [
+        [
+          {
+            "node": "Wait 24 Hours",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Call Counter": {
+      "main": [
+        [
+          {
+            "node": "Update Call Attempt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Call Attempt": {
+      "main": [
+        [
+          {
+            "node": "Sync Lead Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Result": {
+      "main": [
+        [
+          {
+            "node": "Analyzed Call",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Ended Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Fields": {
+      "main": [
+        [
+          {
+            "node": "Set Call Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Forward Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Invalid Lead": {
+      "main": [
+        [
+          {
+            "node": "Log interaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Current Data": {
+      "main": [
+        [
+          {
+            "node": "Update Lead Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Lead Data": {
+      "main": [
+        [
+          {
+            "node": "Max Emails Sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Updated Data": {
+      "main": [
+        [
+          {
+            "node": "Max Calls Made",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sync Lead Data": {
+      "main": [
+        [
+          {
+            "node": "Set Updated Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Channel Responded": {
+      "main": [
+        [
+          {
+            "node": "Stop Other Channel",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Select Email Template",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Channel Responded": {
+      "main": [
+        [
+          {
+            "node": "Stop Other Channel",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Analyzed Call": {
+      "main": [
+        [
+          {
+            "node": "Extract Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ended Call": {
+      "main": [
+        [
+          {
+            "node": "Detect Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detect Response": {
+      "main": [
+        [
+          {
+            "node": "Wait 3 Hours",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retry Call": {
+      "main": [
+        [
+          {
+            "node": "Set Call Counter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 3 Hours": {
+      "main": [
+        [
+          {
+            "node": "Retry Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Extracted Data": {
+      "main": [
+        [
+          {
+            "node": "Validate Lead Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Parse Extracted Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "9bed3490-5c81-43d9-8a9e-8ec9c25debee",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9b7d1efcea732c86c45079897fa268c26d4ee5ca107d1e2c2637e78827fab486"
+  },
+  "id": "tfNa7HhVo0uGQnb4",
+  "tags": []
+}
