@@ -70,7 +70,7 @@ export default function TestimonialsSection() {
               </div>
               <div className="testimonial-author">
                 <div className="author-avatar">
-                  <div className="avatar-placeholder" alt={testimonial.avatarAlt}></div>
+                  <div className="avatar-placeholder" aria-label={testimonial.avatarAlt}></div>
                 </div>
                 <div className="author-info">
                   <div className="author-name">{testimonial.name}</div>
