@@ -21,7 +21,7 @@ export default function About() {
           <section className="about-section">
             <h2 className="about-subheading">Trusted Texas Roofing Experts</h2>
             <p className="text-medium">
-              PCG Roofing is a <strong>Texas-based roofing company</strong> dedicated to protecting homes and businesses through reliable, high-quality roofing services. With over <strong>15 years of hands-on experience</strong>, we specialize in roof repair, roof replacement, storm damage restoration, and insurance claim assistance—delivering results homeowners can trust.
+              PCG Roofing is a <strong>Texas based roofing company</strong> dedicated to protecting homes and businesses through reliable, high-quality roofing services. With over <strong>15 years of hands-on experience</strong>, we specialize in roof repair, roof replacement, storm damage restoration, and insurance claim assistance—delivering results homeowners can trust.
             </p>
             <p className="text-medium">
               We understand that roof damage can be stressful. That's why our team focuses on making the process simple, transparent, and efficient—from the first inspection to the final nail.
@@ -31,7 +31,7 @@ export default function About() {
           <section className="about-section">
             <h2 className="about-subheading">Our Mission</h2>
             <p className="text-medium">
-              Our mission is to <strong>protect Texas homes</strong> by delivering dependable roofing solutions with integrity, craftsmanship, and clear communication. We aim to remove uncertainty from the roofing process by guiding our customers every step of the way.
+              Our mission is to <strong>protect Texas homes and properties</strong> by delivering dependable roofing solutions with integrity, craftsmanship, and clear communication. We aim to remove uncertainty from the roofing process by guiding our customers every step of the way.
             </p>
           </section>
 
