@@ -1,11 +1,53 @@
-'use client';
-
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
+import { ArticleSchema, BreadcrumbSchema } from '../../components/SchemaOrg';
 import { blogPosts, blogTopics } from '../../data/blogs';
+import type { Metadata } from 'next';
 import '../../styles/blogs.css';
+
+// Generate metadata for each blog post
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const post = blogPosts.find(p => p.slug === params.slug);
+
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    };
+  }
+
+  return {
+    title: `${post.title} | PCG Roofing Blog`,
+    description: post.excerpt,
+    keywords: [post.topic, 'roofing', 'blog', 'tips', 'advice'],
+    authors: [{ name: 'PCG Roofing' }],
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: `https://pcgroofing.net/blogs/${post.slug}`,
+      siteName: 'PCG Roofing',
+      type: 'article',
+      publishedTime: post.publishDate,
+      authors: ['PCG Roofing'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+    },
+    alternates: {
+      canonical: `https://pcgroofing.net/blogs/${post.slug}`,
+    },
+  };
+}
+
+// Generate static params for all blog posts
+export async function generateStaticParams() {
+  return blogPosts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export default function BlogDetail({ params }: { params: { slug: string } }) {
   const post = blogPosts.find(p => p.slug === params.slug);
@@ -15,6 +57,12 @@ export default function BlogDetail({ params }: { params: { slug: string } }) {
   }
 
   const topicLabel = blogTopics.find(t => t.id === post.topic)?.label;
+
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://pcgroofing.net' },
+    { name: 'Blogs', url: 'https://pcgroofing.net/blogs' },
+    { name: post.title, url: `https://pcgroofing.net/blogs/${post.slug}` }
+  ];
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -40,10 +88,18 @@ export default function BlogDetail({ params }: { params: { slug: string } }) {
   };
 
   return (
-    <main>
-      <Navigation />
-
-      <div className="container">
+    <>
+      <ArticleSchema
+        title={post.title}
+        description={post.excerpt}
+        publishDate={post.publishDate}
+        slug={post.slug}
+        readTime={post.readTime}
+      />
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <main>
+        <Navigation />
+        <div className="container">
         <Link href="/blogs" className="blog-back-link">
           ← Back to Blogs
         </Link>
@@ -71,7 +127,8 @@ export default function BlogDetail({ params }: { params: { slug: string } }) {
         </div>
       </div>
 
-      <Footer />
-    </main>
+        <Footer />
+      </main>
+    </>
   );
 }

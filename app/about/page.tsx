@@ -1,18 +1,49 @@
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
+import { BreadcrumbSchema } from '../components/SchemaOrg'
 import '../styles/about.css'
+import type { Metadata } from 'next'
 
-export const metadata = {
-  title: 'About PCG Roofing',
-  description: 'Learn about PCG Roofing, Texas roofing experts with 15+ years of experience.',
+export const metadata: Metadata = {
+  title: 'About PCG Roofing - Texas Roofing Experts Since 2010',
+  description: 'Learn about PCG Roofing, Texas roofing experts with 15+ years of experience. Licensed & insured. Specializing in roof repair, replacement, and storm damage restoration.',
+  keywords: ['about pcg roofing', 'texas roofing company', 'licensed roofer texas', 'experienced roofer'],
+  openGraph: {
+    title: 'About PCG Roofing - Texas Roofing Experts',
+    description: 'Learn about PCG Roofing, Texas roofing experts with 15+ years of experience.',
+    url: 'https://pcgroofing.net/about',
+    siteName: 'PCG Roofing',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About PCG Roofing - Texas Roofing Experts',
+    description: 'Learn about PCG Roofing, Texas roofing experts with 15+ years of experience.',
+  },
+  alternates: {
+    canonical: 'https://pcgroofing.net/about',
+  },
 }
 
 export default function About() {
-  return (
-    <main>
-      <Navigation />
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://pcgroofing.net' },
+    { name: 'About', url: 'https://pcgroofing.net/about' }
+  ];
 
-      <div className="container">
+  return (
+    <>
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <main>
+        <Navigation />
+        <div className="container">
         <article className="about-content">
           <section className="about-hero">
             <h1 className="heading-1"><p>About PCG Roofing</p></h1>
@@ -130,7 +161,8 @@ export default function About() {
         </article>
       </div>
 
-      <Footer />
-    </main>
+        <Footer />
+      </main>
+    </>
   )
 }
