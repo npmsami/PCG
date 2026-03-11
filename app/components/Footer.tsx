@@ -134,7 +134,7 @@ export default function Footer() {
             <p>© 2025 PCG Roofing. All rights reserved.</p>
           </div>
           <div className="legal-links">
-            <a href="#" className="legal-link">Privacy Policy</a>
+            <a href="/privacy-policy" className="legal-link">Privacy Policy</a>
             <a href="#" className="legal-link">Terms of Service</a>
             <a href="#" className="legal-link">Cookie Settings</a>
           </div>
