@@ -19,9 +19,6 @@ export default function PrivacyPolicy() {
             <h1 className="heading-1">
               <p>Privacy Policy</p>
             </h1>
-            <p className="text-medium">
-              <strong>Effective Date:</strong> February 9, 2026
-            </p>
           </section>
 
           <section className="about-section">
@@ -168,22 +165,6 @@ export default function PrivacyPolicy() {
               <li>Request removal from communications</li>
               <li>Opt out of SMS communications by replying STOP</li>
             </ul>
-          </section>
-
-          <section className="about-section">
-            <h2 className="about-subheading">Contact Information</h2>
-            <p className="text-medium">
-              If you have questions about this Privacy Policy or how your information is handled, please contact us:
-            </p>
-            <p className="text-medium">
-              PCG Roofing
-              <br />
-              [Insert Business Address]
-              <br />
-              [Insert Business Phone Number]
-              <br />
-              [Insert Business Email]
-            </p>
           </section>
 
           <section className="about-section">
