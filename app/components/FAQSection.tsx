@@ -1,37 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export default function FAQSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const [openItem, setOpenItem] = useState<number | null>(0);
 
-  const faqItems = [
-    {
-      id: 0,
-      question: "Do I really pay $0?",
-      answer: "Yes, if your claim is approved, the insurance covers the entire cost of the repairs. You won't pay anything out of pocket. We handle all the paperwork to ensure a smooth process."
-    },
-    {
-      id: 1,
-      question: "What if my claim is denied?",
-      answer: "If your claim is denied, we will provide you with a clear explanation of your options. Our team will offer a fair quote for the necessary repairs. We are committed to helping you navigate the situation."
-    },
-    {
-      id: 2,
-      question: "How fast is the process?",
-      answer: "Typically, most roofs are restored within 1 to 2 weeks after your claim is approved. Our efficient process ensures minimal disruption to your home. We prioritize getting your roof repaired quickly and effectively."
-    },
-    {
-      id: 3,
-      question: "Are you licensed and insured?",
-      answer: "Absolutely! PCG Roofing is fully licensed and insured. With over 15 years of experience, we are a trusted name in the San Antonio area."
-    },
-    {
-      id: 4,
-      question: "Still have questions?",
-      answer: "We're here to help you."
-    }
-  ];
+  const faqItems = t.faq.items;
 
   const toggleItem = (id: number) => {
     setOpenItem(openItem === id ? null : id);
@@ -46,23 +24,23 @@ export default function FAQSection() {
       <div className="container">
         <div className="faq-content">
           <div className="faq-header">
-            <h2 className="faq-title">FAQs</h2>
+            <h2 className="faq-title">{t.faq.title}</h2>
             <p className="faq-subtitle">
-              Here are answers to common questions about our roofing and insurance services.
+              {t.faq.subtitle}
             </p>
           </div>
 
           <div className="faq-accordion">
-            {faqItems.map((item) => (
-              <div key={item.id} className="accordion-item">
+            {faqItems.map((item, index) => (
+              <div key={index} className="accordion-item">
                 <button
                   className="accordion-question"
-                  onClick={() => toggleItem(item.id)}
-                  aria-expanded={openItem === item.id}
+                  onClick={() => toggleItem(index)}
+                  aria-expanded={openItem === index}
                 >
                   <span className="question-text">{item.question}</span>
                   <svg
-                    className={`chevron-icon ${openItem === item.id ? 'chevron-open' : ''}`}
+                    className={`chevron-icon ${openItem === index ? 'chevron-open' : ''}`}
                     width="32" 
                     height="32" 
                     viewBox="0 0 32 32" 
@@ -79,7 +57,7 @@ export default function FAQSection() {
                 </button>
                 
                 <div
-                  className={`accordion-answer ${openItem === item.id ? 'answer-open' : ''}`}
+                  className={`accordion-answer ${openItem === index ? 'answer-open' : ''}`}
                 >
                   <div className="answer-content">
                     <p>{item.answer}</p>
@@ -91,10 +69,10 @@ export default function FAQSection() {
 
           <div className="faq-cta">
             <div className="cta-content">
-              <h3 className="cta-title">Still have questions?</h3>
-              <p className="cta-subtitle">We're here to help you.</p>
+              <h3 className="cta-title">{t.faq.ctaTitle}</h3>
+              <p className="cta-subtitle">{t.faq.ctaSubtitle}</p>
               <button className="contact-btn">
-                <span>Contact us Today</span>
+                <span>{t.faq.ctaButton}</span>
               </button>
             </div>
           </div>

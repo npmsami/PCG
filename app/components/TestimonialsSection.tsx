@@ -1,34 +1,12 @@
 'use client';
 
-import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export default function TestimonialsSection() {
-  const testimonials = [
-    {
-      id: 1,
-      quote: "Insurance approved my claim fast, and PCG Roofing had my roof repaired in a week. I paid $0.",
-      name: "Maria G.",
-      location: "Homeowner, San Antonio",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/992:313",
-      avatarAlt: "Homeowner from San Antonio who used PCG Roofing services"
-    },
-    {
-      id: 2,
-      quote: "They explained everything clearly and handled all the insurance headaches. Highly recommend PCG Roofing.",
-      name: "Ken R.",
-      location: "Homeowner, San Antonio",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/992:327",
-      avatarAlt: "San Antonio homeowner who worked with PCG Roofing"
-    },
-    {
-      id: 3,
-      quote: "PCG Roofing made the entire process stress-free and quick!",
-      name: "John D.",
-      location: "Business Owner, Local",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/992:341",
-      avatarAlt: "Another Homeowner from San Antonio who used PCG Roofing services"
-    }
-  ];
+  const { language } = useLanguage();
+  const t = translations[language];
+  const testimonials = t.testimonials.items;
 
   const StarRating = () => (
     <div className="star-rating">
@@ -53,15 +31,15 @@ export default function TestimonialsSection() {
     <section className="testimonials-section">
       <div className="container">
         <div className="testimonials-header">
-          <h2 className="testimonials-title">Customer Testimonials</h2>
+          <h2 className="testimonials-title">{t.testimonials.title}</h2>
           <p className="testimonials-subtitle">
-            Insurance approved my claim fast, and PCG had my roof done in a week.
+            {t.testimonials.subtitle}
           </p>
         </div>
 
         <div className="testimonials-grid">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="testimonial-card">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="testimonial-card">
               <StarRating />
               <div className="testimonial-quote-wrapper">
                 <blockquote className="testimonial-quote">
@@ -70,7 +48,7 @@ export default function TestimonialsSection() {
               </div>
               <div className="testimonial-author">
                 <div className="author-avatar">
-                  <div className="avatar-placeholder" aria-label={testimonial.avatarAlt}></div>
+                  <div className="avatar-placeholder"></div>
                 </div>
                 <div className="author-info">
                   <div className="author-name">{testimonial.name}</div>

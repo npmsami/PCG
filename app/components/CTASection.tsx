@@ -1,16 +1,22 @@
 'use client';
 
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
+
 export default function CTASection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <section className="cta-section">
       <div className="container">
         <div className="cta-content">
-          <h2 className="cta-title"><p>Protect Your Home Today</p></h2>
+          <h2 className="cta-title"><p>{t.cta.title}</p></h2>
           <blockquote className="cta-subtitle">
-            Ensure your roof is safe and secure with our expert roofing services. In many cases, insurance may cover the cost.
+            {t.cta.description}
           </blockquote>
           <button className="cta-button">
-            <span>Book a Call</span>
+            <span>{t.cta.button}</span>
           </button>
         </div>
       </div>
@@ -34,6 +40,10 @@ export default function CTASection() {
           font-weight: 700;
           line-height: 120%;
           margin-bottom: 24px;
+        }
+
+        .cta-title p {
+          margin: 0;
         }
 
         .cta-subtitle {

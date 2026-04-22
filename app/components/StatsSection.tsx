@@ -1,52 +1,12 @@
 'use client';
 
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
+
 export default function StatsSection() {
-  const stats = [
-    {
-      icon: (
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M38 16H36V12C36 10.9391 35.5786 9.92172 34.8284 9.17157C34.0783 8.42143 33.0609 8 32 8H16C14.9391 8 13.9217 8.42143 13.1716 9.17157C12.4214 9.92172 12 10.9391 12 12V16H10C8.89543 16 8 16.8954 8 18V36C8 37.1046 8.89543 38 10 38H38C39.1046 38 40 37.1046 40 36V18C40 16.8954 39.1046 16 38 16ZM16 12H32V16H16V12ZM36 34H12V20H36V34Z" fill="white"/>
-          <path d="M20 24H28V28H20V24Z" fill="white"/>
-        </svg>
-      ),
-      title: "Insurance",
-      subtitle: "Claim",
-      description: "Assistance"
-    },
-    {
-      icon: (
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4ZM24 40C15.1634 40 8 32.8366 8 24C8 15.1634 15.1634 8 24 8C32.8366 8 40 15.1634 40 24C40 32.8366 32.8366 40 24 40Z" fill="white"/>
-          <path d="M24 12V24L32 32L34.8 29.2L28 22.4V12H24Z" fill="white"/>
-        </svg>
-      ),
-      title: "Fast",
-      subtitle: "Turnaround",
-      description: "Times"
-    },
-    {
-      icon: (
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 36L12.7 42.4L15.2 29.9L5.4 20.6L18.1 18.8L24 7L29.9 18.8L42.6 20.6L32.8 29.9L35.3 42.4L24 36Z" fill="white"/>
-        </svg>
-      ),
-      title: "15+ Years",
-      subtitle: "of",
-      description: "Experience"
-    },
-    {
-      icon: (
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 6L26.83 12.85L34 8L32.17 15.15L40 16L34 22L40 28L32.17 28.85L34 36L26.83 31.15L24 38L21.17 31.15L14 36L15.83 28.85L8 28L14 22L8 16L15.83 15.15L14 8L21.17 12.85L24 6Z" fill="white"/>
-          <path d="M24 12V32L18 28V18L24 12Z" fill="white"/>
-          <path d="M24 12L30 18V28L24 32V12Z" fill="white"/>
-        </svg>
-      ),
-      title: "Thousands",
-      subtitle: "of Roofs",
-      description: "Restored"
-    }
-  ];
+  const { language } = useLanguage();
+  const t = translations[language];
+  const stats = t.stats.items;
 
   return (
     <section className="stats-section">
@@ -55,7 +15,30 @@ export default function StatsSection() {
           {stats.map((stat, index) => (
             <div key={index} className="stat-item">
               <div className="stat-icon">
-                {stat.icon}
+                {index === 0 && (
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M38 16H36V12C36 10.9391 35.5786 9.92172 34.8284 9.17157C34.0783 8.42143 33.0609 8 32 8H16C14.9391 8 13.9217 8.42143 13.1716 9.17157C12.4214 9.92172 12 10.9391 12 12V16H10C8.89543 16 8 16.8954 8 18V36C8 37.1046 8.89543 38 10 38H38C39.1046 38 40 37.1046 40 36V18C40 16.8954 39.1046 16 38 16ZM16 12H32V16H16V12ZM36 34H12V20H36V34Z" fill="white"/>
+                    <path d="M20 24H28V28H20V24Z" fill="white"/>
+                  </svg>
+                )}
+                {index === 1 && (
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4ZM24 40C15.1634 40 8 32.8366 8 24C8 15.1634 15.1634 8 24 8C32.8366 8 40 15.1634 40 24C40 32.8366 32.8366 40 24 40Z" fill="white"/>
+                    <path d="M24 12V24L32 32L34.8 29.2L28 22.4V12H24Z" fill="white"/>
+                  </svg>
+                )}
+                {index === 2 && (
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 36L12.7 42.4L15.2 29.9L5.4 20.6L18.1 18.8L24 7L29.9 18.8L42.6 20.6L32.8 29.9L35.3 42.4L24 36Z" fill="white"/>
+                  </svg>
+                )}
+                {index === 3 && (
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 6L26.83 12.85L34 8L32.17 15.15L40 16L34 22L40 28L32.17 28.85L34 36L26.83 31.15L24 38L21.17 31.15L14 36L15.83 28.85L8 28L14 22L8 16L15.83 15.15L14 8L21.17 12.85L24 6Z" fill="white"/>
+                    <path d="M24 12V32L18 28V18L24 12Z" fill="white"/>
+                    <path d="M24 12L30 18V28L24 32V12Z" fill="white"/>
+                  </svg>
+                )}
               </div>
               <div className="stat-content">
                 <h3 className="stat-title">{stat.title}</h3>

@@ -3,53 +3,51 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export default function Navigation() {
   const router = useRouter();
+  const { language, setLanguage } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
-  const hideDelay = 2000; // 2 seconds delay before hiding
+  const scrollThreshold = 10;
+  const hideDelay = 2000;
+
+  const t = translations[language];
 
   // Initialize scroll position and set up scroll handler
   useEffect(() => {
     setLastScrollY(window.scrollY);
 
-
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const scrollDifference = Math.abs(currentScrollY - lastScrollY);
 
-      // Only trigger if scroll difference is significant enough
       if (scrollDifference < scrollThreshold) return;
 
-      // Clear any existing timeout
       if (hideTimeoutRef.current) {
         clearTimeout(hideTimeoutRef.current);
         hideTimeoutRef.current = null;
       }
 
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down - hide navbar after delay
-        setIsNavVisible(true); // Show immediately while scrolling
+        setIsNavVisible(true);
         hideTimeoutRef.current = setTimeout(() => {
           setIsNavVisible(false);
         }, hideDelay);
       } else if (currentScrollY < lastScrollY) {
-        // Scrolling up - show navbar immediately
         setIsNavVisible(true);
       }
 
       setLastScrollY(currentScrollY);
     };
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (hideTimeoutRef.current) {
@@ -58,7 +56,6 @@ export default function Navigation() {
     };
   }, [lastScrollY]);
 
-  // Keep navbar visible when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       setIsNavVisible(true);
@@ -69,22 +66,24 @@ export default function Navigation() {
     }
   }, [isMenuOpen]);
 
-  // Handle home navigation
   const handleNavigateHome = () => {
     router.push('/');
-    setIsMenuOpen(false); // Close mobile menu after navigation
+    setIsMenuOpen(false);
   };
 
-  // Handle smooth scrolling to sections
   const handleSmoothScroll = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false); // Close mobile menu after navigation
+      setIsMenuOpen(false);
     }
   };
 
-  // Build dynamic class name deterministically (SSR/CSR)
+  const handleLanguageChange = (lang: 'en' | 'es') => {
+    setLanguage(lang);
+    setIsLanguageOpen(false);
+  };
+
   const dynamicClass = isNavVisible ? 'nav-visible' : 'nav-hidden';
 
   return (
@@ -96,6 +95,7 @@ export default function Navigation() {
         <button
           className="mobile-menu-btn"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
         >
           <span></span>
           <span></span>
@@ -108,13 +108,13 @@ export default function Navigation() {
             className="nav-link nav-scroll-link"
             onClick={handleNavigateHome}
           >
-            <span>Home</span>
+            <span>{t.nav.home}</span>
           </button>
           <button
             className="nav-link nav-scroll-link"
             onClick={() => handleSmoothScroll('process-section')}
           >
-            <span>About</span>
+            <span>{t.nav.about}</span>
           </button>
 
           {/* Mobile menu items - only visible on mobile */}
@@ -123,18 +123,19 @@ export default function Navigation() {
               className="nav-link nav-scroll-link"
               onClick={() => handleSmoothScroll('services-section')}
             >
-              <span>Services</span>
+              <span>{t.nav.services}</span>
             </button>
 
             <div className="language-switcher">
               <button
                 className="language-btn"
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+                aria-expanded={isLanguageOpen}
               >
                 <div className="language-flag">
-                  <span>ES</span>
+                  <span>{language === 'en' ? 'EN' : 'ES'}</span>
                 </div>
-                <span>Spanish</span>
+                <span>{language === 'en' ? t.nav.english : t.nav.spanish}</span>
                 <span className="chevron" aria-hidden="true">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 5L15 12L8 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -143,8 +144,18 @@ export default function Navigation() {
               </button>
               {isLanguageOpen && (
                 <div className="language-dropdown">
-                  <div className="language-option">English</div>
-                  <div className="language-option">Español</div>
+                  <button
+                    className={`language-option ${language === 'en' ? 'language-option-active' : ''}`}
+                    onClick={() => handleLanguageChange('en')}
+                  >
+                    English
+                  </button>
+                  <button
+                    className={`language-option ${language === 'es' ? 'language-option-active' : ''}`}
+                    onClick={() => handleLanguageChange('es')}
+                  >
+                    Español
+                  </button>
                 </div>
               )}
             </div>
@@ -171,7 +182,7 @@ export default function Navigation() {
             className="nav-link nav-scroll-link"
             onClick={() => handleSmoothScroll('services-section')}
           >
-            <span>Services</span>
+            <span>{t.nav.services}</span>
           </button>
 
           {/* Language switcher */}
@@ -179,11 +190,12 @@ export default function Navigation() {
             <button
               className="language-btn"
               onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+              aria-expanded={isLanguageOpen}
             >
               <div className="language-flag">
-                <span>ES</span>
+                <span>{language === 'en' ? 'EN' : 'ES'}</span>
               </div>
-              <span>Spanish</span>
+              <span>{language === 'en' ? t.nav.english : t.nav.spanish}</span>
               <span className="chevron" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 5L15 12L8 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -192,8 +204,18 @@ export default function Navigation() {
             </button>
             {isLanguageOpen && (
               <div className="language-dropdown">
-                <div className="language-option">English</div>
-                <div className="language-option">Español</div>
+                <button
+                  className={`language-option ${language === 'en' ? 'language-option-active' : ''}`}
+                  onClick={() => handleLanguageChange('en')}
+                >
+                  English
+                </button>
+                <button
+                  className={`language-option ${language === 'es' ? 'language-option-active' : ''}`}
+                  onClick={() => handleLanguageChange('es')}
+                >
+                  Español
+                </button>
               </div>
             )}
           </div>
@@ -221,7 +243,6 @@ export default function Navigation() {
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
           transform: translateX(-50%) translateY(0);
           transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          /* Ensure default visible state during SSR */
           opacity: 1;
           visibility: visible;
         }
@@ -406,12 +427,23 @@ export default function Navigation() {
           padding: 8px 16px;
           cursor: pointer;
           transition: background 0.2s ease;
+          background: none;
+          border: none;
+          width: 100%;
+          text-align: left;
+          font-family: var(--font-open-sans);
+          font-size: 14px;
+          color: var(--black);
         }
 
         .language-option:hover {
           background: #f5f5f5;
         }
 
+        .language-option-active {
+          background: #e8e8e8;
+          font-weight: 600;
+        }
 
         .logo {
           flex-shrink: 0;

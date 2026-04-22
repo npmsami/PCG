@@ -1,4 +1,10 @@
 import './globals.css'
+import { LanguageProvider } from './context/LanguageContext'
+
+export const metadata = {
+  title: 'PCG Roofing',
+  description: 'Professional roofing services and insurance claim assistance',
+}
 
 export default function RootLayout({
   children,
@@ -7,7 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
+      </body>
     </html>
   )
 }

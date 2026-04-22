@@ -1,25 +1,16 @@
 'use client';
 
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export default function Footer() {
-  const quickLinks = [
-    { label: 'Home Page', href: '/' },
-    { label: 'About Us', href: '/about' },
-    { label: 'Blogs', href: '/blogs' },
-    { label: 'Contact Us', href: '#' },
-    { label: 'Services', href: '#' },
-    { label: 'Testimonials', href: '#' }
-  ];
+  const { language } = useLanguage();
+  const t = translations[language];
 
-  const connectLinks = [
-    'Facebook Page',
-    'Instagram Feed',
-    'Twitter Profile', 
-    'LinkedIn Page',
-    'YouTube Channel'
-  ];
-
+  const quickLinks = t.footer.quickLinkItems;
+  const connectLinks = t.footer.connectItems;
+  const legalLinks = t.footer.legalItems;
   const socialIcons = ['Facebook', 'Instagram', 'Twitter', 'LinkedIn', 'YouTube'];
 
   const renderSocialIcon = (name: string) => {
@@ -73,26 +64,26 @@ export default function Footer() {
               />
             </div>
             <p className="newsletter-description">
-              Subscribe to our newsletter for the latest updates on roofing services and offers.
+              {t.footer.newsletter.description}
             </p>
             <div className="newsletter-form">
               <div className="form-group">
                 <input
                   type="email"
-                  placeholder="Your Email Here"
+                  placeholder={t.footer.newsletter.placeholder}
                   className="email-input"
                 />
-                <button className="join-btn">Join</button>
+                <button className="join-btn">{t.footer.newsletter.joinButton}</button>
               </div>
               <p className="newsletter-disclaimer">
-                By subscribing, you consent to receive updates and agree to our Privacy Policy.
+                {t.footer.newsletter.disclaimer}
               </p>
             </div>
           </div>
 
           <div className="footer-links">
             <div className="links-column">
-              <h4 className="column-title">Quick Links</h4>
+              <h4 className="column-title">{t.footer.quickLinks}</h4>
               <ul className="links-list">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
@@ -103,7 +94,7 @@ export default function Footer() {
             </div>
 
             <div className="links-column">
-              <h4 className="column-title">Connect With Us</h4>
+              <h4 className="column-title">{t.footer.connect}</h4>
               <ul className="links-list">
                 {connectLinks.map((link, index) => (
                   <li key={index}>
@@ -114,7 +105,7 @@ export default function Footer() {
             </div>
 
             <div className="links-column">
-              <h4 className="column-title">Stay Updated</h4>
+              <h4 className="column-title">{t.footer.connect}</h4>
               <ul className="social-links">
                 {socialIcons.map((socialName, index) => (
                   <li key={index} className="social-item">
@@ -131,12 +122,12 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <div className="copyright">
-            <p>© 2025 PCG Roofing. All rights reserved.</p>
+            <p>{t.footer.copyright}</p>
           </div>
           <div className="legal-links">
-            <a href="/privacy-policy" className="legal-link">Privacy Policy</a>
-            <a href="#" className="legal-link">Terms of Service</a>
-            <a href="#" className="legal-link">Cookie Settings</a>
+            {legalLinks.map((link, index) => (
+              <a key={index} href={link.href} className="legal-link">{link.label}</a>
+            ))}
           </div>
         </div>
       </div>

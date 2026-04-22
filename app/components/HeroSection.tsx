@@ -1,6 +1,12 @@
 'use client';
 
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
+
 export default function HeroSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <section className="hero-section">
       <div className="hero-background">
@@ -25,15 +31,12 @@ export default function HeroSection() {
       </div>
 
       <div className="hero-text">
-        <h1 className="hero-title">
-          Restore Your Roof<br />
-          Restore Your Peace of Mind
-        </h1>
+        <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: t.hero.title }} />
         <p className="hero-description">
-          Roof damage can be overwhelming, but it doesn't have to be. At PCG, we prioritize your family's safety by efficiently restoring your roof and managing the repair process.
+          {t.hero.description}
         </p>
         <button className="hero-cta-btn">
-          <span>Call Us Today</span>
+          <span>{t.hero.cta}</span>
           <div className="btn-glow"></div>
         </button>
       </div>
@@ -48,247 +51,162 @@ export default function HeroSection() {
           overflow: hidden;
           display: flex;
           align-items: center;
-          margin: 24px var(--page-padding) 0;
-          border-radius: var(--border-radius-medium);
+          justify-content: center;
+          margin-top: 120px;
         }
 
         .hero-background {
           position: absolute;
           top: 0;
           left: 0;
-          right: 0;
-          bottom: 0;
-          z-index: 1;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
         }
 
         .hero-video {
-          position: absolute;
-          top: 0;
-          left: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
-          z-index: 1;
         }
 
         .hero-overlay {
           position: absolute;
           top: 0;
           left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(
-            135deg,
-            rgba(0, 0, 0, 0.3) 0%,
-            rgba(0, 0, 0, 0.1) 50%,
-            rgba(0, 0, 0, 0.2) 100%
-          );
-          z-index: 2;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%);
+          z-index: 1;
         }
 
         .hero-content {
           position: relative;
-          z-index: 3;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
           width: 100%;
-          max-width: 1600px;
-          margin: 0 auto;
-          padding: 0 64px;
+          height: 100%;
+          max-width: 1200px;
+          padding-left: var(--page-padding);
+          padding-right: var(--page-padding);
         }
 
         .hero-text {
-          position: absolute;
-          left: 24px;
-          bottom: 24px;
-          max-width: 580px;
-          z-index: 3;
-          background: rgba(255, 255, 255, 0.8);
-          backdrop-filter: blur(80px);
-          border-radius: var(--border-radius-medium);
-          padding: 24px;
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          max-width: 600px;
+          color: white;
         }
 
         .hero-title {
-          color: var(--black);
-          font-family: var(--font-roboto);
-          font-size: 36px;
-          font-weight: 700;
-          line-height: 120%;
-          margin-bottom: 16px;
+          font-size: 64px;
+          font-weight: 400;
+          line-height: 1.2;
+          margin: 0;
+          color: white;
         }
 
         .hero-description {
-          color: var(--black);
-          font-family: var(--font-roboto);
-          font-size: 16px;
+          font-size: 18px;
           font-weight: 400;
-          line-height: 150%;
-          margin-bottom: 24px;
-          max-width: 100%;
+          line-height: 1.6;
+          margin: 0;
+          color: rgba(255, 255, 255, 0.9);
         }
 
         .hero-cta-btn {
-          position: relative;
-          display: inline-flex;
-          padding: 12px 28px;
-          justify-content: center;
-          align-items: center;
-          border-radius: 100px;
-          background: var(--primary-orange);
+          margin-top: 16px;
+          padding: 14px 32px;
+          font-size: 16px;
+          font-weight: 600;
           border: none;
+          border-radius: 8px;
+          background: var(--primary-orange);
+          color: white;
           cursor: pointer;
           transition: all 0.3s ease;
+          position: relative;
           overflow: hidden;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          width: fit-content;
         }
 
-        .hero-cta-btn span {
-          position: relative;
-          z-index: 2;
-          color: var(--white);
-          font-family: var(--font-open-sans);
-          font-size: 18px;
-          font-weight: 700;
-          line-height: 111.66%;
+        .hero-cta-btn:hover {
+          background: #d97706;
+          transform: translateY(-2px);
+          box-shadow: 0 12px 24px rgba(255, 107, 53, 0.4);
         }
 
         .btn-glow {
           position: absolute;
-          right: -10px;
           top: 50%;
-          transform: translateY(-50%);
-          width: 74px;
-          height: 74px;
+          left: 50%;
+          width: 100%;
+          height: 100%;
+          background: rgba(255, 255, 255, 0.2);
           border-radius: 50%;
-          background: var(--primary-orange);
-          filter: blur(39.85px);
-          z-index: 1;
+          transform: translate(-50%, -50%) scale(0);
+          animation: glow-pulse 1.5s ease-out infinite;
+          pointer-events: none;
         }
 
-        .hero-cta-btn:hover {
-          transform: translateY(-3px);
-          box-shadow: 9px 5px 25px rgba(224, 72, 38, 0.4);
-        }
-
-        .hero-cta-btn:hover .btn-glow {
-          filter: blur(45px);
-          opacity: 0.8;
+        @keyframes glow-pulse {
+          0% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(-50%, -50%) scale(4);
+            opacity: 0;
+          }
         }
 
         @media (max-width: 768px) {
           .hero-section {
-            height: 80vh;
-            min-height: 500px;
-            width: calc(100% - 40px);
-            margin: 0 20px;
-          }
-
-          .hero-background::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            background:
-              linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.4) 100%),
-              linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.3) 100%);
-            z-index: 1.5;
-          }
-
-          .hero-text {
-            padding: 20px;
-            max-width: 420px;
-            left: 20px;
-            bottom: 20px;
-            border-radius: var(--border-radius-medium);
+            height: 60vh;
+            min-height: 450px;
+            margin-top: 100px;
           }
 
           .hero-title {
-            font-size: 28px;
-            margin-bottom: 12px;
+            font-size: 40px;
           }
 
           .hero-description {
-            font-size: 14px;
-            margin-bottom: 20px;
+            font-size: 16px;
           }
 
           .hero-cta-btn {
-            padding: 10px 24px;
-          }
-
-          .hero-cta-btn span {
-            font-size: 16px;
+            padding: 12px 28px;
+            font-size: 14px;
           }
         }
 
         @media (max-width: 480px) {
           .hero-section {
-            height: 70vh;
-            min-height: 450px;
-            width: calc(100% - 32px);
-            margin: 0 16px;
-            background: #000;
-          }
-
-          .hero-background {
-            top: -20px;
-            height: calc(100% - 60px);
-            background: #000;
-          }
-
-          .hero-background::after {
-            background:
-              linear-gradient(to right, rgba(0,0,0,0.2) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.2) 100%),
-              linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 100%);
-          }
-
-          .hero-video {
-            object-fit: contain;
-            transform: none;
-            filter: none;
-            width: 100%;
-            height: 100%;
-          }
-
-          .hero-text {
-            padding: 16px;
-            border-radius: var(--border-radius-medium);
-            max-width: 320px;
-            left: 16px;
-            bottom: 16px;
-          }
-
-          @media (max-width: 640px) {
-            .hero-text {
-              left: 11px;
-            }
+            height: 50vh;
+            min-height: 350px;
+            margin-top: 80px;
           }
 
           .hero-title {
-            font-size: 24px;
-            line-height: 110%;
-            margin-bottom: 10px;
+            font-size: 28px;
           }
 
           .hero-description {
-            font-size: 12px;
-            margin-bottom: 16px;
+            font-size: 14px;
           }
 
-          .hero-cta-btn {
-            padding: 8px 20px;
-          }
-
-          .hero-cta-btn span {
-            font-size: 18px;
-          }
-
-          .btn-glow {
-            width: 60px;
-            height: 60px;
+          .hero-text {
+            gap: 16px;
           }
         }
       `}</style>

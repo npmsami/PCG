@@ -1,33 +1,20 @@
 'use client';
 
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export default function ServicesSection() {
-  const services = [
-    {
-      title: "Roofing Repairs",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/f6236692f79bebe3f92a08329f72112d49f892a1?width=722"
-    },
-    {
-      title: "Roof Replacements",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/d5676b2f651575ad0183c0ddc95e21eed74ec271?width=722"
-    },
-    {
-      title: "Roofing Insurance Claims",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/f80eb218a6215c804c6f6a5b4a0190fa0dbcea61?width=722"
-    },
-    {
-      title: "Shingle Roofing Installation",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/c38331bc8ceda2967705f6b6288b77fc6e12d5bf?width=722"
-    },
-    {
-      title: "Tile Roofing Installation",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/d389c25419b297d99c00930e39d324a50447ba3f?width=722"
-    },
-    {
-      title: "Emergency Tarping Services",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/b6491b01922b2e5f70adb1165c523e552d0c9715?width=722"
-    }
+  const { language } = useLanguage();
+  const t = translations[language];
+
+  const serviceImages = [
+    "https://api.builder.io/api/v1/image/assets/TEMP/f6236692f79bebe3f92a08329f72112d49f892a1?width=722",
+    "https://api.builder.io/api/v1/image/assets/TEMP/d5676b2f651575ad0183c0ddc95e21eed74ec271?width=722",
+    "https://api.builder.io/api/v1/image/assets/TEMP/f80eb218a6215c804c6f6a5b4a0190fa0dbcea61?width=722",
+    "https://api.builder.io/api/v1/image/assets/TEMP/c38331bc8ceda2967705f6b6288b77fc6e12d5bf?width=722",
+    "https://api.builder.io/api/v1/image/assets/TEMP/d389c25419b297d99c00930e39d324a50447ba3f?width=722",
+    "https://api.builder.io/api/v1/image/assets/TEMP/b6491b01922b2e5f70adb1165c523e552d0c9715?width=722"
   ];
 
   return (
@@ -44,12 +31,12 @@ export default function ServicesSection() {
                 height={120}
               />
             </div>
-            <h2 className="services-title">Protect Your Home with Confidence</h2>
+            <h2 className="services-title">{t.services.title}</h2>
             <p className="services-description">
-              With over 15 years of dedicated service, PCG Roofing is fully licensed and insured, ensuring peace of mind for homeowners. Our strong relationships with top insurance carriers and certified installers allow us to deliver exceptional roofing solutions quickly and efficiently.
+              {t.services.description}
             </p>
             <button className="services-cta-btn">
-              <span>Book an Appointment</span>
+              <span>{t.services.cta}</span>
             </button>
           </div>
           <div className="header-image">
@@ -65,20 +52,20 @@ export default function ServicesSection() {
 
         {/* Services Grid */}
         <div className="services-content">
-          <h3 className="services-grid-title">Comprehensive Roofing Solutions Tailored to Your Needs</h3>
+          <h3 className="services-grid-title">{t.services.gridTitle}</h3>
           <div className="services-grid">
-            {services.map((service, index) => (
+            {t.services.items.map((service, index) => (
               <div key={index} className="service-item">
                 <div className="service-image">
                   <Image
-                    src={service.image}
-                    alt={service.title}
+                    src={serviceImages[index]}
+                    alt={service}
                     width={361}
                     height={202}
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
-                <h4 className="service-title">{service.title}</h4>
+                <h4 className="service-title">{service}</h4>
               </div>
             ))}
           </div>
