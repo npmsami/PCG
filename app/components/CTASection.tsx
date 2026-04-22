@@ -1,16 +1,20 @@
 'use client';
 
+import { useLanguage } from '../context/LanguageContext';
+
 export default function CTASection() {
+  const { t } = useLanguage();
+
   return (
     <section className="cta-section">
       <div className="container">
         <div className="cta-content">
-          <h2 className="cta-title"><p>Protect Your Home Today</p></h2>
-          <blockquote className="cta-subtitle">
-            Ensure your roof is safe and secure with our expert roofing services. In many cases, insurance may cover the cost.
-          </blockquote>
-          <button className="cta-button">
-            <span>Book a Call</span>
+          <h2 className="cta-title">
+            <p>{t('CTA_BAND_TITLE')}</p>
+          </h2>
+          <blockquote className="cta-subtitle">{t('CTA_BAND_SUB')}</blockquote>
+          <button type="button" className="cta-button">
+            <span>{t('CTA_BAND_BTN')}</span>
           </button>
         </div>
       </div>

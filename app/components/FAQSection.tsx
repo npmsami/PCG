@@ -1,37 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function FAQSection() {
+  const { t, language } = useLanguage();
   const [openItem, setOpenItem] = useState<number | null>(0);
 
-  const faqItems = [
-    {
-      id: 0,
-      question: "Do I really pay $0?",
-      answer: "Yes, if your claim is approved, the insurance covers the entire cost of the repairs. You won't pay anything out of pocket. We handle all the paperwork to ensure a smooth process."
-    },
-    {
-      id: 1,
-      question: "What if my claim is denied?",
-      answer: "If your claim is denied, we will provide you with a clear explanation of your options. Our team will offer a fair quote for the necessary repairs. We are committed to helping you navigate the situation."
-    },
-    {
-      id: 2,
-      question: "How fast is the process?",
-      answer: "Typically, most roofs are restored within 1 to 2 weeks after your claim is approved. Our efficient process ensures minimal disruption to your home. We prioritize getting your roof repaired quickly and effectively."
-    },
-    {
-      id: 3,
-      question: "Are you licensed and insured?",
-      answer: "Absolutely! PCG Roofing is fully licensed and insured. With over 15 years of experience, we are a trusted name in the San Antonio area."
-    },
-    {
-      id: 4,
-      question: "Still have questions?",
-      answer: "We're here to help you."
-    }
-  ];
+  const faqItems = useMemo(
+    () => [
+      { id: 0, question: t('FAQ_Q1'), answer: t('FAQ_A1') },
+      { id: 1, question: t('FAQ_Q2'), answer: t('FAQ_A2') },
+      { id: 2, question: t('FAQ_Q3'), answer: t('FAQ_A3') },
+      { id: 3, question: t('FAQ_Q4'), answer: t('FAQ_A4') },
+      { id: 4, question: t('FAQ_Q5'), answer: t('FAQ_A5') },
+    ],
+    [t, language]
+  );
 
   const toggleItem = (id: number) => {
     setOpenItem(openItem === id ? null : id);
@@ -46,16 +31,15 @@ export default function FAQSection() {
       <div className="container">
         <div className="faq-content">
           <div className="faq-header">
-            <h2 className="faq-title">FAQs</h2>
-            <p className="faq-subtitle">
-              Here are answers to common questions about our roofing and insurance services.
-            </p>
+            <h2 className="faq-title">{t('FAQ_TITLE')}</h2>
+            <p className="faq-subtitle">{t('FAQ_INTRO')}</p>
           </div>
 
           <div className="faq-accordion">
             {faqItems.map((item) => (
               <div key={item.id} className="accordion-item">
                 <button
+                  type="button"
                   className="accordion-question"
                   onClick={() => toggleItem(item.id)}
                   aria-expanded={openItem === item.id}
@@ -91,10 +75,10 @@ export default function FAQSection() {
 
           <div className="faq-cta">
             <div className="cta-content">
-              <h3 className="cta-title">Still have questions?</h3>
-              <p className="cta-subtitle">We're here to help you.</p>
-              <button className="contact-btn">
-                <span>Contact us Today</span>
+              <h3 className="cta-title">{t('FAQ_CTA_TITLE')}</h3>
+              <p className="cta-subtitle">{t('FAQ_CTA_SUBTITLE')}</p>
+              <button type="button" className="contact-btn">
+                <span>{t('FAQ_CONTACT_BTN')}</span>
               </button>
             </div>
           </div>

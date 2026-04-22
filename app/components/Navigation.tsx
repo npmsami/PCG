@@ -1,55 +1,80 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, type RefObject } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
+import type { Language } from '../i18n/messages';
 
 export default function Navigation() {
   const router = useRouter();
+  const { language, setLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
-  const hideDelay = 2000; // 2 seconds delay before hiding
+  const languageSwitcherDesktopRef = useRef<HTMLDivElement>(null);
+  const languageSwitcherMobileRef = useRef<HTMLDivElement>(null);
+  const scrollThreshold = 10;
+  const hideDelay = 2000;
 
-  // Initialize scroll position and set up scroll handler
+  const selectLanguage = useCallback(
+    (lang: Language) => {
+      setLanguage(lang);
+      setIsLanguageOpen(false);
+    },
+    [setLanguage]
+  );
+
+  useEffect(() => {
+    if (!isLanguageOpen) return;
+    const handlePointerDown = (event: MouseEvent | PointerEvent) => {
+      const target = event.target as Node;
+      if (
+        languageSwitcherDesktopRef.current?.contains(target) ||
+        languageSwitcherMobileRef.current?.contains(target)
+      ) {
+        return;
+      }
+      setIsLanguageOpen(false);
+    };
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('pointerdown', handlePointerDown);
+    };
+  }, [isLanguageOpen]);
+
   useEffect(() => {
     setLastScrollY(window.scrollY);
-
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const scrollDifference = Math.abs(currentScrollY - lastScrollY);
 
-      // Only trigger if scroll difference is significant enough
       if (scrollDifference < scrollThreshold) return;
 
-      // Clear any existing timeout
       if (hideTimeoutRef.current) {
         clearTimeout(hideTimeoutRef.current);
         hideTimeoutRef.current = null;
       }
 
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down - hide navbar after delay
-        setIsNavVisible(true); // Show immediately while scrolling
+        setIsNavVisible(true);
         hideTimeoutRef.current = setTimeout(() => {
           setIsNavVisible(false);
         }, hideDelay);
       } else if (currentScrollY < lastScrollY) {
-        // Scrolling up - show navbar immediately
         setIsNavVisible(true);
       }
 
       setLastScrollY(currentScrollY);
     };
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (hideTimeoutRef.current) {
@@ -58,7 +83,6 @@ export default function Navigation() {
     };
   }, [lastScrollY]);
 
-  // Keep navbar visible when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       setIsNavVisible(true);
@@ -69,90 +93,118 @@ export default function Navigation() {
     }
   }, [isMenuOpen]);
 
-  // Handle home navigation
   const handleNavigateHome = () => {
     router.push('/');
-    setIsMenuOpen(false); // Close mobile menu after navigation
+    setIsMenuOpen(false);
   };
 
-  // Handle smooth scrolling to sections
   const handleSmoothScroll = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false); // Close mobile menu after navigation
+      setIsMenuOpen(false);
     }
   };
 
-  // Build dynamic class name deterministically (SSR/CSR)
   const dynamicClass = isNavVisible ? 'nav-visible' : 'nav-hidden';
+  const langCode = language === 'en' ? 'EN' : 'ES';
+  const langLabel =
+    language === 'en'
+      ? t('LANG_OPTION_ENGLISH')
+      : t('LANG_OPTION_SPANISH');
+
+  const renderLanguageSwitcher = (ref: RefObject<HTMLDivElement | null>) => (
+    <div className="language-switcher" ref={ref}>
+      <button
+        type="button"
+        className="language-btn"
+        onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+        aria-expanded={isLanguageOpen}
+        aria-haspopup="listbox"
+      >
+        <div className="language-flag">
+          <span>{langCode}</span>
+        </div>
+        <span>{langLabel}</span>
+        <span className="chevron" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M8 5L15 12L8 19"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      </button>
+      {isLanguageOpen && (
+        <div className="language-dropdown" role="listbox">
+          <button
+            type="button"
+            role="option"
+            aria-selected={language === 'en'}
+            className={`language-option${language === 'en' ? ' active' : ''}`}
+            onClick={() => selectLanguage('en')}
+          >
+            {t('LANG_OPTION_ENGLISH')}
+          </button>
+          <button
+            type="button"
+            role="option"
+            aria-selected={language === 'es'}
+            className={`language-option${language === 'es' ? ' active' : ''}`}
+            onClick={() => selectLanguage('es')}
+          >
+            {t('LANG_OPTION_SPANISH')}
+          </button>
+        </div>
+      )}
+    </div>
+  );
 
   return (
-    <nav
-      className={`nav-container ${dynamicClass}`.trim()}
-    >
+    <nav className={`nav-container ${dynamicClass}`.trim()}>
       <div className="nav-content">
-        {/* Mobile menu button */}
         <button
+          type="button"
           className="mobile-menu-btn"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Menu"
         >
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        {/* Left side: Home and About */}
         <div className={`nav-left ${isMenuOpen ? 'nav-items-open' : ''}`}>
           <button
+            type="button"
             className="nav-link nav-scroll-link"
             onClick={handleNavigateHome}
           >
-            <span>Home</span>
+            <span>{t('NAV_HOME')}</span>
           </button>
           <button
+            type="button"
             className="nav-link nav-scroll-link"
             onClick={() => handleSmoothScroll('process-section')}
           >
-            <span>About</span>
+            <span>{t('NAV_ABOUT')}</span>
           </button>
 
-          {/* Mobile menu items - only visible on mobile */}
           <div className="mobile-only-items">
             <button
+              type="button"
               className="nav-link nav-scroll-link"
               onClick={() => handleSmoothScroll('services-section')}
             >
-              <span>Services</span>
+              <span>{t('NAV_SERVICES')}</span>
             </button>
-
-            <div className="language-switcher">
-              <button
-                className="language-btn"
-                onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-              >
-                <div className="language-flag">
-                  <span>ES</span>
-                </div>
-                <span>Spanish</span>
-                <span className="chevron" aria-hidden="true">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 5L15 12L8 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </span>
-              </button>
-              {isLanguageOpen && (
-                <div className="language-dropdown">
-                  <div className="language-option">English</div>
-                  <div className="language-option">Español</div>
-                </div>
-              )}
-            </div>
-
+            {renderLanguageSwitcher(languageSwitcherMobileRef)}
           </div>
         </div>
 
-        {/* Center: Logo */}
         <div className="nav-center">
           <div className="logo">
             <Image
@@ -165,39 +217,15 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* Right side: Services and Language */}
         <div className="nav-right">
           <button
+            type="button"
             className="nav-link nav-scroll-link"
             onClick={() => handleSmoothScroll('services-section')}
           >
-            <span>Services</span>
+            <span>{t('NAV_SERVICES')}</span>
           </button>
-
-          {/* Language switcher */}
-          <div className="language-switcher">
-            <button
-              className="language-btn"
-              onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-            >
-              <div className="language-flag">
-                <span>ES</span>
-              </div>
-              <span>Spanish</span>
-              <span className="chevron" aria-hidden="true">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5L15 12L8 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </span>
-            </button>
-            {isLanguageOpen && (
-              <div className="language-dropdown">
-                <div className="language-option">English</div>
-                <div className="language-option">Español</div>
-              </div>
-            )}
-          </div>
-
+          {renderLanguageSwitcher(languageSwitcherDesktopRef)}
         </div>
       </div>
 
@@ -221,7 +249,6 @@ export default function Navigation() {
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
           transform: translateX(-50%) translateY(0);
           transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          /* Ensure default visible state during SSR */
           opacity: 1;
           visibility: visible;
         }
@@ -286,14 +313,13 @@ export default function Navigation() {
           justify-content: flex-end;
         }
 
-
         .nav-link {
           display: flex;
           padding: 6px 20px;
           justify-content: center;
           align-items: center;
           border-radius: 100px;
-          border: 1px solid #4B4949;
+          border: 1px solid #4b4949;
           background: transparent;
           cursor: pointer;
           transition: all 0.3s ease;
@@ -333,7 +359,7 @@ export default function Navigation() {
           align-items: center;
           gap: 5px;
           border-radius: 100px;
-          border: 1px solid #4B4949;
+          border: 1px solid #4b4949;
           background: transparent;
           cursor: pointer;
           transition: all 0.3s ease;
@@ -394,7 +420,7 @@ export default function Navigation() {
           left: 0;
           right: 0;
           background: white;
-          border: 1px solid #4B4949;
+          border: 1px solid #4b4949;
           border-radius: 12px;
           padding: 8px 0;
           margin-top: 4px;
@@ -403,15 +429,28 @@ export default function Navigation() {
         }
 
         .language-option {
+          display: block;
+          width: 100%;
+          box-sizing: border-box;
+          text-align: left;
           padding: 8px 16px;
           cursor: pointer;
           transition: background 0.2s ease;
+          border: none;
+          background: none;
+          font-family: var(--font-open-sans);
+          font-size: 16px;
+          color: var(--black);
         }
 
         .language-option:hover {
           background: #f5f5f5;
         }
 
+        .language-option.active {
+          background: #f0f0f0;
+          font-weight: 600;
+        }
 
         .logo {
           flex-shrink: 0;

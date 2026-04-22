@@ -1,34 +1,41 @@
 'use client';
 
+import { useMemo } from 'react';
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function TestimonialsSection() {
-  const testimonials = [
-    {
-      id: 1,
-      quote: "Insurance approved my claim fast, and PCG Roofing had my roof repaired in a week. I paid $0.",
-      name: "Maria G.",
-      location: "Homeowner, San Antonio",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/992:313",
-      avatarAlt: "Homeowner from San Antonio who used PCG Roofing services"
-    },
-    {
-      id: 2,
-      quote: "They explained everything clearly and handled all the insurance headaches. Highly recommend PCG Roofing.",
-      name: "Ken R.",
-      location: "Homeowner, San Antonio",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/992:327",
-      avatarAlt: "San Antonio homeowner who worked with PCG Roofing"
-    },
-    {
-      id: 3,
-      quote: "PCG Roofing made the entire process stress-free and quick!",
-      name: "John D.",
-      location: "Business Owner, Local",
-      avatar: "https://api.builder.io/api/v1/image/assets/TEMP/992:341",
-      avatarAlt: "Another Homeowner from San Antonio who used PCG Roofing services"
-    }
-  ];
+  const { t, language } = useLanguage();
+
+  const testimonials = useMemo(
+    () => [
+      {
+        id: 1,
+        quote: t('TST_1_QUOTE'),
+        name: t('TST_1_NAME'),
+        location: t('TST_1_LOC'),
+        avatar: 'https://api.builder.io/api/v1/image/assets/TEMP/992:313',
+        avatarAlt: t('TST_1_ALT'),
+      },
+      {
+        id: 2,
+        quote: t('TST_2_QUOTE'),
+        name: t('TST_2_NAME'),
+        location: t('TST_2_LOC'),
+        avatar: 'https://api.builder.io/api/v1/image/assets/TEMP/992:327',
+        avatarAlt: t('TST_2_ALT'),
+      },
+      {
+        id: 3,
+        quote: t('TST_3_QUOTE'),
+        name: t('TST_3_NAME'),
+        location: t('TST_3_LOC'),
+        avatar: 'https://api.builder.io/api/v1/image/assets/TEMP/992:341',
+        avatarAlt: t('TST_3_ALT'),
+      },
+    ],
+    [t, language]
+  );
 
   const StarRating = () => (
     <div className="star-rating">
@@ -53,10 +60,8 @@ export default function TestimonialsSection() {
     <section className="testimonials-section">
       <div className="container">
         <div className="testimonials-header">
-          <h2 className="testimonials-title">Customer Testimonials</h2>
-          <p className="testimonials-subtitle">
-            Insurance approved my claim fast, and PCG had my roof done in a week.
-          </p>
+          <h2 className="testimonials-title">{t('TST_TITLE')}</h2>
+          <p className="testimonials-subtitle">{t('TST_SUBTITLE')}</p>
         </div>
 
         <div className="testimonials-grid">

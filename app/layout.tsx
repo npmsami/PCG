@@ -1,5 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { Providers } from './components/Providers'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pcgroofing.net'),
@@ -65,7 +66,9 @@ export default function RootLayout({
       <head>
         <link rel="canonical" href="https://pcgroofing.net" />
       </head>
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }

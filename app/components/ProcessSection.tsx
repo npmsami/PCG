@@ -1,37 +1,45 @@
 'use client';
 
+import { useMemo } from 'react';
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function ProcessSection() {
-  const processSteps = [
-    {
-      id: 1,
-      title: "Step 1: Free Roof Inspection",
-      description: "We document the damage with detailed photos and a comprehensive report.",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/c9534831ad3921a74bf4d58466b8742783360484?width=722"
-    },
-    {
-      id: 2,
-      title: "Step 2: Insurance Claim and Contract Signing",
-      description: "We handle the claim process and provide a transparent contract—no surprises, just peace of mind.",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/a0052aeeccaef6bb464025d7cd6fbe6a3d8200d3?width=722"
-    },
-    {
-      id: 3,
-      title: "Step 3: Roof Restore",
-      description: "Licensed crew, warranty included, peace of mind delivered.",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/66ceb427bd3a65770d3aeeaad24020ce37b8b368?width=722"
-    }
-  ];
+  const { t, language } = useLanguage();
+
+  const processSteps = useMemo(
+    () => [
+      {
+        id: 1,
+        title: t('PROCESS_S1_TITLE'),
+        description: t('PROCESS_S1_DESC'),
+        image:
+          'https://api.builder.io/api/v1/image/assets/TEMP/c9534831ad3921a74bf4d58466b8742783360484?width=722',
+      },
+      {
+        id: 2,
+        title: t('PROCESS_S2_TITLE'),
+        description: t('PROCESS_S2_DESC'),
+        image:
+          'https://api.builder.io/api/v1/image/assets/TEMP/a0052aeeccaef6bb464025d7cd6fbe6a3d8200d3?width=722',
+      },
+      {
+        id: 3,
+        title: t('PROCESS_S3_TITLE'),
+        description: t('PROCESS_S3_DESC'),
+        image:
+          'https://api.builder.io/api/v1/image/assets/TEMP/66ceb427bd3a65770d3aeeaad24020ce37b8b368?width=722',
+      },
+    ],
+    [t, language]
+  );
 
   return (
     <section id="process-section" className="process-section">
       <div className="container">
         <div className="process-header">
-          <h2 className="process-title">Our Proven Process: Simple and Effective</h2>
-          <p className="process-subtitle">
-            At PCG Roofing, we simplify the roof repair process. Our proven three-steps approach ensures you receive the best service while we handle your insurance claim. Experience a stress-free journey from inspection to completion.
-          </p>
+          <h2 className="process-title">{t('PROCESS_TITLE')}</h2>
+          <p className="process-subtitle">{t('PROCESS_SUBTITLE')}</p>
         </div>
 
         <div className="process-steps">
@@ -55,8 +63,8 @@ export default function ProcessSection() {
         </div>
 
         <div className="process-actions">
-          <button className="book-appointment-btn">
-            <span>Book an Appointment</span>
+          <button type="button" className="book-appointment-btn">
+            <span>{t('BTN_BOOK_APPOINTMENT')}</span>
             <svg className="arrow-icon" width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1.44238 0.5C1.69602 0.500038 1.90352 0.585183 2.09082 0.771484L10.2188 8.85742C10.3316 8.96969 10.3984 9.073 10.4365 9.16406C10.4778 9.26252 10.5 9.3696 10.5 9.48926C10.5 9.57889 10.4873 9.6612 10.4639 9.73828L10.4365 9.81445C10.3984 9.90553 10.3316 10.0088 10.2188 10.1211L2.0498 18.248C1.86283 18.434 1.66766 18.5073 1.43945 18.499C1.19789 18.4901 0.988169 18.4012 0.792969 18.207C0.605899 18.0208 0.521572 17.8153 0.521484 17.5654C0.521484 17.3153 0.605735 17.1092 0.792969 16.9229L7.9082 9.84375L8.26465 9.48926L7.9082 9.13477L0.751953 2.01465C0.565112 1.82867 0.492723 1.63565 0.500977 1.41113C0.509811 1.17306 0.597897 0.965647 0.792969 0.771484C0.980352 0.585043 1.1886 0.5 1.44238 0.5Z" fill="white" stroke="white"/>
             </svg>

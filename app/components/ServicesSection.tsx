@@ -1,34 +1,44 @@
 'use client';
 
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
+import type { MessageKey } from '../i18n/messages';
+
+const SERVICE_ITEMS: { titleKey: MessageKey; image: string }[] = [
+  {
+    titleKey: 'SVC_ITEM_1',
+    image:
+      'https://api.builder.io/api/v1/image/assets/TEMP/f6236692f79bebe3f92a08329f72112d49f892a1?width=722',
+  },
+  {
+    titleKey: 'SVC_ITEM_2',
+    image:
+      'https://api.builder.io/api/v1/image/assets/TEMP/d5676b2f651575ad0183c0ddc95e21eed74ec271?width=722',
+  },
+  {
+    titleKey: 'SVC_ITEM_3',
+    image:
+      'https://api.builder.io/api/v1/image/assets/TEMP/f80eb218a6215c804c6f6a5b4a0190fa0dbcea61?width=722',
+  },
+  {
+    titleKey: 'SVC_ITEM_4',
+    image:
+      'https://api.builder.io/api/v1/image/assets/TEMP/c38331bc8ceda2967705f6b6288b77fc6e12d5bf?width=722',
+  },
+  {
+    titleKey: 'SVC_ITEM_5',
+    image:
+      'https://api.builder.io/api/v1/image/assets/TEMP/d389c25419b297d99c00930e39d324a50447ba3f?width=722',
+  },
+  {
+    titleKey: 'SVC_ITEM_6',
+    image:
+      'https://api.builder.io/api/v1/image/assets/TEMP/b6491b01922b2e5f70adb1165c523e552d0c9715?width=722',
+  },
+];
 
 export default function ServicesSection() {
-  const services = [
-    {
-      title: "Roofing Repairs",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/f6236692f79bebe3f92a08329f72112d49f892a1?width=722"
-    },
-    {
-      title: "Roof Replacements",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/d5676b2f651575ad0183c0ddc95e21eed74ec271?width=722"
-    },
-    {
-      title: "Roofing Insurance Claims",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/f80eb218a6215c804c6f6a5b4a0190fa0dbcea61?width=722"
-    },
-    {
-      title: "Shingle Roofing Installation",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/c38331bc8ceda2967705f6b6288b77fc6e12d5bf?width=722"
-    },
-    {
-      title: "Tile Roofing Installation",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/d389c25419b297d99c00930e39d324a50447ba3f?width=722"
-    },
-    {
-      title: "Emergency Tarping Services",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/b6491b01922b2e5f70adb1165c523e552d0c9715?width=722"
-    }
-  ];
+  const { t } = useLanguage();
 
   return (
     <section id="services-section" className="services-section">
@@ -39,23 +49,21 @@ export default function ServicesSection() {
             <div className="years-badge">
               <Image
                 src="https://api.builder.io/api/v1/image/assets/TEMP/41381a4b237be349d87bd00aadcd8c27ae740efb?width=460"
-                alt="15 Years Certification"
+                alt={t('SVC_ALT_BADGE')}
                 width={120}
                 height={120}
               />
             </div>
-            <h2 className="services-title">Protect Your Home with Confidence</h2>
-            <p className="services-description">
-              With over 15 years of dedicated service, PCG Roofing is fully licensed and insured, ensuring peace of mind for homeowners. Our strong relationships with top insurance carriers and certified installers allow us to deliver exceptional roofing solutions quickly and efficiently.
-            </p>
-            <button className="services-cta-btn">
-              <span>Book an Appointment</span>
+            <h2 className="services-title">{t('SVC_HEAD_TITLE')}</h2>
+            <p className="services-description">{t('SVC_HEAD_DESC')}</p>
+            <button type="button" className="services-cta-btn">
+              <span>{t('BTN_BOOK_APPOINTMENT')}</span>
             </button>
           </div>
           <div className="header-image">
             <Image
               src="https://api.builder.io/api/v1/image/assets/TEMP/d6ef8f1c47d87444e36b9547bae45863b8a2ff5d?width=1200"
-              alt="PCG Roofing professionals discussing with homeowner"
+              alt={t('SVC_IMG_ALT')}
               width={600}
               height={640}
               style={{ objectFit: 'cover' }}
@@ -65,22 +73,25 @@ export default function ServicesSection() {
 
         {/* Services Grid */}
         <div className="services-content">
-          <h3 className="services-grid-title">Comprehensive Roofing Solutions Tailored to Your Needs</h3>
+          <h3 className="services-grid-title">{t('SVC_GRID_TITLE')}</h3>
           <div className="services-grid">
-            {services.map((service, index) => (
-              <div key={index} className="service-item">
-                <div className="service-image">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    width={361}
-                    height={202}
-                    style={{ objectFit: 'cover' }}
-                  />
+            {SERVICE_ITEMS.map((service, index) => {
+              const title = t(service.titleKey);
+              return (
+                <div key={index} className="service-item">
+                  <div className="service-image">
+                    <Image
+                      src={service.image}
+                      alt={title}
+                      width={361}
+                      height={202}
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
+                  <h4 className="service-title">{title}</h4>
                 </div>
-                <h4 className="service-title">{service.title}</h4>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 

@@ -1,26 +1,36 @@
 'use client';
 
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
+import type { MessageKey } from '../i18n/messages';
+
+const QUICK_LINKS: { labelKey: MessageKey; href: string }[] = [
+  { labelKey: 'FT_LINK_HOME', href: '/' },
+  { labelKey: 'FT_LINK_ABOUT', href: '/about' },
+  { labelKey: 'FT_LINK_BLOGS', href: '/blogs' },
+  { labelKey: 'FT_LINK_CONTACT', href: '#' },
+  { labelKey: 'FT_LINK_SVC', href: '#' },
+  { labelKey: 'FT_LINK_TST', href: '#' },
+];
+
+const CONNECT_LINK_KEYS: MessageKey[] = [
+  'FT_SO_FB',
+  'FT_SO_IG',
+  'FT_SO_TW',
+  'FT_SO_LI',
+  'FT_SO_YT',
+];
+
+const SOCIAL_ROWS: { iconId: string; labelKey: MessageKey }[] = [
+  { iconId: 'Facebook', labelKey: 'FT_SO_NAME_FB' },
+  { iconId: 'Instagram', labelKey: 'FT_SO_NAME_IG' },
+  { iconId: 'Twitter', labelKey: 'FT_SO_NAME_TW' },
+  { iconId: 'LinkedIn', labelKey: 'FT_SO_NAME_LI' },
+  { iconId: 'YouTube', labelKey: 'FT_SO_NAME_YT' },
+];
 
 export default function Footer() {
-  const quickLinks = [
-    { label: 'Home Page', href: '/' },
-    { label: 'About Us', href: '/about' },
-    { label: 'Blogs', href: '/blogs' },
-    { label: 'Contact Us', href: '#' },
-    { label: 'Services', href: '#' },
-    { label: 'Testimonials', href: '#' }
-  ];
-
-  const connectLinks = [
-    'Facebook Page',
-    'Instagram Feed',
-    'Twitter Profile', 
-    'LinkedIn Page',
-    'YouTube Channel'
-  ];
-
-  const socialIcons = ['Facebook', 'Instagram', 'Twitter', 'LinkedIn', 'YouTube'];
+  const { t } = useLanguage();
 
   const renderSocialIcon = (name: string) => {
     switch (name) {
@@ -72,55 +82,57 @@ export default function Footer() {
                 height={36}
               />
             </div>
-            <p className="newsletter-description">
-              Subscribe to our newsletter for the latest updates on roofing services and offers.
-            </p>
+            <p className="newsletter-description">{t('FT_NEWS_DESC')}</p>
             <div className="newsletter-form">
               <div className="form-group">
                 <input
                   type="email"
-                  placeholder="Your Email Here"
+                  placeholder={t('FT_EMAIL_PH')}
                   className="email-input"
                 />
-                <button className="join-btn">Join</button>
+                <button type="button" className="join-btn">
+                  {t('FT_JOIN')}
+                </button>
               </div>
-              <p className="newsletter-disclaimer">
-                By subscribing, you consent to receive updates and agree to our Privacy Policy.
-              </p>
+              <p className="newsletter-disclaimer">{t('FT_DISCLAIMER')}</p>
             </div>
           </div>
 
           <div className="footer-links">
             <div className="links-column">
-              <h4 className="column-title">Quick Links</h4>
+              <h4 className="column-title">{t('FT_QUICK')}</h4>
               <ul className="links-list">
-                {quickLinks.map((link, index) => (
+                {QUICK_LINKS.map((link, index) => (
                   <li key={index}>
-                    <a href={link.href} className="footer-link">{link.label}</a>
+                    <a href={link.href} className="footer-link">
+                      {t(link.labelKey)}
+                    </a>
                   </li>
                 ))}
               </ul>
             </div>
 
             <div className="links-column">
-              <h4 className="column-title">Connect With Us</h4>
+              <h4 className="column-title">{t('FT_CONNECT')}</h4>
               <ul className="links-list">
-                {connectLinks.map((link, index) => (
+                {CONNECT_LINK_KEYS.map((labelKey, index) => (
                   <li key={index}>
-                    <a href="#" className="footer-link">{link}</a>
+                    <a href="#" className="footer-link">
+                      {t(labelKey)}
+                    </a>
                   </li>
                 ))}
               </ul>
             </div>
 
             <div className="links-column">
-              <h4 className="column-title">Stay Updated</h4>
+              <h4 className="column-title">{t('FT_STAY')}</h4>
               <ul className="social-links">
-                {socialIcons.map((socialName, index) => (
+                {SOCIAL_ROWS.map((row, index) => (
                   <li key={index} className="social-item">
                     <a href="#" className="social-link">
-                      {renderSocialIcon(socialName)}
-                      <span>{socialName}</span>
+                      {renderSocialIcon(row.iconId)}
+                      <span>{t(row.labelKey)}</span>
                     </a>
                   </li>
                 ))}
@@ -131,12 +143,18 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <div className="copyright">
-            <p>© 2025 PCG Roofing. All rights reserved.</p>
+            <p>{t('FT_COPYRIGHT')}</p>
           </div>
           <div className="legal-links">
-            <a href="/privacy-policy" className="legal-link">Privacy Policy</a>
-            <a href="/terms-and-conditions" className="legal-link">Terms and Conditions</a>
-            <a href="#" className="legal-link">Cookie Settings</a>
+            <a href="/privacy-policy" className="legal-link">
+              {t('FT_PRIVACY')}
+            </a>
+            <a href="/terms-and-conditions" className="legal-link">
+              {t('FT_TERMS')}
+            </a>
+            <a href="#" className="legal-link">
+              {t('FT_COOKIES')}
+            </a>
           </div>
         </div>
       </div>

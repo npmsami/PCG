@@ -1,6 +1,10 @@
 'use client';
 
+import { useLanguage } from '../context/LanguageContext';
+
 export default function HeroSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="hero-section">
       <div className="hero-background">
@@ -11,7 +15,7 @@ export default function HeroSection() {
           playsInline
           className="hero-video"
           poster="https://api.builder.io/api/v1/image/assets/TEMP/ef5d90ce328d45584bdfb79dcdb5ddfa44090e9e?width=3340"
-          aria-label="Professional roofing team working on residential roof repair"
+          aria-label={t('HERO_VIDEO_ARIA')}
         >
           <source
             src="https://cdn.builder.io/o/assets%2F701c6aa649cc4d0db8f75aa92ca32a88%2Fc42cf556fe04477abff0163c478a5a87?alt=media&token=0ae050f2-1f6c-4522-a049-f018e671d07d&apiKey=701c6aa649cc4d0db8f75aa92ca32a88"
@@ -27,14 +31,13 @@ export default function HeroSection() {
 
       <div className="hero-text">
         <h1 className="hero-title">
-          Restore Your Roof<br />
-          Restore Your Peace of Mind
+          {t('HERO_TITLE_1')}
+          <br />
+          {t('HERO_TITLE_2')}
         </h1>
-        <p className="hero-description">
-          Roof damage can be overwhelming, but it doesn't have to be. At PCG, we prioritize your family's safety by efficiently restoring your roof and managing the repair process.
-        </p>
-        <button className="hero-cta-btn">
-          <span>Call Us Today</span>
+        <p className="hero-description">{t('HERO_SUBTEXT')}</p>
+        <button type="button" className="hero-cta-btn">
+          <span>{t('CTA_CALL')}</span>
           <div className="btn-glow"></div>
         </button>
       </div>
