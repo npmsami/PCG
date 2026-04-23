@@ -1,14 +1,15 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback, type RefObject } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../i18n/messages';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 export default function Navigation() {
   const router = useRouter();
-  const { language, setLanguage, t } = useLanguage();
+  const { setLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -52,6 +53,11 @@ export default function Navigation() {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      if (window.innerWidth <= 768) {
+        setLastScrollY(currentScrollY);
+        setIsNavVisible(true);
+        return;
+      }
       const scrollDifference = Math.abs(currentScrollY - lastScrollY);
 
       if (scrollDifference < scrollThreshold) return;
@@ -93,6 +99,27 @@ export default function Navigation() {
     }
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false);
+        setIsLanguageOpen(false);
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isMenuOpen]);
+
   const handleNavigateHome = () => {
     router.push('/');
     setIsMenuOpen(false);
@@ -107,88 +134,26 @@ export default function Navigation() {
   };
 
   const dynamicClass = isNavVisible ? 'nav-visible' : 'nav-hidden';
-  const langCode = language === 'en' ? 'EN' : 'ES';
-  const langLabel =
-    language === 'en'
-      ? t('LANG_OPTION_ENGLISH')
-      : t('LANG_OPTION_SPANISH');
-
-  const renderLanguageSwitcher = (ref: RefObject<HTMLDivElement | null>) => (
-    <div className="language-switcher" ref={ref}>
-      <button
-        type="button"
-        className={`language-btn${isLanguageOpen ? ' language-btn-open' : ''}`}
-        onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-        aria-expanded={isLanguageOpen}
-        aria-haspopup="listbox"
-        aria-label={`${t('LANG_MENU_ARIA')}: ${langLabel}`}
-      >
-        <span className="language-code" aria-hidden="true">
-          {langCode}
-        </span>
-        <span className="language-name">{langLabel}</span>
-        <span className="language-chevron" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M6 9L12 15L18 9"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-      </button>
-      {isLanguageOpen && (
-        <div
-          className="language-dropdown"
-          role="listbox"
-          aria-label={t('LANG_MENU_ARIA')}
-        >
-          <button
-            type="button"
-            role="option"
-            aria-selected={language === 'en'}
-            className={`language-option${language === 'en' ? ' active' : ''}`}
-            onClick={() => selectLanguage('en')}
-          >
-            <span className="language-option-check" aria-hidden="true">
-              {language === 'en' ? '✓' : ''}
-            </span>
-            <span className="language-option-label">{t('LANG_OPTION_ENGLISH')}</span>
-          </button>
-          <button
-            type="button"
-            role="option"
-            aria-selected={language === 'es'}
-            className={`language-option${language === 'es' ? ' active' : ''}`}
-            onClick={() => selectLanguage('es')}
-          >
-            <span className="language-option-check" aria-hidden="true">
-              {language === 'es' ? '✓' : ''}
-            </span>
-            <span className="language-option-label">{t('LANG_OPTION_SPANISH')}</span>
-          </button>
-        </div>
-      )}
-    </div>
-  );
 
   return (
-    <nav className={`nav-container ${dynamicClass}`.trim()}>
-      <div className="nav-content">
+    <nav className={`nav-container ${dynamicClass}`.trim()} aria-label={t('NAV_MAIN_MENU')}>
+      {isMenuOpen && (
         <button
           type="button"
-          className="mobile-menu-btn"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Menu"
+          className="nav-backdrop"
+          aria-label={t('NAV_CLOSE_MENU')}
+          onClick={() => {
+            setIsMenuOpen(false);
+            setIsLanguageOpen(false);
+          }}
+        />
+      )}
+      <div className="nav-content">
+        <div
+          id="mobile-nav-panel"
+          className={`nav-left ${isMenuOpen ? 'nav-items-open' : ''}${isLanguageOpen ? ' nav-left-lang-open' : ''}`}
+          aria-hidden={!isMenuOpen}
         >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <div className={`nav-left ${isMenuOpen ? 'nav-items-open' : ''}`}>
           <button
             type="button"
             className="nav-link nav-scroll-link"
@@ -212,9 +177,28 @@ export default function Navigation() {
             >
               <span>{t('NAV_SERVICES')}</span>
             </button>
-            {renderLanguageSwitcher(languageSwitcherMobileRef)}
+            <LanguageSwitcher
+              ref={languageSwitcherMobileRef}
+              variant="drawer"
+              isOpen={isLanguageOpen}
+              onToggle={() => setIsLanguageOpen(!isLanguageOpen)}
+              onSelect={selectLanguage}
+            />
           </div>
         </div>
+
+        <button
+          type="button"
+          className={`mobile-menu-btn${isMenuOpen ? ' mobile-menu-btn-open' : ''}`}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-nav-panel"
+          aria-label={isMenuOpen ? t('NAV_CLOSE_MENU') : t('NAV_OPEN_MENU')}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
         <div className="nav-center">
           <div className="logo">
@@ -236,13 +220,40 @@ export default function Navigation() {
           >
             <span>{t('NAV_SERVICES')}</span>
           </button>
-          {renderLanguageSwitcher(languageSwitcherDesktopRef)}
+          <LanguageSwitcher
+            ref={languageSwitcherDesktopRef}
+            isOpen={isLanguageOpen}
+            onToggle={() => setIsLanguageOpen(!isLanguageOpen)}
+            onSelect={selectLanguage}
+          />
         </div>
       </div>
 
       <style jsx>{`
         html {
           scroll-behavior: smooth;
+        }
+
+        .nav-backdrop {
+          position: fixed;
+          inset: 0;
+          z-index: 40;
+          margin: 0;
+          padding: 0;
+          border: none;
+          border-radius: 0;
+          background: rgba(0, 0, 0, 0.45);
+          cursor: pointer;
+          animation: navBackdropIn 0.2s ease;
+        }
+
+        @keyframes navBackdropIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
 
         .nav-container {
@@ -262,6 +273,7 @@ export default function Navigation() {
           transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           opacity: 1;
           visibility: visible;
+          isolation: isolate;
         }
 
         .nav-container.nav-visible {
@@ -280,6 +292,13 @@ export default function Navigation() {
           padding: 0;
           gap: 16px;
           min-width: 0;
+          position: relative;
+          z-index: 50;
+        }
+
+        .nav-content::after {
+          content: none;
+          display: none;
         }
 
         .mobile-menu-btn {
@@ -287,20 +306,37 @@ export default function Navigation() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          width: 30px;
-          height: 30px;
+          width: 44px;
+          height: 44px;
           background: none;
-          border: none;
+          border-radius: 12px;
           cursor: pointer;
-          z-index: 1001;
+          z-index: 3;
+          position: relative;
+          flex-shrink: 0;
         }
 
         .mobile-menu-btn span {
-          width: 20px;
+          display: block;
+          width: 22px;
           height: 2px;
           background: var(--black);
-          margin: 2px 0;
-          transition: 0.3s;
+          margin: 3px 0;
+          transition: transform 0.25s ease, opacity 0.2s ease;
+          transform-origin: center;
+        }
+
+        .mobile-menu-btn-open span:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+
+        .mobile-menu-btn-open span:nth-child(2) {
+          opacity: 0;
+          transform: scaleX(0);
+        }
+
+        .mobile-menu-btn-open span:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
         }
 
         .nav-left {
@@ -325,7 +361,7 @@ export default function Navigation() {
           min-width: 0;
         }
 
-        .nav-right .language-switcher {
+        .nav-right > * {
           flex-shrink: 0;
         }
 
@@ -364,164 +400,14 @@ export default function Navigation() {
           padding: 6px 20px;
         }
 
-        .language-switcher {
-          position: relative;
-          flex-shrink: 0;
-          z-index: 1003;
-        }
-
-        .language-btn {
-          display: inline-flex;
-          flex-direction: row;
-          flex-wrap: nowrap;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          padding: 6px 14px 6px 10px;
-          border-radius: 100px;
-          border: 1px solid #4b4949;
-          background: rgba(255, 255, 255, 0.65);
-          cursor: pointer;
-          transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-          white-space: nowrap;
-          max-width: none;
-        }
-
-        .language-btn:hover,
-        .language-btn.language-btn-open {
-          background: var(--primary-orange);
-          border-color: var(--primary-orange);
-          box-shadow: 0 4px 14px rgba(224, 72, 38, 0.25);
-        }
-
-        .language-btn:hover .language-code,
-        .language-btn:hover .language-name,
-        .language-btn:hover .language-chevron,
-        .language-btn.language-btn-open .language-code,
-        .language-btn.language-btn-open .language-name,
-        .language-btn.language-btn-open .language-chevron {
-          color: #fff;
-          border-color: rgba(255, 255, 255, 0.85);
-        }
-
-        .language-code {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          min-width: 30px;
-          height: 26px;
-          padding: 0 6px;
-          border-radius: 8px;
-          border: 1px solid var(--black);
-          font-family: var(--font-open-sans);
-          font-size: 12px;
-          font-weight: 600;
-          letter-spacing: 0.02em;
-          line-height: 1;
-          color: var(--black);
-          flex-shrink: 0;
-          transition: color 0.2s ease, border-color 0.2s ease;
-        }
-
-        .language-name {
-          font-family: var(--font-open-sans);
-          font-size: 15px;
-          font-weight: 500;
-          line-height: 1.2;
-          color: var(--black);
-          flex-shrink: 0;
-          transition: color 0.2s ease;
-        }
-
-        .language-chevron {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--black);
-          flex-shrink: 0;
-          margin-left: -2px;
-          transition: color 0.2s ease, transform 0.2s ease;
-        }
-
-        .language-chevron svg {
-          display: block;
-        }
-
-        .language-btn.language-btn-open .language-chevron {
-          transform: rotate(180deg);
-        }
-
-        .language-dropdown {
-          position: absolute;
-          top: calc(100% + 8px);
-          left: 50%;
-          right: auto;
-          transform: translateX(-50%);
-          min-width: calc(100% + 12px);
-          width: max-content;
-          max-width: min(260px, calc(100vw - 48px));
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-          padding: 6px;
-          background: rgba(255, 255, 255, 0.98);
-          backdrop-filter: blur(12px);
-          border: 1px solid rgba(75, 73, 73, 0.35);
-          border-radius: 16px;
-          box-shadow:
-            0 12px 32px rgba(0, 0, 0, 0.12),
-            0 4px 12px rgba(0, 0, 0, 0.06);
-          z-index: 1004;
-          overflow: hidden;
-        }
-
-        .language-option {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 10px;
-          width: 100%;
-          box-sizing: border-box;
-          text-align: left;
-          padding: 10px 12px;
-          margin: 0;
-          border: none;
-          border-radius: 12px;
-          background: transparent;
-          cursor: pointer;
-          font-family: var(--font-open-sans);
-          font-size: 15px;
-          font-weight: 500;
-          line-height: 1.25;
-          color: var(--black);
-          transition: background 0.15s ease, color 0.15s ease;
-        }
-
-        .language-option-check {
-          flex: 0 0 1.25rem;
-          width: 1.25rem;
-          text-align: center;
-          font-size: 14px;
-          font-weight: 700;
-          color: var(--primary-orange);
-        }
-
-        .language-option-label {
-          flex: 1 1 auto;
-          min-width: 0;
-        }
-
-        .language-option:hover {
-          background: rgba(224, 72, 38, 0.08);
-        }
-
-        .language-option.active {
-          background: rgba(224, 72, 38, 0.12);
-          font-weight: 600;
-        }
-
         .logo {
           flex-shrink: 0;
+        }
+
+        .logo img {
+          width: 60px;
+          height: 60px;
+          object-fit: contain;
         }
 
         .mobile-only-items {
@@ -531,71 +417,145 @@ export default function Navigation() {
         @media (max-width: 768px) {
           .mobile-menu-btn {
             display: flex;
+            position: relative;
+            left: auto;
+            top: auto;
+            transform: none;
+            order: 1;
+            flex: 0 0 44px;
+            z-index: 60;
           }
 
           .nav-content {
-            grid-template-columns: 1fr auto;
-            gap: 16px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            min-height: 52px;
+            padding: 4px 2px;
+            overflow: visible;
+            z-index: 50;
+          }
+
+          .nav-content::after {
+            content: '';
+            display: block;
+            order: 3;
+            flex: 0 0 44px;
+            width: 44px;
+            height: 1px;
+            visibility: hidden;
+            pointer-events: none;
+            flex-shrink: 0;
+          }
+
+          .nav-center {
+            order: 2;
+            flex: 1 1 auto;
+            min-width: 0;
+            position: relative;
+            left: auto;
+            top: auto;
+            transform: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            max-width: 100%;
+            pointer-events: auto;
+            z-index: 55;
           }
 
           .nav-left {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
             bottom: 0;
-            background: white;
+            width: min(320px, calc(100vw - 16px));
+            max-width: calc(100vw - 16px);
+            right: auto;
+            z-index: 45;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            gap: 30px;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            z-index: 1000;
+            align-items: stretch;
+            gap: 12px;
+            padding: max(16px, env(safe-area-inset-top, 0px)) 20px
+              max(16px, env(safe-area-inset-bottom, 0px));
+            padding-left: max(20px, env(safe-area-inset-left, 0px));
+            padding-right: max(20px, env(safe-area-inset-right, 0px));
+            background: #fff;
+            transform: translate3d(-105%, 0, 0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            pointer-events: none;
+            box-shadow: 8px 0 40px rgba(0, 0, 0, 0.12);
+            border-radius: 0 16px 16px 0;
+          }
+
+          .nav-left.nav-left-lang-open {
+            overflow-y: visible;
+            overflow-x: visible;
           }
 
           .nav-left.nav-items-open {
-            transform: translateX(0);
-          }
-
-          .nav-center {
-            grid-column: 2;
+            transform: translate3d(0, 0, 0);
+            pointer-events: auto;
           }
 
           .nav-right {
             display: none;
           }
 
+          .nav-left .nav-link {
+            width: 100%;
+            max-width: 360px;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+            min-height: 48px;
+            padding: 10px 20px;
+          }
+
           .nav-left.nav-items-open .mobile-only-items {
             display: flex;
             flex-direction: column;
-            gap: 30px;
-            align-items: center;
+            gap: 16px;
+            align-items: stretch;
+            width: 100%;
+            max-width: 360px;
+            margin: 8px auto 0;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
           }
 
           .nav-link span {
-            font-size: 20px;
-          }
-
-          .language-name {
             font-size: 18px;
           }
 
-          .language-code {
-            font-size: 13px;
-            min-width: 32px;
-            height: 28px;
-          }
-
           .nav-container {
-            width: calc(100% - 40px);
-            max-width: 600px;
-            padding: 5px 14px;
-            top: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+            width: calc(100% - 24px);
+            max-width: min(600px, calc(100% - 24px));
+            top: max(16px, env(safe-area-inset-top, 0px));
+            padding: 6px 12px;
+            box-sizing: border-box;
+            overflow: visible;
           }
 
-          .nav-content {
-            padding: 0;
+          .nav-container.nav-visible {
+            transform: translateX(-50%) translateY(0);
+          }
+
+          .nav-container.nav-hidden {
+            transform: translateX(-50%) translateY(-120%);
           }
 
           .logo img {
@@ -606,26 +566,24 @@ export default function Navigation() {
 
         @media (max-width: 480px) {
           .nav-container {
-            width: calc(100% - 32px);
-            max-width: 500px;
-            padding: 4px 10px;
-            top: 28px;
+            width: calc(100% - 16px);
+            max-width: min(500px, calc(100% - 16px));
+            top: max(12px, env(safe-area-inset-top, 0px));
+            padding: 5px 10px;
           }
 
-          .nav-link {
-            padding: 8px 30px;
-          }
-
-          .language-btn {
-            padding: 8px 30px;
+          .nav-left .nav-link {
+            min-height: 46px;
+            padding: 8px 18px;
           }
 
           .nav-link span {
-            font-size: 18px;
+            font-size: 17px;
           }
 
-          .language-name {
-            font-size: 17px;
+          .logo img {
+            width: 50px;
+            height: 50px;
           }
         }
       `}</style>
