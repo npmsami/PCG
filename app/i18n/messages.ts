@@ -8,6 +8,7 @@ const en = {
   NAV_SERVICES: 'Services',
   LANG_OPTION_ENGLISH: 'English',
   LANG_OPTION_SPANISH: 'Spanish',
+  LANG_MENU_ARIA: 'Language',
 
   HERO_TITLE_1: 'Restore Your Roof',
   HERO_TITLE_2: 'Restore Your Peace of Mind',
@@ -140,6 +141,7 @@ const es: Record<keyof typeof en, string> = {
   NAV_SERVICES: 'Servicios',
   LANG_OPTION_ENGLISH: 'Inglés',
   LANG_OPTION_SPANISH: 'Español',
+  LANG_MENU_ARIA: 'Idioma',
 
   HERO_TITLE_1: 'Restaure su techo',
   HERO_TITLE_2: 'Restaure su tranquilidad',

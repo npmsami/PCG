@@ -117,19 +117,20 @@ export default function Navigation() {
     <div className="language-switcher" ref={ref}>
       <button
         type="button"
-        className="language-btn"
+        className={`language-btn${isLanguageOpen ? ' language-btn-open' : ''}`}
         onClick={() => setIsLanguageOpen(!isLanguageOpen)}
         aria-expanded={isLanguageOpen}
         aria-haspopup="listbox"
+        aria-label={`${t('LANG_MENU_ARIA')}: ${langLabel}`}
       >
-        <div className="language-flag">
-          <span>{langCode}</span>
-        </div>
-        <span>{langLabel}</span>
-        <span className="chevron" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <span className="language-code" aria-hidden="true">
+          {langCode}
+        </span>
+        <span className="language-name">{langLabel}</span>
+        <span className="language-chevron" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-              d="M8 5L15 12L8 19"
+              d="M6 9L12 15L18 9"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
@@ -139,7 +140,11 @@ export default function Navigation() {
         </span>
       </button>
       {isLanguageOpen && (
-        <div className="language-dropdown" role="listbox">
+        <div
+          className="language-dropdown"
+          role="listbox"
+          aria-label={t('LANG_MENU_ARIA')}
+        >
           <button
             type="button"
             role="option"
@@ -147,7 +152,10 @@ export default function Navigation() {
             className={`language-option${language === 'en' ? ' active' : ''}`}
             onClick={() => selectLanguage('en')}
           >
-            {t('LANG_OPTION_ENGLISH')}
+            <span className="language-option-check" aria-hidden="true">
+              {language === 'en' ? '✓' : ''}
+            </span>
+            <span className="language-option-label">{t('LANG_OPTION_ENGLISH')}</span>
           </button>
           <button
             type="button"
@@ -156,7 +164,10 @@ export default function Navigation() {
             className={`language-option${language === 'es' ? ' active' : ''}`}
             onClick={() => selectLanguage('es')}
           >
-            {t('LANG_OPTION_SPANISH')}
+            <span className="language-option-check" aria-hidden="true">
+              {language === 'es' ? '✓' : ''}
+            </span>
+            <span className="language-option-label">{t('LANG_OPTION_SPANISH')}</span>
           </button>
         </div>
       )}
@@ -311,6 +322,11 @@ export default function Navigation() {
           align-items: center;
           gap: 12px;
           justify-content: flex-end;
+          min-width: 0;
+        }
+
+        .nav-right .language-switcher {
+          flex-shrink: 0;
         }
 
         .nav-link {
@@ -350,105 +366,157 @@ export default function Navigation() {
 
         .language-switcher {
           position: relative;
+          flex-shrink: 0;
+          z-index: 1003;
         }
 
         .language-btn {
-          display: flex;
-          padding: 6px 16px;
-          justify-content: center;
+          display: inline-flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
           align-items: center;
-          gap: 5px;
+          justify-content: center;
+          gap: 8px;
+          padding: 6px 14px 6px 10px;
           border-radius: 100px;
           border: 1px solid #4b4949;
-          background: transparent;
+          background: rgba(255, 255, 255, 0.65);
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+          white-space: nowrap;
+          max-width: none;
         }
 
-        .language-btn:hover {
+        .language-btn:hover,
+        .language-btn.language-btn-open {
           background: var(--primary-orange);
           border-color: var(--primary-orange);
+          box-shadow: 0 4px 14px rgba(224, 72, 38, 0.25);
         }
 
-        .language-btn:hover span,
-        .language-btn:hover .language-flag span {
-          color: white;
+        .language-btn:hover .language-code,
+        .language-btn:hover .language-name,
+        .language-btn:hover .language-chevron,
+        .language-btn.language-btn-open .language-code,
+        .language-btn.language-btn-open .language-name,
+        .language-btn.language-btn-open .language-chevron {
+          color: #fff;
+          border-color: rgba(255, 255, 255, 0.85);
         }
 
-        .language-flag {
+        .language-code {
           display: inline-flex;
-          padding: 1px 3px 1px 4px;
-          justify-content: center;
           align-items: center;
+          justify-content: center;
+          min-width: 30px;
+          height: 26px;
+          padding: 0 6px;
           border-radius: 8px;
           border: 1px solid var(--black);
-          width: 30px;
-          height: 29px;
-        }
-
-        .language-flag span {
-          color: var(--black);
           font-family: var(--font-open-sans);
-          font-size: 14px;
-          font-weight: 400;
-          line-height: normal;
-          transition: color 0.3s ease;
-        }
-
-        .language-btn > span {
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+          line-height: 1;
           color: var(--black);
-          font-family: var(--font-open-sans);
-          font-size: 16px;
-          font-weight: 400;
-          line-height: normal;
-          transition: color 0.3s ease;
+          flex-shrink: 0;
+          transition: color 0.2s ease, border-color 0.2s ease;
         }
 
-        .chevron {
+        .language-name {
+          font-family: var(--font-open-sans);
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 1.2;
+          color: var(--black);
+          flex-shrink: 0;
+          transition: color 0.2s ease;
+        }
+
+        .language-chevron {
           display: inline-flex;
           align-items: center;
           justify-content: center;
           color: var(--black);
-          width: 16px;
-          height: 16px;
-          transition: color 0.3s ease;
+          flex-shrink: 0;
+          margin-left: -2px;
+          transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .language-chevron svg {
+          display: block;
+        }
+
+        .language-btn.language-btn-open .language-chevron {
+          transform: rotate(180deg);
         }
 
         .language-dropdown {
           position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: white;
-          border: 1px solid #4b4949;
-          border-radius: 12px;
-          padding: 8px 0;
-          margin-top: 4px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-          z-index: 1002;
+          top: calc(100% + 8px);
+          left: 50%;
+          right: auto;
+          transform: translateX(-50%);
+          min-width: calc(100% + 12px);
+          width: max-content;
+          max-width: min(260px, calc(100vw - 48px));
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          padding: 6px;
+          background: rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(75, 73, 73, 0.35);
+          border-radius: 16px;
+          box-shadow:
+            0 12px 32px rgba(0, 0, 0, 0.12),
+            0 4px 12px rgba(0, 0, 0, 0.06);
+          z-index: 1004;
+          overflow: hidden;
         }
 
         .language-option {
-          display: block;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 10px;
           width: 100%;
           box-sizing: border-box;
           text-align: left;
-          padding: 8px 16px;
-          cursor: pointer;
-          transition: background 0.2s ease;
+          padding: 10px 12px;
+          margin: 0;
           border: none;
-          background: none;
+          border-radius: 12px;
+          background: transparent;
+          cursor: pointer;
           font-family: var(--font-open-sans);
-          font-size: 16px;
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 1.25;
           color: var(--black);
+          transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .language-option-check {
+          flex: 0 0 1.25rem;
+          width: 1.25rem;
+          text-align: center;
+          font-size: 14px;
+          font-weight: 700;
+          color: var(--primary-orange);
+        }
+
+        .language-option-label {
+          flex: 1 1 auto;
+          min-width: 0;
         }
 
         .language-option:hover {
-          background: #f5f5f5;
+          background: rgba(224, 72, 38, 0.08);
         }
 
         .language-option.active {
-          background: #f0f0f0;
+          background: rgba(224, 72, 38, 0.12);
           font-weight: 600;
         }
 
@@ -509,8 +577,14 @@ export default function Navigation() {
             font-size: 20px;
           }
 
-          .language-btn > span {
-            font-size: 20px;
+          .language-name {
+            font-size: 18px;
+          }
+
+          .language-code {
+            font-size: 13px;
+            min-width: 32px;
+            height: 28px;
           }
 
           .nav-container {
@@ -546,9 +620,12 @@ export default function Navigation() {
             padding: 8px 30px;
           }
 
-          .nav-link span,
-          .language-btn > span {
+          .nav-link span {
             font-size: 18px;
+          }
+
+          .language-name {
+            font-size: 17px;
           }
         }
       `}</style>
