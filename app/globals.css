@@ -171,6 +171,29 @@ button {
     --section-padding: 80px;
     --page-padding: 32px;
   }
+
+  /* Keep mobile images centered and consistently rounded */
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: var(--border-radius-small);
+  }
+
+  /* Next/Image wrappers often contain the actual img tag */
+  span > img {
+    border-radius: inherit;
+  }
+
+  .header-image,
+  .service-image,
+  .step-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: var(--border-radius-small);
+  }
   
   .heading-1 {
     font-size: 36px;

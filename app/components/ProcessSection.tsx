@@ -63,7 +63,13 @@ export default function ProcessSection() {
         </div>
 
         <div className="process-actions">
-          <button type="button" className="book-appointment-btn">
+          <button
+            type="button"
+            className="book-appointment-btn"
+            data-cal-link="pcg-roofing-mydefr/inspection"
+            data-cal-namespace="inspection"
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+          >
             <span>{t('BTN_BOOK_APPOINTMENT')}</span>
             <svg className="arrow-icon" width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1.44238 0.5C1.69602 0.500038 1.90352 0.585183 2.09082 0.771484L10.2188 8.85742C10.3316 8.96969 10.3984 9.073 10.4365 9.16406C10.4778 9.26252 10.5 9.3696 10.5 9.48926C10.5 9.57889 10.4873 9.6612 10.4639 9.73828L10.4365 9.81445C10.3984 9.90553 10.3316 10.0088 10.2188 10.1211L2.0498 18.248C1.86283 18.434 1.66766 18.5073 1.43945 18.499C1.19789 18.4901 0.988169 18.4012 0.792969 18.207C0.605899 18.0208 0.521572 17.8153 0.521484 17.5654C0.521484 17.3153 0.605735 17.1092 0.792969 16.9229L7.9082 9.84375L8.26465 9.48926L7.9082 9.13477L0.751953 2.01465C0.565112 1.82867 0.492723 1.63565 0.500977 1.41113C0.509811 1.17306 0.597897 0.965647 0.792969 0.771484C0.980352 0.585043 1.1886 0.5 1.44238 0.5Z" fill="white" stroke="white"/>

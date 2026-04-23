@@ -36,7 +36,13 @@ export default function HeroSection() {
           {t('HERO_TITLE_2')}
         </h1>
         <p className="hero-description">{t('HERO_SUBTEXT')}</p>
-        <button type="button" className="hero-cta-btn">
+        <button
+          type="button"
+          className="hero-cta-btn"
+          data-cal-link="pcg-roofing-mydefr/inspection"
+          data-cal-namespace="inspection"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+        >
           <span>{t('CTA_CALL')}</span>
           <div className="btn-glow"></div>
         </button>

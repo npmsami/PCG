@@ -475,6 +475,13 @@ export default function Navigation() {
             width: 100%;
             max-width: 100%;
             min-width: 0;
+            padding: 6px 12px;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(12px);
           }
 
           .mobile-menu-btn {
@@ -622,23 +629,30 @@ export default function Navigation() {
           }
 
           .nav-container {
-            left: 50%;
-            transform: translateX(-50%) translateY(0);
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            transform: none;
             width: calc(100% - 24px);
             max-width: min(600px, calc(100% - 24px));
             top: max(16px, env(safe-area-inset-top, 0px));
-            padding: 6px 12px;
+            padding: 0;
             box-sizing: border-box;
-            overflow: hidden;
-            border-radius: 18px;
+            overflow: visible;
+            border-radius: 0;
+            border: none;
+            background: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
+            isolation: auto;
           }
 
           .nav-container.nav-visible {
-            transform: translateX(-50%) translateY(0);
+            transform: none;
           }
 
           .nav-container.nav-hidden {
-            transform: translateX(-50%) translateY(-120%);
+            transform: none;
           }
         }
 
@@ -647,7 +661,10 @@ export default function Navigation() {
             width: calc(100% - 16px);
             max-width: min(500px, calc(100% - 16px));
             top: max(12px, env(safe-area-inset-top, 0px));
-            padding: 5px 10px;
+            padding: 0;
+          }
+
+          .mobile-topbar {
             border-radius: 16px;
           }
 

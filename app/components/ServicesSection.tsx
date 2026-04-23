@@ -56,7 +56,13 @@ export default function ServicesSection() {
             </div>
             <h2 className="services-title">{t('SVC_HEAD_TITLE')}</h2>
             <p className="services-description">{t('SVC_HEAD_DESC')}</p>
-            <button type="button" className="services-cta-btn">
+            <button
+              type="button"
+              className="services-cta-btn"
+              data-cal-link="pcg-roofing-mydefr/inspection"
+              data-cal-namespace="inspection"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >
               <span>{t('BTN_BOOK_APPOINTMENT')}</span>
             </button>
           </div>
