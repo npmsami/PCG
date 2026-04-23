@@ -8,25 +8,33 @@ const QUICK_LINKS: { labelKey: MessageKey; href: string }[] = [
   { labelKey: 'FT_LINK_HOME', href: '/' },
   { labelKey: 'FT_LINK_ABOUT', href: '/about' },
   { labelKey: 'FT_LINK_BLOGS', href: '/blogs' },
-  { labelKey: 'FT_LINK_CONTACT', href: '#' },
+  { labelKey: 'FT_LINK_CONTACT', href: '/contact' },
   { labelKey: 'FT_LINK_SVC', href: '#' },
   { labelKey: 'FT_LINK_TST', href: '#' },
 ];
 
-const CONNECT_LINK_KEYS: MessageKey[] = [
-  'FT_SO_FB',
-  'FT_SO_IG',
-  'FT_SO_TW',
-  'FT_SO_LI',
-  'FT_SO_YT',
+const CONNECT_LINKS: { labelKey: MessageKey; href: string }[] = [
+  {
+    labelKey: 'FT_SO_FB',
+    href: 'https://www.facebook.com/yourtrueroofingexperts?rdid=rEmVuSWxri8vwlyN&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CCpBt3yan%2F#',
+  },
+  {
+    labelKey: 'FT_SO_IG',
+    href: 'https://www.instagram.com/pcgroofing?igsh=cmJxZzF5cHNmMGY%3D',
+  },
 ];
 
-const SOCIAL_ROWS: { iconId: string; labelKey: MessageKey }[] = [
-  { iconId: 'Facebook', labelKey: 'FT_SO_NAME_FB' },
-  { iconId: 'Instagram', labelKey: 'FT_SO_NAME_IG' },
-  { iconId: 'Twitter', labelKey: 'FT_SO_NAME_TW' },
-  { iconId: 'LinkedIn', labelKey: 'FT_SO_NAME_LI' },
-  { iconId: 'YouTube', labelKey: 'FT_SO_NAME_YT' },
+const SOCIAL_ROWS: { iconId: string; labelKey: MessageKey; href: string }[] = [
+  {
+    iconId: 'Facebook',
+    labelKey: 'FT_SO_NAME_FB',
+    href: 'https://www.facebook.com/yourtrueroofingexperts?rdid=rEmVuSWxri8vwlyN&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CCpBt3yan%2F#',
+  },
+  {
+    iconId: 'Instagram',
+    labelKey: 'FT_SO_NAME_IG',
+    href: 'https://www.instagram.com/pcgroofing?igsh=cmJxZzF5cHNmMGY%3D',
+  },
 ];
 
 export default function Footer() {
@@ -115,10 +123,10 @@ export default function Footer() {
             <div className="links-column">
               <h4 className="column-title">{t('FT_CONNECT')}</h4>
               <ul className="links-list">
-                {CONNECT_LINK_KEYS.map((labelKey, index) => (
+                {CONNECT_LINKS.map((link, index) => (
                   <li key={index}>
-                    <a href="#" className="footer-link">
-                      {t(labelKey)}
+                    <a href={link.href} className="footer-link" target="_blank" rel="noopener noreferrer">
+                      {t(link.labelKey)}
                     </a>
                   </li>
                 ))}
@@ -130,7 +138,7 @@ export default function Footer() {
               <ul className="social-links">
                 {SOCIAL_ROWS.map((row, index) => (
                   <li key={index} className="social-item">
-                    <a href="#" className="social-link">
+                    <a href={row.href} className="social-link" target="_blank" rel="noopener noreferrer">
                       {renderSocialIcon(row.iconId)}
                       <span>{t(row.labelKey)}</span>
                     </a>

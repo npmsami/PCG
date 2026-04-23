@@ -13,7 +13,13 @@ export default function CTASection() {
             <p>{t('CTA_BAND_TITLE')}</p>
           </h2>
           <blockquote className="cta-subtitle">{t('CTA_BAND_SUB')}</blockquote>
-          <button type="button" className="cta-button">
+          <button
+            type="button"
+            className="cta-button"
+            data-cal-link="pcg-roofing-mydefr/inspection"
+            data-cal-namespace="inspection"
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+          >
             <span>{t('CTA_BAND_BTN')}</span>
           </button>
         </div>
@@ -51,7 +57,8 @@ export default function CTASection() {
 
         .cta-button {
           display: inline-flex;
-          width: 177px;
+          width: auto;
+          min-width: 177px;
           padding: 12px 24px;
           justify-content: center;
           align-items: center;
@@ -92,8 +99,9 @@ export default function CTASection() {
           }
 
           .cta-button {
-            width: 100%;
-            max-width: 200px;
+            width: auto;
+            min-width: 177px;
+            max-width: 100%;
           }
         }
 

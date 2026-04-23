@@ -18,7 +18,7 @@ const en = {
   HERO_TITLE_2: 'Restore Your Peace of Mind',
   HERO_SUBTEXT:
     "Roof damage can be overwhelming, but it doesn't have to be. At PCG, we prioritize your family's safety by efficiently restoring your roof and managing the repair process.",
-  CTA_CALL: 'Call Us Today',
+  CTA_CALL: 'Book a Free Inspection',
   HERO_VIDEO_ARIA: 'Professional roofing team working on residential roof repair',
 
   PROCESS_TITLE: 'Our Proven Process: Simple and Effective',
@@ -97,12 +97,32 @@ const en = {
   FAQ_A5: "We're here to help you.",
   FAQ_CTA_TITLE: 'Still have questions?',
   FAQ_CTA_SUBTITLE: "We're here to help you.",
-  FAQ_CONTACT_BTN: 'Contact us Today',
+  FAQ_CONTACT_BTN: 'Contact Us',
 
   CTA_BAND_TITLE: 'Protect Your Home Today',
   CTA_BAND_SUB:
     'Ensure your roof is safe and secure with our expert roofing services. In many cases, insurance may cover the cost.',
-  CTA_BAND_BTN: 'Book a Call',
+  CTA_BAND_BTN: 'Book Your Free Inspection',
+
+  CONTACT_TITLE: 'Contact Us',
+  CONTACT_SUBTITLE:
+    'Have questions about your roof or need help with an inspection? Send us a message and our team will get back to you quickly.',
+  CONTACT_FULL_NAME: 'Full Name',
+  CONTACT_EMAIL: 'Email Address',
+  CONTACT_PHONE: 'Phone Number',
+  CONTACT_SUBJECT: 'Subject',
+  CONTACT_MESSAGE: 'Message',
+  CONTACT_FULL_NAME_PH: 'Your full name',
+  CONTACT_EMAIL_PH: 'you@example.com',
+  CONTACT_PHONE_PH: '(210) 000-0000',
+  CONTACT_SUBJECT_PH: 'How can we help?',
+  CONTACT_MESSAGE_PH: 'Tell us about your roofing needs...',
+  CONTACT_SUBMIT: 'Send Message',
+  CONTACT_SUBMITTING: 'Sending...',
+  CONTACT_REQUIRED_ERROR: 'Please fill in Full Name, Email Address, and Message.',
+  CONTACT_EMAIL_ERROR: 'Please enter a valid email address.',
+  CONTACT_SEND_ERROR: 'Unable to send your message right now. Please try again shortly.',
+  CONTACT_SUCCESS: 'Thanks! Your message has been sent. Our team will contact you soon.',
 
   FT_NEWS_DESC:
     'Subscribe to our newsletter for the latest updates on roofing services and offers.',
@@ -155,7 +175,7 @@ const es: Record<keyof typeof en, string> = {
   HERO_TITLE_2: 'Restaure su tranquilidad',
   HERO_SUBTEXT:
     'El daño al techo puede ser abrumador, pero no tiene por qué serlo. En PCG, priorizamos la seguridad de su familia restaurando su techo de manera eficiente y gestionando el proceso de reparación.',
-  CTA_CALL: 'Llámenos hoy',
+  CTA_CALL: 'Reserve una inspección gratis',
   HERO_VIDEO_ARIA:
     'Equipo profesional de techado trabajando en la reparación de un techo residencial',
 
@@ -241,12 +261,33 @@ const es: Record<keyof typeof en, string> = {
   FAQ_A5: 'Estamos aquí para ayudarle.',
   FAQ_CTA_TITLE: '¿Aún tiene preguntas?',
   FAQ_CTA_SUBTITLE: 'Estamos aquí para ayudarle.',
-  FAQ_CONTACT_BTN: 'Contáctenos hoy',
+  FAQ_CONTACT_BTN: 'Contáctenos',
 
   CTA_BAND_TITLE: 'Proteja su hogar hoy',
   CTA_BAND_SUB:
     'Asegúrese de que su techo esté seguro con nuestros servicios expertos. En muchos casos, el seguro puede cubrir el costo.',
-  CTA_BAND_BTN: 'Reservar una llamada',
+  CTA_BAND_BTN: 'Reserve su inspeccion gratis',
+
+  CONTACT_TITLE: 'Contáctenos',
+  CONTACT_SUBTITLE:
+    '¿Tiene preguntas sobre su techo o necesita ayuda con una inspección? Envíenos un mensaje y nuestro equipo le responderá pronto.',
+  CONTACT_FULL_NAME: 'Nombre completo',
+  CONTACT_EMAIL: 'Correo electrónico',
+  CONTACT_PHONE: 'Número de teléfono',
+  CONTACT_SUBJECT: 'Asunto',
+  CONTACT_MESSAGE: 'Mensaje',
+  CONTACT_FULL_NAME_PH: 'Su nombre completo',
+  CONTACT_EMAIL_PH: 'usted@ejemplo.com',
+  CONTACT_PHONE_PH: '(210) 000-0000',
+  CONTACT_SUBJECT_PH: '¿Cómo podemos ayudarle?',
+  CONTACT_MESSAGE_PH: 'Cuéntenos sobre sus necesidades de techado...',
+  CONTACT_SUBMIT: 'Enviar mensaje',
+  CONTACT_SUBMITTING: 'Enviando...',
+  CONTACT_REQUIRED_ERROR: 'Complete Nombre completo, Correo electrónico y Mensaje.',
+  CONTACT_EMAIL_ERROR: 'Ingrese un correo electrónico válido.',
+  CONTACT_SEND_ERROR:
+    'No se pudo enviar su mensaje en este momento. Inténtelo nuevamente en unos minutos.',
+  CONTACT_SUCCESS: 'Gracias. Su mensaje fue enviado y nuestro equipo le contactará pronto.',
 
   FT_NEWS_DESC:
     'Suscríbase a nuestro boletín para las últimas novedades en servicios de techado y ofertas.',

@@ -77,9 +77,9 @@ export default function FAQSection() {
             <div className="cta-content">
               <h3 className="cta-title">{t('FAQ_CTA_TITLE')}</h3>
               <p className="cta-subtitle">{t('FAQ_CTA_SUBTITLE')}</p>
-              <button type="button" className="contact-btn">
+              <a className="contact-btn" href="/contact">
                 <span>{t('FAQ_CONTACT_BTN')}</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -245,7 +245,9 @@ export default function FAQSection() {
 
         .contact-btn {
           display: inline-flex;
-          width: 156px;
+          width: auto;
+          min-width: 156px;
+          max-width: 100%;
           padding: 12px 24px;
           justify-content: center;
           align-items: center;
@@ -270,6 +272,7 @@ export default function FAQSection() {
           font-weight: 400;
           line-height: 150%;
           white-space: nowrap;
+          text-align: center;
         }
 
         @media (max-width: 768px) {
@@ -303,8 +306,13 @@ export default function FAQSection() {
           }
 
           .contact-btn {
-            width: 100%;
-            max-width: 200px;
+            width: auto;
+            max-width: 100%;
+            padding: 12px 18px;
+          }
+
+          .contact-btn span {
+            font-size: 15px;
           }
         }
 
@@ -328,6 +336,14 @@ export default function FAQSection() {
           .chevron-icon {
             width: 24px;
             height: 24px;
+          }
+
+          .contact-btn {
+            padding: 10px 14px;
+          }
+
+          .contact-btn span {
+            font-size: 14px;
           }
         }
       `}</style>
