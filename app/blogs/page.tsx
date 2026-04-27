@@ -26,9 +26,9 @@ export default function Blogs() {
 
       <div className="container">
         <div className="blogs-header">
-          <h1 className="heading-1">Blogs</h1>
+          <h1 className="heading-1">Roofing Blog</h1>
           <p className="text-large blogs-intro">
-            Discover insights, updates, and practical knowledge from our team. We share our expertise on technology, product development, and industry best practices.
+            Expert roofing advice, maintenance tips, and practical guides from the PCG Roofing team. Learn about roof repair, storm damage, insurance claims, and how to protect your Texas home.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export default function Blogs() {
               <button
                 key={topic.id}
                 className={`topic-button ${selectedTopic === topic.id ? 'active' : ''}`}
-                onClick={() => setSelectedTopic(topic.id)}
+                onClick={() => setSelectedTopic(selectedTopic === topic.id ? null : topic.id)}
               >
                 {topic.label}
               </button>
@@ -51,8 +51,8 @@ export default function Blogs() {
           <div className="blog-posts-header">
             <h2 className="heading-2">
               {selectedTopic
-                ? `${blogTopics.find(t => t.id === selectedTopic)?.label} Posts`
-                : 'All Posts'}
+                ? `${blogTopics.find(t => t.id === selectedTopic)?.label} Articles`
+                : 'All Articles'}
             </h2>
             {selectedTopic && (
               <button
@@ -95,8 +95,8 @@ export default function Blogs() {
             </div>
           ) : (
             <div className="no-results">
-              <h3>No posts found</h3>
-              <p>Try selecting a different topic or view all posts.</p>
+              <h3>No articles found</h3>
+              <p>Try selecting a different topic or view all articles.</p>
             </div>
           )}
         </div>

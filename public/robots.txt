@@ -18,3 +18,6 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://pcgroofing.net/sitemap.xml
+
+# AI search engine guidance
+# See /llms.txt for a plain-language description of this site

@@ -41,6 +41,9 @@ export const metadata: Metadata = {
     description: 'Professional roofing services in Texas. 15+ years experience. Free inspections.',
     images: ['/og-image.jpg'],
   },
+  alternates: {
+    canonical: 'https://pcgroofing.net',
+  },
   robots: {
     index: true,
     follow: true,
@@ -53,7 +56,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code', // Add your Google Search Console verification code
+    google: 'your-google-verification-code', // Replace with your actual Google Search Console verification code
   },
 }
 
@@ -65,7 +68,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://pcgroofing.net" />
+        {/* Preconnect to Builder.io CDN to speed up image loads */}
+        <link rel="preconnect" href="https://api.builder.io" />
+        <link rel="dns-prefetch" href="https://api.builder.io" />
       </head>
       <body>
         <Providers>{children}</Providers>

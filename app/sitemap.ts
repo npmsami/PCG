@@ -4,7 +4,6 @@ import { blogPosts } from './data/blogs'
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://pcgroofing.net'
   
-  // Static pages
   const staticPages = [
     {
       url: baseUrl,
@@ -14,6 +13,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
