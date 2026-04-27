@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${post.title} | PCG Roofing Blog`,
     description: post.excerpt,
-    keywords: [post.topic, 'roofing', 'blog', 'tips', 'advice'],
+    keywords: [post.topic.replace(/-/g, ' '), 'roofing texas', 'pcg roofing', 'roof tips'],
     authors: [{ name: 'PCG Roofing' }],
     openGraph: {
       title: post.title,
