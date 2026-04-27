@@ -15,19 +15,27 @@ const Footer = dynamic(() => import('./components/Footer'), { ssr: false })
 const FAQ_SCHEMA_ITEMS = [
   {
     question: 'Do I really pay $0?',
-    answer: "Yes, if your claim is approved, the insurance covers the entire cost of the repairs. You won't pay anything out of pocket. We handle all the paperwork to ensure a smooth process.",
+    answer:
+      'In some approved insurance claims, your covered repairs may be paid by the insurance company, depending on your policy, deductible, damage type, and claim approval. PCG Contractors can help document the damage and explain the repair process, but final coverage is determined by your insurance carrier.',
   },
   {
     question: 'What if my claim is denied?',
-    answer: 'If your claim is denied, we will provide you with a clear explanation of your options. Our team will offer a fair quote for the necessary repairs. We are committed to helping you navigate the situation.',
+    answer:
+      'If your claim is denied, we can review the repair needs with you and provide a clear estimate for the necessary work. Our team will explain your options so you can make the best decision for your home.',
   },
   {
     question: 'How fast is the process?',
-    answer: 'Typically, most roofs are restored within 1 to 2 weeks after your claim is approved. Our efficient process ensures minimal disruption to your home. We prioritize getting your roof repaired quickly and effectively.',
+    answer:
+      'Timelines depend on the repair scope, insurance approval, materials, and weather. Smaller repairs may be completed quickly, while larger restoration projects may take longer. We keep you updated through each step.',
   },
   {
     question: 'Are you licensed and insured?',
-    answer: 'Absolutely! PCG Roofing is fully licensed and insured. With over 15 years of experience, we are a trusted name in the San Antonio area.',
+    answer:
+      'Yes. PCG Contractors is licensed and insured, with more than 15 years of experience helping Texas homeowners with repair and restoration projects.',
+  },
+  {
+    question: 'Still have questions?',
+    answer: "We're here to help you.",
   },
 ];
 

@@ -14,85 +14,89 @@ const en = {
   LANG_MENU_ARIA: 'Language',
   LANG_MENU_HEADING: 'Choose language',
 
-  HERO_TITLE_1: 'Restore Your Roof',
+  HERO_TITLE_1: 'Restore Your Home',
   HERO_TITLE_2: 'Restore Your Peace of Mind',
   HERO_SUBTEXT:
-    "Roof damage can be overwhelming, but it doesn't have to be. At PCG, we prioritize your family's safety by efficiently restoring your roof and managing the repair process.",
-  CTA_CALL: 'Book a Free Inspection',
-  HERO_VIDEO_ARIA: 'Professional roofing team working on residential roof repair',
+    'Home damage can feel overwhelming, but you do not have to handle it alone. PCG Contractors helps Texas homeowners repair, restore, and protect their homes with reliable roofing, exterior repairs, interior repairs, storm damage restoration, and insurance claim support.',
+  CTA_CALL: 'Book a Free Home Inspection',
+  HERO_VIDEO_ARIA:
+    'PCG Contractors team discussing a home repair project with a Texas homeowner',
 
-  PROCESS_TITLE: 'Our Proven Process: Simple and Effective',
+  PROCESS_TITLE: 'Our Proven Process: Simple, Clear, and Stress-Free',
   PROCESS_SUBTITLE:
-    'At PCG Roofing, we simplify the roof repair process. Our proven three-steps approach ensures you receive the best service while we handle your insurance claim. Experience a stress-free journey from inspection to completion.',
-  PROCESS_S1_TITLE: 'Step 1: Free Roof Inspection',
+    'At PCG Contractors, we make home repairs easier from the first inspection to the final walkthrough. Whether your property needs roofing, exterior repairs, interior work, or storm damage restoration, our team documents the damage, explains your options, and manages the repair process with clear communication.',
+  PROCESS_S1_TITLE: 'Free Home Inspection',
   PROCESS_S1_DESC:
-    'We document the damage with detailed photos and a comprehensive report.',
-  PROCESS_S2_TITLE: 'Step 2: Insurance Claim and Contract Signing',
+    'We inspect the affected areas, document visible damage, and provide a clear report with photos and next steps.',
+  PROCESS_S2_TITLE: 'Estimate, Insurance Support & Approval',
   PROCESS_S2_DESC:
-    'We handle the claim process and provide a transparent contract—no surprises, just peace of mind.',
-  PROCESS_S3_TITLE: 'Step 3: Roof Restore',
-  PROCESS_S3_DESC: 'Licensed crew, warranty included, peace of mind delivered.',
-  BTN_BOOK_APPOINTMENT: 'Book an Appointment',
+    'If insurance is involved, we help document the damage and guide you through the claim process. You receive a transparent repair plan before work begins.',
+  PROCESS_S3_TITLE: 'Professional Home Repair & Restoration',
+  PROCESS_S3_DESC:
+    'Our crew completes the approved work safely, efficiently, and with quality workmanship you can trust.',
+  BTN_BOOK_APPOINTMENT: 'Book a Free Home Inspection',
 
   SVC_HEAD_TITLE: 'Protect Your Home with Confidence',
   SVC_HEAD_DESC:
-    'With over 15 years of dedicated service, PCG Roofing is fully licensed and insured, ensuring peace of mind for homeowners. Our strong relationships with top insurance carriers and certified installers allow us to deliver exceptional roofing solutions quickly and efficiently.',
-  SVC_GRID_TITLE: 'Comprehensive Roofing Solutions Tailored to Your Needs',
+    'With over 15 years of hands-on experience, PCG Contractors helps homeowners protect, repair, and restore their properties after everyday wear, storm damage, leaks, and unexpected repairs. From roofing to full home repair projects, our team brings dependable workmanship, clear communication, and professional project management to every job.',
+  SVC_GRID_TITLE: 'Whole-Home Repair Solutions Tailored to Your Needs',
   SVC_ALT_BADGE: '15 Years Certification',
-  SVC_IMG_ALT: 'PCG Roofing professionals discussing with homeowner',
-  SVC_ITEM_1: 'Roofing Repairs',
-  SVC_ITEM_2: 'Roof Replacements',
-  SVC_ITEM_3: 'Roofing Insurance Claims',
-  SVC_ITEM_4: 'Shingle Roofing Installation',
-  SVC_ITEM_5: 'Tile Roofing Installation',
-  SVC_ITEM_6: 'Emergency Tarping Services',
+  SVC_IMG_ALT:
+    'PCG Contractors team discussing home repair project with Texas homeowner',
+  SVC_ITEM_1: 'Roof Repairs',
+  SVC_ITEM_2: 'Roofing & Exterior Restoration',
+  SVC_ITEM_3: 'Insurance Claim Assistance',
+  SVC_ITEM_4: 'Exterior Home Repairs',
+  SVC_ITEM_5: 'Interior Home Repairs',
+  SVC_ITEM_6: 'Emergency Storm Damage Repairs',
 
   STAT_1_T: 'Insurance',
-  STAT_1_S: 'Claim',
-  STAT_1_D: 'Assistance',
+  STAT_1_S: 'Repair',
+  STAT_1_D: 'Support',
   STAT_2_T: 'Fast',
-  STAT_2_S: 'Turnaround',
-  STAT_2_D: 'Times',
+  STAT_2_S: 'Project',
+  STAT_2_D: 'Turnaround',
   STAT_3_T: '15+ Years',
   STAT_3_S: 'of',
   STAT_3_D: 'Experience',
   STAT_4_T: 'Thousands',
-  STAT_4_S: 'of Roofs',
+  STAT_4_S: 'of Homes',
   STAT_4_D: 'Restored',
 
   TST_TITLE: 'Customer Testimonials',
   TST_SUBTITLE:
-    'Insurance approved my claim fast, and PCG had my roof done in a week.',
+    'Texas homeowners share their experience working with PCG Contractors on repairs and restoration.',
   TST_1_QUOTE:
-    'Insurance approved my claim fast, and PCG Roofing had my roof repaired in a week. I paid $0.',
+    'PCG Contractors helped us after storm damage and made the entire repair process simple. They documented everything clearly and finished the work fast.',
   TST_1_NAME: 'Maria G.',
   TST_1_LOC: 'Homeowner, San Antonio',
-  TST_1_ALT: 'Homeowner from San Antonio who used PCG Roofing services',
+  TST_1_ALT: 'Homeowner from San Antonio who used PCG Contractors services',
   TST_2_QUOTE:
-    'They explained everything clearly and handled all the insurance headaches. Highly recommend PCG Roofing.',
+    'They explained our options, helped with the insurance process, and handled the repairs professionally from start to finish.',
   TST_2_NAME: 'Ken R.',
   TST_2_LOC: 'Homeowner, San Antonio',
-  TST_2_ALT: 'San Antonio homeowner who worked with PCG Roofing',
-  TST_3_QUOTE: 'PCG Roofing made the entire process stress-free and quick!',
+  TST_2_ALT: 'San Antonio homeowner who worked with PCG Contractors',
+  TST_3_QUOTE:
+    'PCG Contractors made the process stress-free. The team was clear, responsive, and easy to work with.',
   TST_3_NAME: 'John D.',
   TST_3_LOC: 'Business Owner, Local',
-  TST_3_ALT: 'Another Homeowner from San Antonio who used PCG Roofing services',
+  TST_3_ALT: 'Another homeowner from San Antonio who used PCG Contractors services',
 
   FAQ_TITLE: 'FAQs',
   FAQ_INTRO:
-    'Here are answers to common questions about our roofing and insurance services.',
+    'Here are answers to common questions about home repairs, storm damage restoration, and insurance-supported repair projects.',
   FAQ_Q1: 'Do I really pay $0?',
   FAQ_A1:
-    "Yes, if your claim is approved, the insurance covers the entire cost of the repairs. You won't pay anything out of pocket. We handle all the paperwork to ensure a smooth process.",
+    'In some approved insurance claims, your covered repairs may be paid by the insurance company, depending on your policy, deductible, damage type, and claim approval. PCG Contractors can help document the damage and explain the repair process, but final coverage is determined by your insurance carrier.',
   FAQ_Q2: 'What if my claim is denied?',
   FAQ_A2:
-    'If your claim is denied, we will provide you with a clear explanation of your options. Our team will offer a fair quote for the necessary repairs. We are committed to helping you navigate the situation.',
+    'If your claim is denied, we can review the repair needs with you and provide a clear estimate for the necessary work. Our team will explain your options so you can make the best decision for your home.',
   FAQ_Q3: 'How fast is the process?',
   FAQ_A3:
-    'Typically, most roofs are restored within 1 to 2 weeks after your claim is approved. Our efficient process ensures minimal disruption to your home. We prioritize getting your roof repaired quickly and effectively.',
+    'Timelines depend on the repair scope, insurance approval, materials, and weather. Smaller repairs may be completed quickly, while larger restoration projects may take longer. We keep you updated through each step.',
   FAQ_Q4: 'Are you licensed and insured?',
   FAQ_A4:
-    'Absolutely! PCG Roofing is fully licensed and insured. With over 15 years of experience, we are a trusted name in the San Antonio area.',
+    'Yes. PCG Contractors is licensed and insured, with more than 15 years of experience helping Texas homeowners with repair and restoration projects.',
   FAQ_Q5: 'Still have questions?',
   FAQ_A5: "We're here to help you.",
   FAQ_CTA_TITLE: 'Still have questions?',
@@ -101,12 +105,12 @@ const en = {
 
   CTA_BAND_TITLE: 'Protect Your Home Today',
   CTA_BAND_SUB:
-    'Ensure your roof is safe and secure with our expert roofing services. In many cases, insurance may cover the cost.',
-  CTA_BAND_BTN: 'Book Your Free Inspection',
+    'Whether you need roofing, storm damage restoration, exterior repairs, interior repairs, or help understanding an insurance repair project, PCG Contractors is ready to help.',
+  CTA_BAND_BTN: 'Book Your Free Home Inspection',
 
-  CONTACT_TITLE: 'Contact Us',
+  CONTACT_TITLE: 'Contact PCG Contractors',
   CONTACT_SUBTITLE:
-    'Have questions about your roof or need help with an inspection? Send us a message and our team will get back to you quickly.',
+    'Have questions about home repairs, storm damage, roofing, exterior repairs, interior repairs, or an insurance-supported project? Send us a message and our team will get back to you quickly.',
   CONTACT_FULL_NAME: 'Full Name',
   CONTACT_EMAIL: 'Email Address',
   CONTACT_PHONE: 'Phone Number',
@@ -116,7 +120,7 @@ const en = {
   CONTACT_EMAIL_PH: 'you@example.com',
   CONTACT_PHONE_PH: '(210) 000-0000',
   CONTACT_SUBJECT_PH: 'How can we help?',
-  CONTACT_MESSAGE_PH: 'Tell us about your roofing needs...',
+  CONTACT_MESSAGE_PH: 'Tell us about your home restoration needs...',
   CONTACT_SUBMIT: 'Send Message',
   CONTACT_SUBMITTING: 'Sending...',
   CONTACT_REQUIRED_ERROR: 'Please fill in Full Name, Email Address, and Message.',
@@ -125,7 +129,7 @@ const en = {
   CONTACT_SUCCESS: 'Thanks! Your message has been sent. Our team will contact you soon.',
 
   FT_NEWS_DESC:
-    'Subscribe to our newsletter for the latest updates on roofing services and offers.',
+    'Subscribe for home repair tips, storm damage guidance, maintenance reminders, and updates from PCG Contractors.',
   FT_EMAIL_PH: 'Your Email Here',
   FT_JOIN: 'Join',
   FT_DISCLAIMER:
@@ -149,7 +153,7 @@ const en = {
   FT_SO_NAME_TW: 'Twitter',
   FT_SO_NAME_LI: 'LinkedIn',
   FT_SO_NAME_YT: 'YouTube',
-  FT_COPYRIGHT: '© 2025 PCG Roofing. All rights reserved.',
+  FT_COPYRIGHT: '© 2026 PCG Contractors. All rights reserved.',
   FT_PRIVACY: 'Privacy Policy',
   FT_TERMS: 'Terms and Conditions',
   FT_COOKIES: 'Cookie Settings',
@@ -171,92 +175,92 @@ const es: Record<keyof typeof en, string> = {
   LANG_MENU_ARIA: 'Idioma',
   LANG_MENU_HEADING: 'Elegir idioma',
 
-  HERO_TITLE_1: 'Restaure su techo',
+  HERO_TITLE_1: 'Restaure su hogar',
   HERO_TITLE_2: 'Restaure su tranquilidad',
   HERO_SUBTEXT:
-    'El daño al techo puede ser abrumador, pero no tiene por qué serlo. En PCG, priorizamos la seguridad de su familia restaurando su techo de manera eficiente y gestionando el proceso de reparación.',
-  CTA_CALL: 'Reserve una inspección gratis',
+    'Los daños en el hogar pueden resultar abrumadores, pero no tiene que enfrentarlos solo. PCG Contractors ayuda a los propietarios en Texas a reparar, restaurar y proteger sus viviendas con techado confiable, reparaciones exteriores e interiores, restauración por daños de tormenta y apoyo con reclamos de seguro.',
+  CTA_CALL: 'Reserve una inspección gratuita del hogar',
   HERO_VIDEO_ARIA:
-    'Equipo profesional de techado trabajando en la reparación de un techo residencial',
+    'Equipo de PCG Contractors hablando de un proyecto de reparación del hogar con un propietario en Texas',
 
-  PROCESS_TITLE: 'Nuestro proceso comprobado: simple y eficaz',
+  PROCESS_TITLE: 'Nuestro proceso comprobado: simple, claro y sin estrés',
   PROCESS_SUBTITLE:
-    'En PCG Roofing simplificamos el proceso de reparación del techo. Nuestro enfoque probado en tres pasos le garantiza el mejor servicio mientras gestionamos su reclamo de seguros. Disfrute de un proceso sin estrés, de la inspección hasta la finalización.',
-  PROCESS_S1_TITLE: 'Paso 1: Inspección gratuita del techo',
+    'En PCG Contractors facilitamos las reparaciones del hogar desde la primera inspección hasta la entrega final. Ya sea que su propiedad necesite techado, reparaciones exteriores o interiores, o restauración por daños de tormenta, nuestro equipo documenta el daño, explica las opciones y gestiona el proceso con comunicación clara.',
+  PROCESS_S1_TITLE: 'Inspección gratuita del hogar',
   PROCESS_S1_DESC:
-    'Documentamos los daños con fotos detalladas y un informe completo.',
-  PROCESS_S2_TITLE: 'Paso 2: Reclamo de seguros y firma del contrato',
+    'Inspeccionamos las zonas afectadas, documentamos el daño visible y entregamos un informe claro con fotos y próximos pasos.',
+  PROCESS_S2_TITLE: 'Presupuesto, apoyo con seguros y aprobación',
   PROCESS_S2_DESC:
-    'Gestionamos el reclamo y le ofrecemos un contrato transparente: sin sorpresas, solo tranquilidad.',
-  PROCESS_S3_TITLE: 'Paso 3: Restauración del techo',
+    'Si interviene el seguro, ayudamos a documentar el daño y a orientarle en el reclamo. Recibe un plan de reparación transparente antes de que comience el trabajo.',
+  PROCESS_S3_TITLE: 'Reparación y restauración profesional del hogar',
   PROCESS_S3_DESC:
-    'Cuadrilla licenciada, garantía incluida y tranquilidad asegurada.',
-  BTN_BOOK_APPOINTMENT: 'Reservar una cita',
+    'Nuestra cuadrilla completa el trabajo aprobado de forma segura, eficiente y con la calidad que usted merece.',
+  BTN_BOOK_APPOINTMENT: 'Reserve una inspección gratuita del hogar',
 
   SVC_HEAD_TITLE: 'Proteja su hogar con confianza',
   SVC_HEAD_DESC:
-    'Con más de 15 años de servicio dedicado, PCG Roofing está totalmente licenciado y asegurado, brindando tranquilidad a los propietarios. Nuestras sólidas relaciones con las principales aseguradoras e instaladores certificados nos permiten ofrecer soluciones de techado excepcionales de forma rápida y eficiente.',
+    'Con más de 15 años de experiencia práctica, PCG Contractors ayuda a los propietarios a proteger, reparar y restaurar sus propiedades tras el desgaste diario, daños por tormenta, filtraciones e imprevistos. Desde techado hasta proyectos integrales de reparación, aportamos mano de obra confiable, comunicación clara y gestión profesional en cada trabajo.',
   SVC_GRID_TITLE:
-    'Soluciones integrales de techado adaptadas a sus necesidades',
+    'Soluciones de reparación integral del hogar adaptadas a sus necesidades',
   SVC_ALT_BADGE: 'Certificación de 15 años',
   SVC_IMG_ALT:
-    'Profesionales de PCG Roofing conversando con un propietario',
-  SVC_ITEM_1: 'Reparaciones de techos',
-  SVC_ITEM_2: 'Reemplazos de techos',
-  SVC_ITEM_3: 'Reclamos de seguros de techado',
-  SVC_ITEM_4: 'Instalación de techos de tejas asfálticas',
-  SVC_ITEM_5: 'Instalación de techos de teja',
-  SVC_ITEM_6: 'Servicios de emergencia con lonas',
+    'Equipo de PCG Contractors conversando sobre reparación del hogar con un propietario en Texas',
+  SVC_ITEM_1: 'Reparaciones de techo',
+  SVC_ITEM_2: 'Techado y restauración exterior',
+  SVC_ITEM_3: 'Asistencia con reclamos de seguro',
+  SVC_ITEM_4: 'Reparaciones exteriores del hogar',
+  SVC_ITEM_5: 'Reparaciones interiores del hogar',
+  SVC_ITEM_6: 'Reparaciones de emergencia por tormenta',
 
   STAT_1_T: 'Seguros',
-  STAT_1_S: 'Reclamo',
-  STAT_1_D: 'Asistencia',
-  STAT_2_T: 'Rápido',
-  STAT_2_S: 'Plazo de',
-  STAT_2_D: 'ejecución',
+  STAT_1_S: 'Reparación',
+  STAT_1_D: 'Apoyo',
+  STAT_2_T: 'Plazo',
+  STAT_2_S: 'de proyecto',
+  STAT_2_D: 'rápido',
   STAT_3_T: 'Más de 15 años',
   STAT_3_S: 'de',
   STAT_3_D: 'experiencia',
   STAT_4_T: 'Miles',
-  STAT_4_S: 'de techos',
+  STAT_4_S: 'de hogares',
   STAT_4_D: 'restaurados',
 
   TST_TITLE: 'Testimonios de clientes',
   TST_SUBTITLE:
-    'El seguro aprobó mi reclamo rápido y PCG terminó mi techo en una semana.',
+    'Propietarios en Texas comparten su experiencia con PCG Contractors en reparaciones y restauración.',
   TST_1_QUOTE:
-    'El seguro aprobó mi reclamo rápido y PCG Roofing reparó mi techo en una semana. Pagué $0.',
+    'PCG Contractors nos ayudó tras daños por tormenta y simplificó todo el proceso de reparación. Documentaron todo con claridad y terminaron rápido.',
   TST_1_NAME: 'María G.',
   TST_1_LOC: 'Propietaria, San Antonio',
   TST_1_ALT:
-    'Propietaria de San Antonio que utilizó los servicios de PCG Roofing',
+    'Propietaria de San Antonio que utilizó los servicios de PCG Contractors',
   TST_2_QUOTE:
-    'Explicaron todo con claridad y se encargaron de todos los trámites del seguro. Muy recomendable PCG Roofing.',
+    'Explicaron nuestras opciones, ayudaron con el seguro y llevaron las reparaciones de principio a fin con profesionalidad.',
   TST_2_NAME: 'Ken R.',
   TST_2_LOC: 'Propietario, San Antonio',
-  TST_2_ALT: 'Propietario de San Antonio que trabajó con PCG Roofing',
+  TST_2_ALT: 'Propietario de San Antonio que trabajó con PCG Contractors',
   TST_3_QUOTE:
-    '¡PCG Roofing hizo que todo el proceso fuera rápido y sin estrés!',
+    'PCG Contractors hizo el proceso sin estrés. El equipo fue claro, respondió rápido y fue fácil trabajar con ellos.',
   TST_3_NAME: 'Juan D.',
   TST_3_LOC: 'Dueño de negocio, local',
   TST_3_ALT:
-    'Otro propietario de San Antonio que utilizó los servicios de PCG Roofing',
+    'Otro propietario de San Antonio que utilizó los servicios de PCG Contractors',
 
   FAQ_TITLE: 'Preguntas frecuentes',
   FAQ_INTRO:
-    'Aquí tiene respuestas a preguntas habituales sobre nuestros servicios de techado y seguros.',
+    'Respuestas a preguntas habituales sobre reparaciones del hogar, restauración por daños de tormenta y proyectos con apoyo del seguro.',
   FAQ_Q1: '¿Realmente pago $0?',
   FAQ_A1:
-    'Sí, si su reclamo es aprobado, el seguro cubre el costo total de las reparaciones. No pagará nada de su bolsillo. Nos encargamos de todo el papeleo para un proceso fluido.',
+    'En algunos reclamos aprobados por el seguro, las reparaciones cubiertas pueden ser pagadas por la aseguradora, según su póliza, deducible, tipo de daño y aprobación del reclamo. PCG Contractors puede ayudar a documentar el daño y explicar el proceso de reparación, pero la cobertura final la determina su aseguradora.',
   FAQ_Q2: '¿Qué pasa si deniegan mi reclamo?',
   FAQ_A2:
-    'Si su reclamo es denegado, le daremos una explicación clara de sus opciones. Nuestro equipo le ofrecerá un presupuesto justo para las reparaciones necesarias. Estamos comprometidos a ayudarle en la situación.',
+    'Si deniegan su reclamo, revisamos con usted las necesidades de reparación y le damos un presupuesto claro para el trabajo necesario. Explicamos las opciones para que tome la mejor decisión para su hogar.',
   FAQ_Q3: '¿Qué tan rápido es el proceso?',
   FAQ_A3:
-    'Por lo general, la mayoría de los techos se restauran en 1 a 2 semanas después de aprobar el reclamo. Nuestro proceso eficiente minimiza las molestias en su hogar. Priorizamos reparar su techo de forma rápida y efectiva.',
+    'Los plazos dependen del alcance de la reparación, la aprobación del seguro, los materiales y el clima. Las reparaciones pequeñas pueden completarse pronto; las restauraciones grandes pueden tardar más. Le mantenemos informado en cada paso.',
   FAQ_Q4: '¿Están licenciados y asegurados?',
   FAQ_A4:
-    '¡Por supuesto! PCG Roofing está totalmente licenciado y asegurado. Con más de 15 años de experiencia, somos un nombre de confianza en el área de San Antonio.',
+    'Sí. PCG Contractors está licenciado y asegurado, con más de 15 años de experiencia ayudando a propietarios en Texas con reparación y restauración.',
   FAQ_Q5: '¿Aún tiene preguntas?',
   FAQ_A5: 'Estamos aquí para ayudarle.',
   FAQ_CTA_TITLE: '¿Aún tiene preguntas?',
@@ -265,12 +269,12 @@ const es: Record<keyof typeof en, string> = {
 
   CTA_BAND_TITLE: 'Proteja su hogar hoy',
   CTA_BAND_SUB:
-    'Asegúrese de que su techo esté seguro con nuestros servicios expertos. En muchos casos, el seguro puede cubrir el costo.',
-  CTA_BAND_BTN: 'Reserve su inspeccion gratis',
+    'Ya sea que necesite techado, restauración por tormenta, reparaciones exteriores o interiores, o ayuda para entender un proyecto con seguro, PCG Contractors está listo para ayudarle.',
+  CTA_BAND_BTN: 'Reserve su inspección gratuita del hogar',
 
-  CONTACT_TITLE: 'Contáctenos',
+  CONTACT_TITLE: 'Contacte a PCG Contractors',
   CONTACT_SUBTITLE:
-    '¿Tiene preguntas sobre su techo o necesita ayuda con una inspección? Envíenos un mensaje y nuestro equipo le responderá pronto.',
+    '¿Tiene preguntas sobre reparaciones del hogar, daños por tormenta, techado, reparaciones exteriores o interiores, o un proyecto con seguro? Envíenos un mensaje y nuestro equipo le responderá pronto.',
   CONTACT_FULL_NAME: 'Nombre completo',
   CONTACT_EMAIL: 'Correo electrónico',
   CONTACT_PHONE: 'Número de teléfono',
@@ -280,7 +284,7 @@ const es: Record<keyof typeof en, string> = {
   CONTACT_EMAIL_PH: 'usted@ejemplo.com',
   CONTACT_PHONE_PH: '(210) 000-0000',
   CONTACT_SUBJECT_PH: '¿Cómo podemos ayudarle?',
-  CONTACT_MESSAGE_PH: 'Cuéntenos sobre sus necesidades de techado...',
+  CONTACT_MESSAGE_PH: 'Cuéntenos sobre sus necesidades de restauración del hogar...',
   CONTACT_SUBMIT: 'Enviar mensaje',
   CONTACT_SUBMITTING: 'Enviando...',
   CONTACT_REQUIRED_ERROR: 'Complete Nombre completo, Correo electrónico y Mensaje.',
@@ -290,7 +294,7 @@ const es: Record<keyof typeof en, string> = {
   CONTACT_SUCCESS: 'Gracias. Su mensaje fue enviado y nuestro equipo le contactará pronto.',
 
   FT_NEWS_DESC:
-    'Suscríbase a nuestro boletín para las últimas novedades en servicios de techado y ofertas.',
+    'Suscríbase para consejos de reparación del hogar, orientación sobre tormentas, recordatorios de mantenimiento y novedades de PCG Contractors.',
   FT_EMAIL_PH: 'Su correo electrónico',
   FT_JOIN: 'Unirse',
   FT_DISCLAIMER:
@@ -314,7 +318,7 @@ const es: Record<keyof typeof en, string> = {
   FT_SO_NAME_TW: 'Twitter',
   FT_SO_NAME_LI: 'LinkedIn',
   FT_SO_NAME_YT: 'YouTube',
-  FT_COPYRIGHT: '© 2025 PCG Roofing. Todos los derechos reservados.',
+  FT_COPYRIGHT: '© 2026 PCG Contractors. Todos los derechos reservados.',
   FT_PRIVACY: 'Política de privacidad',
   FT_TERMS: 'Términos y condiciones',
   FT_COOKIES: 'Configuración de cookies',

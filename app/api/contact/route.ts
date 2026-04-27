@@ -101,7 +101,7 @@ export async function POST(request: Request) {
     const htmlBody = `
       <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
         <h2 style="margin-bottom: 8px;">New Contact Form Submission</h2>
-        <p style="margin-top: 0; color: #666;">PCG Roofing website contact page</p>
+        <p style="margin-top: 0; color: #666;">PCG Contractors website contact page</p>
         <table style="border-collapse: collapse; width: 100%; max-width: 640px;">
           <tr>
             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Full Name</td>
@@ -128,7 +128,7 @@ export async function POST(request: Request) {
     `;
 
     const result = await transporter.sendMail({
-      from: `PCG Roofing Contact Form <${fromEmail}>`,
+      from: `PCG Contractors Contact Form <${fromEmail}>`,
       to: toEmail,
       replyTo,
       subject: emailSubject,

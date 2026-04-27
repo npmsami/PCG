@@ -85,7 +85,7 @@ export default function Footer() {
             <div className="company-logo">
               <Image
                 src="https://api.builder.io/api/v1/image/assets/TEMP/ae5e99d29686311debaad341b15d6eb03412fa3a?width=268"
-                alt="PCG Logo"
+                alt="PCG Contractors"
                 width={84}
                 height={36}
               />

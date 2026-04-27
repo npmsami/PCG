@@ -5,14 +5,22 @@ import '../styles/about.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About PCG Roofing - Texas Roofing Experts Since 2010',
-  description: 'Learn about PCG Roofing, Texas roofing experts with 15+ years of experience. Licensed & insured. Specializing in roof repair, replacement, and storm damage restoration.',
-  keywords: ['about pcg roofing', 'texas roofing company', 'licensed roofer texas', 'experienced roofer'],
+  title: 'About PCG Contractors | Texas Home Repair & Restoration Experts',
+  description:
+    'Learn about PCG Contractors, a Texas home repair and restoration company helping homeowners with roofing, storm damage, exterior repairs, interior repairs, and insurance claim support.',
+  keywords: [
+    'about PCG Contractors',
+    'Texas home repair company',
+    'home repair contractor San Antonio',
+    'storm restoration contractor',
+    'insurance claim home repairs',
+  ],
   openGraph: {
-    title: 'About PCG Roofing - Texas Roofing Experts',
-    description: 'Learn about PCG Roofing, Texas roofing experts with 15+ years of experience.',
+    title: 'About PCG Contractors | Texas Home Repair & Restoration Experts',
+    description:
+      'PCG Contractors helps Texas homeowners with roofing, storm damage, exterior and interior repairs, and insurance-supported projects.',
     url: 'https://pcgroofing.net/about',
-    siteName: 'PCG Roofing',
+    siteName: 'PCG Contractors',
     images: [
       {
         url: '/og-image.jpg',
@@ -24,8 +32,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About PCG Roofing - Texas Roofing Experts',
-    description: 'Learn about PCG Roofing, Texas roofing experts with 15+ years of experience.',
+    title: 'About PCG Contractors | Texas Home Repair & Restoration Experts',
+    description:
+      'Texas home repair and restoration: roofing, storm damage, exterior and interior work, and insurance claim support.',
   },
   alternates: {
     canonical: 'https://pcgroofing.net/about',
@@ -35,8 +44,8 @@ export const metadata: Metadata = {
 export default function About() {
   const breadcrumbItems = [
     { name: 'Home', url: 'https://pcgroofing.net' },
-    { name: 'About', url: 'https://pcgroofing.net/about' }
-  ];
+    { name: 'About', url: 'https://pcgroofing.net/about' },
+  ]
 
   return (
     <>
@@ -44,122 +53,87 @@ export default function About() {
       <main>
         <Navigation />
         <div className="container">
-        <article className="about-content">
-          <section className="about-hero">
-            <h1 className="heading-1"><p>About PCG Roofing</p></h1>
-          </section>
+          <article className="about-content">
+            <section className="about-hero">
+              <h1 className="heading-1">
+                <p>About PCG Contractors</p>
+              </h1>
+            </section>
 
-          <section className="about-section">
-            <h2 className="about-subheading">Trusted Texas Roofing Experts</h2>
-            <p className="text-medium">
-              PCG Roofing is a <strong>Texas based roofing company</strong> dedicated to protecting homes and businesses through reliable, high-quality roofing services. With over <strong>15 years of hands-on experience</strong>, we specialize in roof repair, roof replacement, storm damage restoration, and insurance claim assistance—delivering results homeowners can trust.
-            </p>
-            <p className="text-medium">
-              We understand that roof damage can be stressful. That's why our team focuses on making the process simple, transparent, and efficient—from the first inspection to the final nail.
-            </p>
-          </section>
-
-          <section className="about-section">
-            <h2 className="about-subheading">Our Mission</h2>
-            <p className="text-medium">
-              Our mission is to <strong>protect Texas homes and properties</strong> by delivering dependable roofing solutions with integrity, craftsmanship, and clear communication. We aim to remove uncertainty from the roofing process by guiding our customers every step of the way.
-            </p>
-          </section>
-
-          <section className="about-section">
-            <h2 className="about-subheading-large">What Sets Us Apart</h2>
-          </section>
-
-          <section className="about-section">
-            <h3 className="about-highlight">Experience You Can Rely On</h3>
-            <p className="text-medium">
-              With more than <strong>15 years of roofing experience</strong>, PCG Roofing has restored <strong>thousands of roofs across Texas</strong>. Our team is trained to handle everything from minor repairs to full roof replacements.
-            </p>
-          </section>
-
-          <section className="about-section">
-            <h3 className="about-highlight">Licensed &amp; Insured in Texas</h3>
-            <p className="text-medium">
-              PCG Roofing is fully <strong>licensed and insured</strong>, giving homeowners peace of mind knowing their property is protected and their project is handled professionally.
-            </p>
-          </section>
-
-          <section className="about-section">
-            <h3 className="about-highlight">Insurance Claim Assistance</h3>
-            <p className="text-medium">
-              We work directly with insurance companies to help homeowners navigate the claims process. From documentation to approvals, we manage the details so you don't have to.
-            </p>
-          </section>
-
-          <section className="about-section">
-            <h3 className="about-highlight">Quality Materials &amp; Skilled Installers</h3>
-            <p className="text-medium">
-              We partner with trusted manufacturers and certified installers to ensure every roof is built to last—using materials designed to withstand Texas weather.
-            </p>
-          </section>
-
-          <section className="about-section">
-            <h3 className="about-highlight">Our Proven Process</h3>
-            <div className="about-process">
+            <section className="about-section">
+              <h2 className="about-subheading">Trusted Texas Home Repair &amp; Restoration Experts</h2>
               <p className="text-medium">
-                <strong>Free Roof Inspection</strong>
+                PCG Contractors is a Texas-based home repair and restoration company dedicated to helping homeowners
+                protect, repair, and restore their properties. With over 15 years of hands-on experience, we handle
+                roofing, exterior repairs, interior repairs, storm damage restoration, and insurance-supported repair
+                projects with professionalism and care.
               </p>
-              <p className="text-medium">
-                We assess your roof, document any damage, and provide a clear, honest evaluation.
-              </p>
-            </div>
-            <div className="about-process">
-              <p className="text-medium">
-                <strong>Insurance Claim Support</strong>
-              </p>
-              <p className="text-medium">
-                If applicable, we assist with insurance claims and explain your options before any work begins.
-              </p>
-            </div>
-            <div className="about-process">
-              <p className="text-medium">
-                <strong>Professional Roof Restoration</strong>
-              </p>
-              <p className="text-medium">
-                Our experienced crew completes the project efficiently, safely, and to the highest standards.
-              </p>
-            </div>
-          </section>
+            </section>
 
-          <section className="about-section">
-            <h3 className="about-highlight">Serving Communities Across Texas</h3>
-            <p className="text-medium">
-              PCG Roofing proudly serves homeowners and businesses throughout <strong>Texas</strong>, including major metro areas and surrounding communities. Our local expertise allows us to address region-specific roofing challenges such as storms, heat exposure, and material longevity.
-            </p>
-          </section>
+            <section className="about-section">
+              <h2 className="about-subheading">Our Mission</h2>
+              <p className="text-medium">
+                Our mission is to make home repairs simple, transparent, and dependable. We help Texas homeowners
+                understand the damage, review their repair options, and move through the process with confidence.
+              </p>
+            </section>
 
-          <section className="about-section">
-            <h3 className="about-highlight">Our Commitment to You</h3>
-            <p className="text-medium">
-              When you choose PCG Roofing, you're choosing a team that values:
-            </p>
-            <ul className="about-values">
-              <li>Honesty and transparency</li>
-              <li>Quality workmanship</li>
-              <li>Timely project completion</li>
-              <li>Long-term customer satisfaction</li>
-            </ul>
-            <p className="text-medium">
-              We don't just repair roofs—we help protect what matters most.
-            </p>
-          </section>
+            <section className="about-section">
+              <h2 className="about-subheading-large">What Sets Us Apart</h2>
+              <ul className="about-values">
+                <li>15+ years of home repair and restoration experience</li>
+                <li>Licensed and insured team</li>
+                <li>Roofing, interior, and exterior repair support</li>
+                <li>Storm damage restoration experience</li>
+                <li>Insurance claim documentation assistance</li>
+                <li>Clear communication from inspection to completion</li>
+              </ul>
+            </section>
 
-          <section className="about-section">
-            <h3 className="about-highlight">Get Started Today</h3>
-            <p className="text-medium">
-              Whether you need a roof inspection, emergency repair, or full replacement, PCG Roofing is here to help.
-            </p>
-            <p className="text-medium">
-              <strong>Schedule a Free Roof Inspection today and protect your Texas home with confidence.</strong>
-            </p>
-          </section>
-        </article>
-      </div>
+            <section className="about-section">
+              <h2 className="about-subheading">What We Do</h2>
+              <p className="text-medium">
+                Roofing remains a core strength—we repair and replace shingle, metal, and tile systems and work with
+                carriers to document storm-related damage. We also restore{' '}
+                <strong>siding, fascia, trim, gutters, windows, and exterior doors</strong>, and when damage reaches
+                inside the home, we can help with <strong>drywall, paint, ceilings, and interior restoration</strong>.
+                From emergency protection after severe weather to full project management, PCG Contractors is your
+                whole-home partner.
+              </p>
+            </section>
+
+            <section className="about-section">
+              <h2 className="about-subheading">Serving Communities Across Texas</h2>
+              <p className="text-medium">
+                PCG Contractors proudly serves homeowners and businesses throughout{' '}
+                <strong>San Antonio, Austin, Houston, New Braunfels, Seguin</strong>, and surrounding Texas communities.
+                Our local team understands Texas weather—from hail and high winds to heat and UV exposure—and how it
+                affects your property.
+              </p>
+            </section>
+
+            <section className="about-section">
+              <h2 className="about-subheading">Our Commitment to You</h2>
+              <p className="text-medium">When you choose PCG Contractors, you can expect:</p>
+              <ul className="about-values">
+                <li>Honesty and transparency on every job</li>
+                <li>Quality workmanship backed by a warranty</li>
+                <li>Timely project completion with minimal disruption</li>
+                <li>Help navigating insurance documentation and repair scope</li>
+                <li>Long-term customer satisfaction</li>
+              </ul>
+            </section>
+
+            <section className="about-section">
+              <h3 className="about-highlight">Get Started Today</h3>
+              <p className="text-medium">
+                Whether your home needs roof repair, storm damage restoration, exterior repairs, or interior repair
+                work, PCG Contractors is ready to help.{' '}
+                <strong>Schedule a free home inspection today.</strong>
+              </p>
+            </section>
+          </article>
+        </div>
 
         <Footer />
       </main>

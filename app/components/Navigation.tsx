@@ -204,7 +204,7 @@ export default function Navigation() {
           <div className="logo">
             <Image
               src="https://api.builder.io/api/v1/image/assets/TEMP/c0456d8bbbc4e627a852ee0e8821dccdb98970d0?width=244"
-              alt="PCG Logo"
+              alt="PCG Contractors"
               width={60}
               height={60}
               priority
