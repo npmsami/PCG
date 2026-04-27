@@ -148,8 +148,12 @@ export default function Navigation() {
           }}
         />
       )}
-      <div className="desktop-nav">
-        <div className="desktop-left">
+      <div className="nav-content">
+        <div
+          id="mobile-nav-panel"
+          className={`nav-left ${isMenuOpen ? 'nav-items-open' : ''}${isLanguageOpen ? ' nav-left-lang-open' : ''}`}
+          aria-hidden={!isMenuOpen}
+        >
           <button
             type="button"
             className="nav-link nav-scroll-link"
@@ -164,9 +168,39 @@ export default function Navigation() {
           >
             <span>{t('NAV_ABOUT')}</span>
           </button>
+
+          <div className="mobile-only-items">
+            <button
+              type="button"
+              className="nav-link nav-scroll-link"
+              onClick={() => handleSmoothScroll('services-section')}
+            >
+              <span>{t('NAV_SERVICES')}</span>
+            </button>
+            <LanguageSwitcher
+              ref={languageSwitcherMobileRef}
+              variant="drawer"
+              isOpen={isLanguageOpen}
+              onToggle={() => setIsLanguageOpen(!isLanguageOpen)}
+              onSelect={selectLanguage}
+            />
+          </div>
         </div>
 
-        <div className="desktop-center">
+        <button
+          type="button"
+          className={`mobile-menu-btn${isMenuOpen ? ' mobile-menu-btn-open' : ''}`}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-nav-panel"
+          aria-label={isMenuOpen ? t('NAV_CLOSE_MENU') : t('NAV_OPEN_MENU')}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div className="nav-center">
           <div className="logo">
             <Image
               src="https://api.builder.io/api/v1/image/assets/TEMP/c0456d8bbbc4e627a852ee0e8821dccdb98970d0?width=244"
@@ -178,7 +212,7 @@ export default function Navigation() {
           </div>
         </div>
 
-        <div className="desktop-right">
+        <div className="nav-right">
           <button
             type="button"
             className="nav-link nav-scroll-link"
@@ -195,85 +229,6 @@ export default function Navigation() {
         </div>
       </div>
 
-      <div className="mobile-nav">
-        <div className="mobile-topbar">
-          <button
-            type="button"
-            className={`mobile-menu-btn${isMenuOpen ? ' mobile-menu-btn-open' : ''}`}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-nav-panel"
-            aria-label={isMenuOpen ? t('NAV_CLOSE_MENU') : t('NAV_OPEN_MENU')}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <div className="mobile-logo">
-            <div className="logo">
-              <Image
-                src="https://api.builder.io/api/v1/image/assets/TEMP/c0456d8bbbc4e627a852ee0e8821dccdb98970d0?width=244"
-                alt="PCG Logo"
-                width={52}
-                height={52}
-                priority
-              />
-            </div>
-          </div>
-          <span className="mobile-spacer" aria-hidden="true" />
-        </div>
-
-        <div
-          id="mobile-nav-panel"
-          className={`mobile-drawer ${isMenuOpen ? 'mobile-drawer-open' : ''}${isLanguageOpen ? ' mobile-drawer-lang-open' : ''}`}
-          aria-hidden={!isMenuOpen}
-        >
-          <div className="mobile-drawer-header">
-            <span>{t('NAV_MAIN_MENU')}</span>
-            <button
-              type="button"
-              className="mobile-close-btn"
-              onClick={() => {
-                setIsMenuOpen(false);
-                setIsLanguageOpen(false);
-              }}
-              aria-label={t('NAV_CLOSE_MENU')}
-            >
-              <span />
-              <span />
-            </button>
-          </div>
-
-          <button type="button" className="mobile-nav-link" onClick={handleNavigateHome}>
-            <span>{t('NAV_HOME')}</span>
-          </button>
-          <button
-            type="button"
-            className="mobile-nav-link"
-            onClick={() => handleSmoothScroll('process-section')}
-          >
-            <span>{t('NAV_ABOUT')}</span>
-          </button>
-          <button
-            type="button"
-            className="mobile-nav-link"
-            onClick={() => handleSmoothScroll('services-section')}
-          >
-            <span>{t('NAV_SERVICES')}</span>
-          </button>
-
-          <div className="mobile-language-wrap">
-            <LanguageSwitcher
-              ref={languageSwitcherMobileRef}
-              variant="drawer"
-              isOpen={isLanguageOpen}
-              onToggle={() => setIsLanguageOpen(!isLanguageOpen)}
-              onSelect={selectLanguage}
-            />
-          </div>
-        </div>
-      </div>
-
       <style jsx>{`
         html {
           scroll-behavior: smooth;
@@ -282,7 +237,7 @@ export default function Navigation() {
         .nav-backdrop {
           position: fixed;
           inset: 0;
-          z-index: 900;
+          z-index: 40;
           margin: 0;
           padding: 0;
           border: none;
@@ -308,7 +263,7 @@ export default function Navigation() {
           width: auto;
           max-width: 800px;
           padding: 6px 16px;
-          z-index: 1001;
+          z-index: 1000;
           background: rgba(255, 255, 255, 0.8);
           backdrop-filter: blur(12px);
           border-radius: 50px;
@@ -329,7 +284,7 @@ export default function Navigation() {
           transform: translateX(-50%) translateY(-120%);
         }
 
-        .desktop-nav {
+        .nav-content {
           display: grid;
           grid-template-columns: 1fr auto 1fr;
           align-items: center;
@@ -338,23 +293,67 @@ export default function Navigation() {
           gap: 16px;
           min-width: 0;
           position: relative;
-          z-index: 1002;
+          z-index: 50;
         }
 
-        .desktop-left {
+        .nav-content::after {
+          content: none;
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: none;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 44px;
+          height: 44px;
+          background: none;
+          border-radius: 12px;
+          cursor: pointer;
+          z-index: 3;
+          position: relative;
+          flex-shrink: 0;
+        }
+
+        .mobile-menu-btn span {
+          display: block;
+          width: 22px;
+          height: 2px;
+          background: var(--black);
+          margin: 3px 0;
+          transition: transform 0.25s ease, opacity 0.2s ease;
+          transform-origin: center;
+        }
+
+        .mobile-menu-btn-open span:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+
+        .mobile-menu-btn-open span:nth-child(2) {
+          opacity: 0;
+          transform: scaleX(0);
+        }
+
+        .mobile-menu-btn-open span:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .nav-left {
           display: flex;
           align-items: center;
           gap: 24px;
+          transform: none;
           justify-content: flex-start;
         }
 
-        .desktop-center {
+        .nav-center {
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
-        .desktop-right {
+        .nav-right {
           display: flex;
           align-items: center;
           gap: 12px;
@@ -362,7 +361,7 @@ export default function Navigation() {
           min-width: 0;
         }
 
-        .desktop-right > * {
+        .nav-right > * {
           flex-shrink: 0;
         }
 
@@ -411,248 +410,157 @@ export default function Navigation() {
           object-fit: contain;
         }
 
-        .mobile-nav {
+        .mobile-only-items {
           display: none;
-        }
-
-        .mobile-menu-btn {
-          display: none;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          width: 44px;
-          height: 44px;
-          background: none;
-          border-radius: 12px;
-          cursor: pointer;
-          z-index: 1003;
-          position: relative;
-          flex-shrink: 0;
-        }
-
-        .mobile-menu-btn span {
-          display: block;
-          width: 22px;
-          height: 2px;
-          background: var(--black);
-          margin: 3px 0;
-          transition: transform 0.25s ease, opacity 0.2s ease;
-          transform-origin: center;
-        }
-
-        .mobile-menu-btn-open span:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
-        }
-
-        .mobile-menu-btn-open span:nth-child(2) {
-          opacity: 0;
-          transform: scaleX(0);
-        }
-
-        .mobile-menu-btn-open span:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
         }
 
         @media (max-width: 768px) {
-          .desktop-nav {
-            display: none;
-          }
-
-          .mobile-nav {
-            display: block;
-            position: relative;
-            z-index: 1002;
-            width: 100%;
-            min-width: 0;
-          }
-
-          .mobile-topbar {
+          .mobile-menu-btn {
             display: flex;
+            position: relative;
+            left: auto;
+            top: auto;
+            transform: none;
+            order: 1;
+            flex: 0 0 44px;
+            z-index: 60;
+          }
+
+          .nav-content {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
             align-items: center;
             justify-content: flex-start;
             gap: 8px;
-            min-height: 52px;
             width: 100%;
             max-width: 100%;
             min-width: 0;
-            padding: 6px 12px;
-            box-sizing: border-box;
-            background: rgba(255, 255, 255, 0.92);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            border-radius: 18px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(12px);
+            min-height: 52px;
+            padding: 4px 2px;
+            overflow: visible;
+            z-index: 50;
           }
 
-          .mobile-menu-btn {
-            display: flex;
-            flex: 0 0 44px;
-          }
-
-          .mobile-logo {
-            flex: 1 1 auto;
-            min-width: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-          }
-
-          .mobile-logo .logo img {
-            width: 50px;
-            height: 50px;
-          }
-
-          .mobile-spacer {
+          .nav-content::after {
+            content: '';
+            display: block;
+            order: 3;
             flex: 0 0 44px;
             width: 44px;
-            height: 44px;
+            height: 1px;
             visibility: hidden;
             pointer-events: none;
+            flex-shrink: 0;
           }
 
-          .mobile-drawer {
+          .nav-center {
+            order: 2;
+            flex: 1 1 auto;
+            min-width: 0;
+            position: relative;
+            left: auto;
+            top: auto;
+            transform: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            max-width: 100%;
+            pointer-events: auto;
+            z-index: 55;
+          }
+
+          .nav-left {
             position: fixed;
             top: 0;
             left: 0;
             bottom: 0;
             width: min(320px, calc(100vw - 16px));
             max-width: calc(100vw - 16px);
-            box-sizing: border-box;
-            z-index: 1004;
-            display: flex;
+            right: auto;
+            z-index: 45;
             flex-direction: column;
+            justify-content: center;
             align-items: stretch;
             gap: 12px;
-            padding: max(16px, env(safe-area-inset-top, 0px)) 16px
+            padding: max(16px, env(safe-area-inset-top, 0px)) 20px
               max(16px, env(safe-area-inset-bottom, 0px));
-            padding-left: max(16px, env(safe-area-inset-left, 0px));
-            padding-right: max(16px, env(safe-area-inset-right, 0px));
+            padding-left: max(20px, env(safe-area-inset-left, 0px));
+            padding-right: max(20px, env(safe-area-inset-right, 0px));
             background: #fff;
             transform: translate3d(-105%, 0, 0);
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto;
             overflow-x: hidden;
+            overflow-y: auto;
             overscroll-behavior: contain;
             pointer-events: none;
             box-shadow: 8px 0 40px rgba(0, 0, 0, 0.12);
             border-radius: 0 16px 16px 0;
           }
 
-          .mobile-drawer.mobile-drawer-lang-open {
+          .nav-left.nav-left-lang-open {
+            overflow-y: visible;
             overflow-x: visible;
           }
 
-          .mobile-drawer.mobile-drawer-open {
+          .nav-left.nav-items-open {
             transform: translate3d(0, 0, 0);
             pointer-events: auto;
           }
 
-          .mobile-drawer-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 4px 0 12px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            margin-bottom: 4px;
+          .nav-right {
+            display: none;
           }
 
-          .mobile-drawer-header span {
-            font-family: var(--font-open-sans);
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--black);
-          }
-
-          .mobile-close-btn {
-            position: relative;
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(0, 0, 0, 0.15);
-            border-radius: 10px;
-            background: #fff;
-            cursor: pointer;
-            flex-shrink: 0;
-          }
-
-          .mobile-close-btn span {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 18px;
-            height: 2px;
-            background: var(--black);
-            transform-origin: center;
-          }
-
-          .mobile-close-btn span:first-child {
-            transform: translate(-50%, -50%) rotate(45deg);
-          }
-
-          .mobile-close-btn span:last-child {
-            transform: translate(-50%, -50%) rotate(-45deg);
-          }
-
-          .mobile-nav-link {
-            display: flex;
+          .nav-left .nav-link {
             width: 100%;
             max-width: 360px;
-            margin: 0;
+            margin-left: auto;
+            margin-right: auto;
             justify-content: center;
             min-height: 48px;
-            padding: 10px 16px;
-            border-radius: 12px;
-            border: 1px solid #d5d5d5;
-            background: #fff;
-            cursor: pointer;
-            transition: background 0.2s ease, border-color 0.2s ease;
+            padding: 10px 20px;
           }
 
-          .mobile-nav-link:hover {
-            background: rgba(247, 148, 29, 0.1);
-            border-color: var(--primary-orange);
-          }
-
-          .mobile-nav-link span {
-            color: var(--black);
-            font-family: var(--font-open-sans);
-            font-size: 17px;
-            font-weight: 500;
-            line-height: normal;
-          }
-
-          .mobile-language-wrap {
-            margin-top: 2px;
-            padding-top: 14px;
+          .nav-left.nav-items-open .mobile-only-items {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: stretch;
+            width: 100%;
+            max-width: 360px;
+            margin: 8px auto 0;
+            padding-top: 16px;
             border-top: 1px solid rgba(0, 0, 0, 0.08);
           }
 
+          .nav-link span {
+            font-size: 18px;
+          }
+
           .nav-container {
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            transform: none;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
             width: calc(100% - 24px);
             max-width: min(600px, calc(100% - 24px));
             top: max(16px, env(safe-area-inset-top, 0px));
-            padding: 0;
+            padding: 6px 12px;
             box-sizing: border-box;
             overflow: visible;
-            border-radius: 0;
-            border: none;
-            background: transparent;
-            box-shadow: none;
-            backdrop-filter: none;
-            isolation: auto;
           }
 
           .nav-container.nav-visible {
-            transform: none;
+            transform: translateX(-50%) translateY(0);
           }
 
           .nav-container.nav-hidden {
-            transform: none;
+            transform: translateX(-50%) translateY(-120%);
+          }
+
+          .logo img {
+            width: 50px;
+            height: 50px;
           }
         }
 
@@ -661,25 +569,21 @@ export default function Navigation() {
             width: calc(100% - 16px);
             max-width: min(500px, calc(100% - 16px));
             top: max(12px, env(safe-area-inset-top, 0px));
-            padding: 0;
+            padding: 5px 10px;
           }
 
-          .mobile-topbar {
-            border-radius: 16px;
-          }
-
-          .mobile-drawer {
-            width: min(304px, calc(100vw - 12px));
-            max-width: calc(100vw - 12px);
-          }
-
-          .mobile-nav-link {
+          .nav-left .nav-link {
             min-height: 46px;
-            padding: 8px 14px;
+            padding: 8px 18px;
           }
 
-          .mobile-nav-link span {
-            font-size: 16px;
+          .nav-link span {
+            font-size: 17px;
+          }
+
+          .logo img {
+            width: 50px;
+            height: 50px;
           }
         }
       `}</style>
