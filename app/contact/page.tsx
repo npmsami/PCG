@@ -3,31 +3,41 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { BreadcrumbSchema } from '../components/SchemaOrg';
 import ContactForm from './ContactForm';
+import ContactPageHero from './ContactPageHero';
 import '../styles/contact.css';
 
 export const metadata: Metadata = {
-  title: 'Contact PCG Roofing | Free Roof Inspection in Texas',
-  description: 'Get in touch with PCG Roofing for a free roof inspection in Texas. Call us or fill out the form — our team responds quickly. Licensed & insured Texas roofing experts.',
-  keywords: ['contact pcg roofing', 'free roof inspection texas', 'roofing company contact', 'texas roofer phone number'],
+  title: 'Contact PCG Contractors | Free Home Repair Inspection in Texas',
+  description:
+    'Contact PCG Contractors for roofing, home repairs, storm damage restoration, exterior repairs, interior repairs, and insurance claim support in Texas.',
+  keywords: [
+    'contact pcg contractors',
+    'free home inspection texas',
+    'home repair contractor texas',
+    'storm damage restoration contact',
+    'insurance repair contractor texas',
+  ],
   openGraph: {
-    title: 'Contact PCG Roofing | Free Roof Inspection',
-    description: 'Get a free roof inspection from Texas roofing experts. Call or message us today — we respond quickly.',
+    title: 'Contact PCG Contractors | Free Home Repair Inspection',
+    description:
+      'Reach PCG Contractors for whole-home repair, storm restoration, and insurance-supported projects. We respond quickly.',
     url: 'https://pcgroofing.net/contact',
-    siteName: 'PCG Roofing',
+    siteName: 'PCG Contractors',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'PCG Roofing - Contact Us for a Free Roof Inspection',
+        alt: 'PCG Contractors — contact us for a free home inspection',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact PCG Roofing | Free Roof Inspection',
-    description: 'Get a free roof inspection from Texas roofing experts.',
+    title: 'Contact PCG Contractors | Free Home Repair Inspection',
+    description:
+      'Roofing, home repairs, storm damage restoration, and insurance claim support across Texas.',
   },
   alternates: {
     canonical: 'https://pcgroofing.net/contact',
@@ -47,12 +57,7 @@ export default function ContactPage() {
       <main className="contact-page">
         <section className="contact-hero">
           <div className="container">
-            <div className="hero-card">
-              <h1 className="hero-title">Contact Us</h1>
-              <p className="hero-subtitle">
-                Have questions about your roof or need help with an inspection? Send us a message and our team will get back to you quickly.
-              </p>
-            </div>
+            <ContactPageHero />
           </div>
         </section>
 

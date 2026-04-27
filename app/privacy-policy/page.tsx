@@ -3,9 +3,9 @@ import Footer from '../components/Footer'
 import '../styles/about.css'
 
 export const metadata = {
-  title: 'Privacy Policy - PCG Roofing',
+  title: 'Privacy Policy | PCG Contractors',
   description:
-    'Read the PCG Roofing Privacy Policy to understand how we collect, use, and protect your personal information.',
+    'Read the PCG Contractors Privacy Policy to understand how we collect, use, and protect your personal information.',
 }
 
 export default function PrivacyPolicy() {
@@ -24,7 +24,7 @@ export default function PrivacyPolicy() {
           <section className="about-section">
             <h2 className="about-subheading">Introduction</h2>
             <p className="text-medium">
-              PCG Roofing respects your privacy and is committed to protecting your personal information. This Privacy
+              PCG Contractors respects your privacy and is committed to protecting your personal information. This Privacy
               Policy explains how we collect, use, store, and protect the information you provide when you interact
               with our website, request services, or communicate with our company.
             </p>
@@ -61,7 +61,7 @@ export default function PrivacyPolicy() {
 
             <h3 className="about-highlight">Information Provided Through Forms</h3>
             <p className="text-medium">
-              When you fill out a contact form, request a roof inspection, request storm damage assistance, or respond
+              When you fill out a contact form, request a home inspection, request storm damage assistance, or respond
               to advertisements or landing pages, we may collect the information you submit including your contact
               details and service request information.
             </p>
@@ -69,12 +69,12 @@ export default function PrivacyPolicy() {
 
           <section className="about-section">
             <h2 className="about-subheading">How We Use Your Information</h2>
-            <p className="text-medium">PCG Roofing uses the information we collect to:</p>
+            <p className="text-medium">PCG Contractors uses the information we collect to:</p>
             <ul className="about-values">
               <li>Respond to customer inquiries</li>
-              <li>Schedule roofing inspections or service appointments</li>
+              <li>Schedule home inspections or service appointments</li>
               <li>Provide estimates and service updates</li>
-              <li>Coordinate roofing repair or insurance claim assistance</li>
+              <li>Coordinate home repair, restoration, or insurance claim assistance</li>
               <li>Send follow-up communications related to your request</li>
               <li>Improve our website and customer experience</li>
               <li>Communicate with customers about services they requested</li>
@@ -88,7 +88,7 @@ export default function PrivacyPolicy() {
             <h2 className="about-subheading">SMS Communications</h2>
             <p className="text-medium">
               If you provide your phone number through our website forms, service requests, or other lead sources, you
-              may receive SMS text messages from PCG Roofing related to your inquiry or requested services.
+              may receive SMS text messages from PCG Contractors related to your inquiry or requested services.
             </p>
             <p className="text-medium">These messages may include:</p>
             <ul className="about-values">
@@ -112,13 +112,13 @@ export default function PrivacyPolicy() {
 
           <section className="about-section">
             <h2 className="about-subheading">Sharing of Information</h2>
-            <p className="text-medium">PCG Roofing does not sell, rent, or trade your personal information.</p>
+            <p className="text-medium">PCG Contractors does not sell, rent, or trade your personal information.</p>
             <p className="text-medium">We may share information only in the following limited situations:</p>
             <ul className="about-values">
               <li>With trusted service providers who help operate our business systems</li>
               <li>With contractors or staff assisting with your requested services</li>
               <li>When required by law or legal process</li>
-              <li>To protect the safety, rights, or property of PCG Roofing or others</li>
+              <li>To protect the safety, rights, or property of PCG Contractors or others</li>
             </ul>
 
             <h3 className="about-highlight">SMS Compliance Statement</h3>
@@ -170,7 +170,7 @@ export default function PrivacyPolicy() {
           <section className="about-section">
             <h2 className="about-subheading">Updates to This Privacy Policy</h2>
             <p className="text-medium">
-              PCG Roofing may update this Privacy Policy from time to time to reflect changes in business practices or
+              PCG Contractors may update this Privacy Policy from time to time to reflect changes in business practices or
               legal requirements. The updated policy will be posted on this page with the revised effective date.
             </p>
           </section>

@@ -1,9 +1,11 @@
 export const blogTopics = [
-  { id: 'roof-repair', label: 'Roof Repair' },
+  { id: 'home-repairs', label: 'Home Repairs' },
+  { id: 'roofing', label: 'Roofing' },
   { id: 'storm-damage', label: 'Storm Damage' },
-  { id: 'insurance', label: 'Insurance Claims' },
+  { id: 'insurance-claims', label: 'Insurance Claims' },
+  { id: 'exterior-repairs', label: 'Exterior Repairs' },
+  { id: 'interior-repairs', label: 'Interior Repairs' },
   { id: 'maintenance', label: 'Maintenance' },
-  { id: 'materials', label: 'Materials' },
   { id: 'inspections', label: 'Inspections' },
 ];
 
@@ -42,9 +44,9 @@ When replacement is the better investment:
 The insurance angle:
 In Texas, insurance companies often cover full replacement when storm damage (hail, wind, tornado) is widespread enough. A qualified roofing contractor can document the damage and help determine whether a claim is worth filing. Filing incorrectly or prematurely can affect future premiums, so this is a step worth doing carefully.
 
-What PCG Roofing recommends:
+What PCG Contractors recommends:
 Always start with a free inspection. Our team will give you an honest assessment—no upselling, no pressure. We'll show you photos of the damage, explain your options, and let you decide. If a repair is all you need, that's what we'll recommend.`,
-    topic: 'roof-repair',
+    topic: 'roofing',
     publishDate: '2026-04-20',
     readTime: 7,
   },
@@ -78,7 +80,7 @@ Texas homeowner policies typically require claims to be filed within one year of
 Step 5: Understand your deductible
 Most Texas policies have a separate wind/hail deductible—often 1% to 2% of your home's insured value. On a $300,000 home, that is $3,000–$6,000 out of pocket. Make sure you understand this before the work begins.
 
-PCG Roofing provides free hail damage inspections across Texas. We work directly with your insurance company and only recommend replacement when the damage genuinely warrants it.`,
+PCG Contractors provides free hail damage inspections across Texas. We work directly with your insurance company and only recommend replacement when the damage genuinely warrants it.`,
     topic: 'storm-damage',
     publishDate: '2026-04-15',
     readTime: 9,
@@ -120,8 +122,8 @@ Red flags to avoid:
 - Storm chasers who show up door-to-door after a storm with high-pressure tactics
 - Any contractor who asks you to sign over your Assignment of Benefits (AOB) before work begins
 
-PCG Roofing assists homeowners throughout the claim process at no additional cost. We attend the adjuster inspection, review the estimate, and work within the approved scope. You pay only your deductible—nothing more.`,
-    topic: 'insurance',
+PCG Contractors assists homeowners throughout the claim process. We attend the adjuster inspection, review the estimate, and work within the approved scope. Your out-of-pocket costs depend on your policy, deductible, and coverage decisions from your carrier.`,
+    topic: 'insurance-claims',
     publishDate: '2026-04-08',
     readTime: 11,
   },
@@ -166,8 +168,8 @@ What does not affect the timeline much:
 The disruption factor:
 Roof replacements are loud. Plan to be away from home during the peak hours of the work, especially if you work from home or have young children. The crew will need access to your yard and driveway for equipment and the dumpster.
 
-PCG Roofing provides a firm start date once materials are confirmed. We do not leave jobs unfinished overnight unless weather forces a stop—and we communicate proactively when schedules shift.`,
-    topic: 'roof-repair',
+PCG Contractors provides a firm start date once materials are confirmed. We do not leave jobs unfinished overnight unless weather forces a stop—and we communicate proactively when schedules shift.`,
+    topic: 'roofing',
     publishDate: '2026-04-01',
     readTime: 8,
   },
@@ -216,8 +218,8 @@ In Texas, Class 4 impact-resistant roofing (both asphalt and metal) can qualify 
 Our recommendation:
 If you are replacing after storm damage and insurance is covering most of the cost, upgrading to Class 4 asphalt shingles or metal for the difference in deductible can be a smart long-term move. If budget is the primary concern, a quality 30-year architectural shingle installed correctly will serve you well.
 
-PCG Roofing installs both systems. We will walk you through the options specific to your home and insurance situation.`,
-    topic: 'materials',
+PCG Contractors installs both systems. We will walk you through the options specific to your home and insurance situation.`,
+    topic: 'roofing',
     publishDate: '2026-03-24',
     readTime: 10,
   },
@@ -243,7 +245,7 @@ Poor attic ventilation traps heat and humidity that degrade roofing materials fr
 5. Schedule a professional inspection after any significant hailstorm
 Hail damage is often invisible from the ground and develops slowly—cracked granule surfaces let UV rays accelerate aging for months before a leak appears. A post-storm inspection is typically free and takes less than 30 minutes. If damage is found, you have documentation for an insurance claim. If no damage is found, you have peace of mind.
 
-PCG Roofing offers free annual inspections for Texas homeowners. We are not looking to create business—we are looking to help you avoid expensive surprises.`,
+PCG Contractors offers free annual inspections for Texas homeowners. We are not looking to create business—we are looking to help you avoid expensive surprises.`,
     topic: 'maintenance',
     publishDate: '2026-03-15',
     readTime: 8,
@@ -251,9 +253,9 @@ PCG Roofing offers free annual inspections for Texas homeowners. We are not look
   {
     id: '7',
     slug: 'what-to-expect-free-roof-inspection-texas',
-    title: 'What Happens During a Free Roof Inspection? (And What to Watch Out For)',
-    excerpt: 'Not all free inspections are created equal. Here\'s what a thorough, honest roof inspection looks like—and the red flags that signal a storm chaser or unqualified contractor.',
-    content: `Free roof inspections are one of the most valuable services a roofing company can offer—when done honestly. Here is what a legitimate inspection looks like and what warning signs to watch for.
+    title: 'What Happens During a Free Home Inspection? (And What to Watch Out For)',
+    excerpt: 'Not all free inspections are created equal. Here\'s what a thorough, honest home and roof inspection looks like—and the red flags that signal a storm chaser or unqualified contractor.',
+    content: `Free home inspections are one of the most valuable services a contractor can offer—when done honestly. Here is what a legitimate inspection looks like and what warning signs to watch for.
 
 What a thorough inspection covers:
 
@@ -291,7 +293,7 @@ Questions to ask any roofing contractor:
 3. How long have you been operating in this area?
 4. Can I have references from jobs in my neighborhood?
 
-PCG Roofing provides fully documented inspections at no cost. We will show you every photo, explain exactly what we found, and give you a clear recommendation. If your roof is fine, we will tell you that too.`,
+PCG Contractors provides fully documented inspections at no cost. We will show you every photo, explain exactly what we found, and give you a clear recommendation. If your roof is fine, we will tell you that too.`,
     topic: 'inspections',
     publishDate: '2026-03-07',
     readTime: 9,

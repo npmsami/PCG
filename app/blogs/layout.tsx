@@ -1,20 +1,29 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Roofing Blog - Tips, Guides & Industry News',
-  description: 'Expert roofing advice, maintenance tips, and industry insights from PCG Roofing. Learn about roof repair, storm damage, insurance claims, and more.',
-  keywords: ['roofing blog', 'roof maintenance tips', 'roofing guides', 'storm damage advice', 'roof repair tips'],
+  title: 'Home Repair Blog | PCG Contractors Texas Repair & Restoration Tips',
+  description:
+    'Read home repair, roofing, storm damage, insurance claim, exterior repair, and restoration tips from the PCG Contractors team.',
+  keywords: [
+    'home repair blog Texas',
+    'storm damage restoration tips',
+    'insurance claim home repairs',
+    'PCG Contractors blog',
+    'exterior home repairs',
+    'roof repair Texas',
+  ],
   openGraph: {
-    title: 'PCG Roofing Blog - Expert Advice & Tips',
-    description: 'Expert roofing advice, maintenance tips, and industry insights from PCG Roofing.',
+    title: 'Home Repair & Restoration Blog | PCG Contractors',
+    description:
+      'Expert advice on home repairs, roofing, storm damage, insurance claims, and protecting your Texas home.',
     url: 'https://pcgroofing.net/blogs',
-    siteName: 'PCG Roofing',
+    siteName: 'PCG Contractors',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PCG Roofing Blog - Expert Advice & Tips',
-    description: 'Expert roofing advice, maintenance tips, and industry insights.',
+    title: 'Home Repair & Restoration Blog | PCG Contractors',
+    description: 'Home repair, roofing, storm damage, and restoration tips for Texas homeowners.',
   },
   alternates: {
     canonical: 'https://pcgroofing.net/blogs',

@@ -202,7 +202,7 @@ export default function FAQSection() {
         }
 
         .answer-open {
-          max-height: 200px;
+          max-height: 420px;
           padding-bottom: 24px;
         }
 

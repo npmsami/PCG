@@ -18,8 +18,8 @@ const BUSINESS_INFO = {
 export function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "RoofingContractor",
-    "name": "PCG Roofing",
+    "@type": ["GeneralContractor", "RoofingContractor"],
+    "name": "PCG Contractors",
     "image": "https://pcgroofing.net/logo.png",
     "url": "https://pcgroofing.net",
     "telephone": BUSINESS_INFO.telephone,
@@ -62,23 +62,29 @@ export function LocalBusinessSchema() {
       { "@type": "City", "name": "New Braunfels", "containedInPlace": { "@type": "State", "name": "Texas" } },
       { "@type": "City", "name": "Seguin", "containedInPlace": { "@type": "State", "name": "Texas" } },
     ],
+    "description": "PCG Contractors is a licensed and insured Texas home repair and restoration company. We provide roofing, exterior and interior repairs, storm damage restoration, emergency protection, and insurance claim documentation assistance.",
     "serviceType": [
       "Roof Repair",
-      "Roof Replacement",
+      "Roofing and Exterior Restoration",
+      "Exterior Home Repairs",
+      "Interior Home Repairs",
       "Storm Damage Restoration",
-      "Insurance Claims Assistance",
-      "Emergency Roof Repair",
-      "Roof Inspection"
+      "Insurance Claim Assistance",
+      "Emergency Storm Damage Repairs",
+      "Emergency Tarping and Protection",
+      "Free Home Inspection"
     ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Roofing Services",
+      "name": "Home Repair and Restoration Services",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Free Roof Inspection" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roof Repair" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roof Replacement" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Storm Damage Restoration" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Insurance Claims Assistance" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Free Home Inspection" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roof Repairs" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roofing and Exterior Restoration" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Exterior Home Repairs" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Interior Home Repairs" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Emergency Storm Damage Repairs" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Insurance Claim Assistance" } },
       ]
     }
   };
@@ -95,12 +101,12 @@ export function WebSiteSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "PCG Roofing",
+    "name": "PCG Contractors",
     "url": "https://pcgroofing.net",
-    "description": "Professional roofing services in Texas — roof repair, replacement, storm damage restoration, and insurance claims assistance.",
+    "description": "PCG Contractors helps Texas homeowners with roofing, exterior repairs, interior repairs, storm damage restoration, and insurance claim support.",
     "publisher": {
       "@type": "Organization",
-      "name": "PCG Roofing",
+      "name": "PCG Contractors",
       "logo": {
         "@type": "ImageObject",
         "url": "https://pcgroofing.net/logo.png"
@@ -185,11 +191,11 @@ export function ArticleSchema({
     "dateModified": modifiedDate ?? publishDate,
     "author": {
       "@type": authorName ? "Person" : "Organization",
-      "name": authorName ?? "PCG Roofing",
+      "name": authorName ?? "PCG Contractors",
     },
     "publisher": {
       "@type": "Organization",
-      "name": "PCG Roofing",
+      "name": "PCG Contractors",
       "logo": {
         "@type": "ImageObject",
         "url": "https://pcgroofing.net/logo.png"

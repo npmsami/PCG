@@ -18,18 +18,23 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${post.title} | PCG Roofing Blog`,
+    title: `${post.title} | PCG Contractors Blog`,
     description: post.excerpt,
-    keywords: [post.topic.replace(/-/g, ' '), 'roofing texas', 'pcg roofing', 'roof tips'],
-    authors: [{ name: 'PCG Roofing' }],
+    keywords: [
+      post.topic.replace(/-/g, ' '),
+      'home repair Texas',
+      'PCG Contractors',
+      'storm damage restoration Texas',
+    ],
+    authors: [{ name: 'PCG Contractors' }],
     openGraph: {
       title: post.title,
       description: post.excerpt,
       url: `https://pcgroofing.net/blogs/${post.slug}`,
-      siteName: 'PCG Roofing',
+      siteName: 'PCG Contractors',
       type: 'article',
       publishedTime: post.publishDate,
-      authors: ['PCG Roofing'],
+      authors: ['PCG Contractors'],
     },
     twitter: {
       card: 'summary_large_image',

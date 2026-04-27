@@ -3,9 +3,9 @@ import Footer from '../components/Footer'
 import '../styles/about.css'
 
 export const metadata = {
-  title: 'Terms and Conditions - PCG Roofing',
+  title: 'Terms and Conditions - PCG Contractors',
   description:
-    'Read the PCG Roofing Terms and Conditions to understand the rules for using our website and services.',
+    'Read the PCG Contractors Terms and Conditions to understand the rules for using our website and services.',
 }
 
 export default function TermsAndConditions() {
@@ -24,7 +24,7 @@ export default function TermsAndConditions() {
           <section className="about-section">
             <h2 className="about-subheading">Introduction</h2>
             <p className="text-medium">
-              Welcome to PCG Roofing. These Terms and Conditions outline the rules and guidelines for using our website
+              Welcome to PCG Contractors. These Terms and Conditions outline the rules and guidelines for using our website
               and services. By accessing this website or submitting your information through our forms, you agree to
               comply with these Terms and Conditions.
             </p>
@@ -36,12 +36,12 @@ export default function TermsAndConditions() {
           <section className="about-section">
             <h2 className="about-subheading">Services Provided</h2>
             <p className="text-medium">
-              PCG Roofing provides roofing inspections, storm damage assessments, insurance-related repair coordination,
-              and home repair services.
+              PCG Contractors provides home inspections, roofing and exterior repairs, interior repairs, storm damage
+              assessments, insurance-related repair coordination, and home restoration services.
             </p>
             <p className="text-medium">
-              Information provided on this website is intended to help homeowners request roofing inspections, obtain
-              service estimates, and communicate with our team regarding roofing services.
+              Information on this website helps homeowners request inspections, obtain service estimates, and communicate
+              with our team regarding home repair and restoration services.
             </p>
           </section>
 
@@ -71,7 +71,7 @@ export default function TermsAndConditions() {
             </p>
             <p className="text-medium">
               Final service pricing, scope of work, and timelines will be outlined in written service agreements or
-              contracts between PCG Roofing and the customer.
+              contracts between PCG Contractors and the customer.
             </p>
           </section>
 
@@ -79,7 +79,7 @@ export default function TermsAndConditions() {
             <h2 className="about-subheading">SMS Communication Terms</h2>
             <p className="text-medium">
               By submitting your phone number through our website forms, inspection requests, advertisements, or other
-              contact methods, you consent to receive SMS messages from PCG Roofing related to your service request.
+              contact methods, you consent to receive SMS messages from PCG Contractors related to your service request.
             </p>
             <p className="text-medium">These messages may include:</p>
             <ul className="about-values">
@@ -96,7 +96,7 @@ export default function TermsAndConditions() {
             </p>
             <p className="text-medium">
               You may opt out of receiving SMS messages at any time by replying <strong>STOP</strong> to any message
-              sent by PCG Roofing.
+              sent by PCG Contractors.
             </p>
             <p className="text-medium">
               For assistance, reply <strong>HELP</strong> or contact our office directly.
@@ -115,14 +115,14 @@ export default function TermsAndConditions() {
               permission.
             </p>
             <p className="text-medium">
-              PCG Roofing is not responsible for messages sent to numbers that were incorrectly entered by the user.
+              PCG Contractors is not responsible for messages sent to numbers that were incorrectly entered by the user.
             </p>
           </section>
 
           <section className="about-section">
             <h2 className="about-subheading">Intellectual Property</h2>
             <p className="text-medium">
-              All content on this website, including text, graphics, logos, and images, is the property of PCG Roofing
+              All content on this website, including text, graphics, logos, and images, is the property of PCG Contractors
               and may not be copied, reproduced, or distributed without written permission.
             </p>
           </section>
@@ -130,7 +130,7 @@ export default function TermsAndConditions() {
           <section className="about-section">
             <h2 className="about-subheading">Limitation of Liability</h2>
             <p className="text-medium">
-              PCG Roofing is not liable for any indirect, incidental, or consequential damages resulting from the use of
+              PCG Contractors is not liable for any indirect, incidental, or consequential damages resulting from the use of
               our website or communications.
             </p>
             <p className="text-medium">
@@ -151,7 +151,7 @@ export default function TermsAndConditions() {
           <section className="about-section">
             <h2 className="about-subheading">Changes to Terms</h2>
             <p className="text-medium">
-              PCG Roofing reserves the right to update or modify these Terms and Conditions at any time.
+              PCG Contractors reserves the right to update or modify these Terms and Conditions at any time.
             </p>
             <p className="text-medium">
               Any changes will be posted on this page with the updated effective date.

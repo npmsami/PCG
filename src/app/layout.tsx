@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "PCG Admin Dashboard",
-  description: "Admin tools for PCG Roofing",
+  description: "Admin tools for PCG Contractors",
 };
 
 export default function RootLayout({

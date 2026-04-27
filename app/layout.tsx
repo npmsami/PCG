@@ -6,14 +6,14 @@ import { Providers } from './components/Providers'
 export const metadata: Metadata = {
   metadataBase: new URL('https://pcgroofing.net'),
   title: {
-    default: 'PCG Roofing - Texas Roofing Experts | Roof Repair & Replacement',
-    template: '%s | PCG Roofing'
+    default: 'PCG Contractors | Home Repairs & Storm Damage Restoration in Texas',
+    template: '%s | PCG Contractors'
   },
-  description: 'Professional roofing services in Texas. 15+ years experience in roof repair, roof replacement, storm damage restoration, and insurance claims assistance. Free inspections. Call today!',
-  keywords: ['roofing texas', 'roof repair', 'roof replacement', 'storm damage repair', 'insurance claims roofing', 'texas roofer', 'emergency roof repair', 'hail damage roof', 'roof inspection'],
-  authors: [{ name: 'PCG Roofing' }],
-  creator: 'PCG Roofing',
-  publisher: 'PCG Roofing',
+  description: 'PCG Contractors helps Texas homeowners with roofing, exterior repairs, interior repairs, storm damage restoration, and insurance claim support. Book a free home inspection today.',
+  keywords: ['PCG Contractors', 'home repairs Texas', 'home repair contractor Texas', 'home repair contractor San Antonio', 'storm damage restoration Texas', 'insurance repair contractor Texas', 'roofing and home repairs', 'exterior home repairs', 'interior home repairs', 'roof repair Texas', 'general contractor San Antonio'],
+  authors: [{ name: 'PCG Contractors' }],
+  creator: 'PCG Contractors',
+  publisher: 'PCG Contractors',
   formatDetection: {
     email: false,
     address: false,
@@ -23,22 +23,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://pcgroofing.net',
-    siteName: 'PCG Roofing',
-    title: 'PCG Roofing - Texas Roofing Experts',
-    description: 'Professional roofing services in Texas. 15+ years experience. Free inspections, insurance claims assistance, storm damage repair.',
+    siteName: 'PCG Contractors',
+    title: 'PCG Contractors | Home Repairs & Storm Damage Restoration in Texas',
+    description: 'Whole-home repair and restoration: roofing, exterior and interior repairs, storm damage, and insurance claim support for Texas homeowners. Free home inspection.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'PCG Roofing - Professional Roofing Services',
+        alt: 'PCG Contractors — Texas home repair and restoration',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PCG Roofing - Texas Roofing Experts',
-    description: 'Professional roofing services in Texas. 15+ years experience. Free inspections.',
+    title: 'PCG Contractors | Home Repairs & Storm Damage Restoration in Texas',
+    description: 'Roofing, exterior and interior repairs, storm restoration, and insurance claim support across Texas. Book a free home inspection.',
     images: ['/og-image.jpg'],
   },
   alternates: {

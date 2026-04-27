@@ -26,9 +26,10 @@ export default function Blogs() {
 
       <div className="container">
         <div className="blogs-header">
-          <h1 className="heading-1">Roofing Blog</h1>
+          <h1 className="heading-1">Home Repair &amp; Restoration Blog</h1>
           <p className="text-large blogs-intro">
-            Expert roofing advice, maintenance tips, and practical guides from the PCG Roofing team. Learn about roof repair, storm damage, insurance claims, and how to protect your Texas home.
+            Expert advice, maintenance tips, and practical guides from the PCG Contractors team. Learn about roofing,
+            storm damage, exterior repairs, interior repairs, insurance claims, and how to protect your Texas home.
           </p>
         </div>
 
