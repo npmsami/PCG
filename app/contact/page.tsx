@@ -7,20 +7,22 @@ import ContactPageHero from './ContactPageHero';
 import '../styles/contact.css';
 
 export const metadata: Metadata = {
-  title: 'Contact PCG Contractors | Free Home Repair Inspection in Texas',
+  title: 'Contact PCG Contractors | Free Home Inspection in Texas',
   description:
-    'Contact PCG Contractors for roofing, home repairs, storm damage restoration, exterior repairs, interior repairs, and insurance claim support in Texas.',
+    'Contact PCG Contractors for roofing, siding, gutters, interior repairs, storm damage restoration, and insurance claim support across Texas. Schedule your free inspection.',
   keywords: [
     'contact pcg contractors',
     'free home inspection texas',
     'home repair contractor texas',
     'storm damage restoration contact',
     'insurance repair contractor texas',
+    'roofing contractor san antonio',
+    'general contractor texas',
   ],
   openGraph: {
-    title: 'Contact PCG Contractors | Free Home Repair Inspection',
+    title: 'Contact PCG Contractors | Free Home Inspection in Texas',
     description:
-      'Reach PCG Contractors for whole-home repair, storm restoration, and insurance-supported projects. We respond quickly.',
+      'Reach PCG Contractors for whole-home repair, roofing, storm restoration, and insurance-supported projects across Texas. We respond quickly.',
     url: 'https://pcgroofing.net/contact',
     siteName: 'PCG Contractors',
     images: [
@@ -35,9 +37,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact PCG Contractors | Free Home Repair Inspection',
+    title: 'Contact PCG Contractors | Free Home Inspection in Texas',
     description:
-      'Roofing, home repairs, storm damage restoration, and insurance claim support across Texas.',
+      'Roofing, siding, gutters, interior repairs, storm damage restoration, and insurance claim support across Texas.',
   },
   alternates: {
     canonical: 'https://pcgroofing.net/contact',
