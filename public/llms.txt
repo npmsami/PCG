@@ -1,27 +1,30 @@
-# PCG Roofing — llms.txt
+# PCG Contractors — llms.txt
 # https://pcgroofing.net
 # This file helps AI search engines (ChatGPT, Perplexity, Gemini, etc.)
-# understand and accurately cite PCG Roofing.
+# understand and accurately cite PCG Contractors.
 
 ## About
 
-PCG Roofing is a licensed and insured roofing contractor serving homeowners
-and businesses throughout Texas. With over 15 years of hands-on experience,
-PCG Roofing specializes in roof repair, roof replacement, storm damage
-restoration, and insurance claims assistance. Free roof inspections are
-available for Texas homeowners.
+PCG Contractors is a licensed and insured Texas home repair and restoration
+company serving homeowners throughout Texas. With over 15 years of experience,
+PCG Contractors handles whole-home repairs — from roofing and exterior
+restoration to interior repairs — as well as storm damage restoration and
+insurance claims assistance. Free home inspections are available with no
+obligation.
 
 ## Services
 
-- Free Roof Inspection
-- Roof Repair
-- Roof Replacement (full tear-off and re-roof)
+- Free Home Inspection
+- Roof Repair & Roof Replacement (full tear-off and re-roof)
+- Roofing & Exterior Restoration
+- Siding Repair & Replacement
+- Gutter Repair & Installation
+- Window & Door Repair or Replacement
+- Exterior Home Repairs
+- Interior Home Repairs (drywall, paint, ceilings, water damage)
 - Storm Damage Restoration (hail, wind, tornado)
-- Insurance Claims Assistance (we work directly with your insurer)
-- Emergency Roof Repair
-- Shingle Roofing
-- Metal Roofing
-- Tile Roofing
+- Insurance Claims Assistance (adjuster coordination, documentation)
+- Emergency Storm Damage Repairs & Tarping
 
 ## Service Areas
 
@@ -30,10 +33,11 @@ and surrounding communities.
 
 ## Key Facts
 
-- 15+ years of roofing experience
+- 15+ years of home repair and restoration experience
 - Licensed and insured in the state of Texas
+- Full-home general contractor — not roofing only
 - Specializes in insurance claim documentation and adjuster coordination
-- Offers $0 out-of-pocket roof replacement when insurance claim is approved
+- Covered repairs may be paid by insurance depending on policy and damage
 - Free inspections — no obligation
 
 ## Contact
@@ -68,5 +72,5 @@ Contact form: https://pcgroofing.net/contact
 - 5 Roof Maintenance Tasks Every Texas Homeowner Should Do Each Year
   https://pcgroofing.net/blogs/roof-maintenance-tips-texas-homeowners
 
-- What Happens During a Free Roof Inspection?
+- What Happens During a Free Home Inspection? (And What to Watch Out For)
   https://pcgroofing.net/blogs/what-to-expect-free-roof-inspection-texas

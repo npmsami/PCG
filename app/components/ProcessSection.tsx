@@ -168,8 +168,9 @@ export default function ProcessSection() {
 
         .book-appointment-btn {
           display: flex;
-          width: 286px;
-          height: 62px;
+          width: auto;
+          min-width: 360px;
+          min-height: 62px;
           padding: 12px 24px;
           justify-content: center;
           align-items: center;
@@ -190,9 +191,10 @@ export default function ProcessSection() {
         .book-appointment-btn span {
           color: var(--white);
           font-family: var(--font-roboto);
-          font-size: 20px;
+          font-size: 18px;
           font-weight: 400;
-          line-height: 150%;
+          line-height: 130%;
+          white-space: nowrap;
         }
 
         .arrow-icon {
@@ -238,8 +240,9 @@ export default function ProcessSection() {
           }
 
           .book-appointment-btn {
-            width: 100%;
-            max-width: 286px;
+            width: auto;
+            min-width: 320px;
+            max-width: 100%;
           }
         }
 
@@ -262,6 +265,11 @@ export default function ProcessSection() {
 
           .book-appointment-btn span {
             font-size: 16px;
+          }
+
+          .book-appointment-btn {
+            min-width: 280px;
+            padding: 10px 16px;
           }
         }
       `}</style>
