@@ -27,8 +27,7 @@ export default function ProcessSection() {
         id: 3,
         title: t('PROCESS_S3_TITLE'),
         description: t('PROCESS_S3_DESC'),
-        image:
-          'https://api.builder.io/api/v1/image/assets/TEMP/66ceb427bd3a65770d3aeeaad24020ce37b8b368?width=722',
+        image: '/services/professional-home-repair-restoration.png',
       },
     ],
     [t, language]

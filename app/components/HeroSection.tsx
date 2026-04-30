@@ -13,6 +13,7 @@ export default function HeroSection() {
           muted
           loop
           playsInline
+          preload="none"
           className="hero-video"
           poster="https://api.builder.io/api/v1/image/assets/TEMP/ef5d90ce328d45584bdfb79dcdb5ddfa44090e9e?width=3340"
           aria-label={t('HERO_VIDEO_ARIA')}

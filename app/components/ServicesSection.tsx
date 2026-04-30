@@ -102,9 +102,10 @@ export default function ServicesSection() {
                     <Image
                       src={service.image}
                       alt={title}
-                      width={361}
-                      height={202}
-                      style={{ objectFit: 'cover' }}
+                      width={1200}
+                      height={800}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                   </div>
                   <h4 className="service-title">{title}</h4>

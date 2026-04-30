@@ -8,8 +8,18 @@ import FAQSection from './components/FAQSection'
 import CTASection from './components/CTASection'
 import { LocalBusinessSchema, WebSiteSchema, FAQSchema } from './components/SchemaOrg'
 import dynamic from 'next/dynamic'
+import type { Metadata } from 'next'
 
 const Footer = dynamic(() => import('./components/Footer'), { ssr: false })
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://pcgroofing.net',
+    types: {
+      'application/amp+html': 'https://pcgroofing.net/amp',
+    },
+  },
+}
 
 // FAQ items mirrored here for schema (must match FAQSection content)
 const FAQ_SCHEMA_ITEMS = [
