@@ -226,3 +226,32 @@ button {
     font-size: 24px;
   }
 }
+
+.home-seo-content {
+  margin: 40px var(--page-padding) 0;
+  padding: 24px;
+  border-radius: 16px;
+  background: #f7f7f7;
+}
+
+.home-seo-content h2,
+.home-seo-content h3 {
+  margin: 0 0 12px;
+}
+
+.home-seo-content h3 {
+  margin-top: 8px;
+}
+
+.home-seo-content p {
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+
+.home-seo-content ul {
+  margin: 0 0 12px 20px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}

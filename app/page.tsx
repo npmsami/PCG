@@ -62,13 +62,28 @@ export default function Home() {
         <StatsSection />
         <TestimonialsSection />
         <FAQSection />
-        <section style={{ margin: '40px var(--page-padding) 0', padding: '24px', borderRadius: '16px', background: '#f7f7f7' }}>
-          <h2 style={{ margin: '0 0 12px', fontSize: '1.4rem' }}>Explore More Home Repair Resources</h2>
-          <p style={{ margin: '0 0 14px' }}>
-            Learn more about our services, process, and homeowner resources.
+        <section className="home-seo-content">
+          <h2>Texas Home Repair and Storm Damage Restoration</h2>
+          <p>
+            PCG Contractors helps homeowners across Texas with practical, full-service
+            home repair support after storms, leaks, and unexpected property damage.
+            Our team handles roofing and home repairs as one coordinated project so
+            exterior and interior work can be planned together with clear timelines.
           </p>
+          <p>
+            If your property has hail or wind damage, we inspect visible and hidden
+            issues, document the scope, and explain next steps in plain language.
+            We also support insurance-related repair documentation so homeowners can
+            make informed decisions based on policy details and approved scope.
+          </p>
+          <p>
+            Our work includes roof repair, exterior home repairs, interior home
+            repairs, emergency storm protection, and restoration planning from first
+            inspection through final walkthrough.
+          </p>
+          <h3>Explore More Home Repair Resources</h3>
           <nav aria-label="Homepage internal links">
-            <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', margin: 0, paddingLeft: '18px' }}>
+            <ul>
               <li><Link href="/about">About PCG Contractors</Link></li>
               <li><Link href="/contact">Book a Free Home Inspection</Link></li>
               <li><Link href="/blogs">Home Repair &amp; Restoration Blog</Link></li>
@@ -76,7 +91,7 @@ export default function Home() {
               <li><Link href="/terms-and-conditions">Terms and Conditions</Link></li>
             </ul>
           </nav>
-          <p style={{ margin: '14px 0 0' }}>
+          <p>
             Insurance education resource:{' '}
             <a
               href="https://www.tdi.texas.gov/tips/claims-process.html"
