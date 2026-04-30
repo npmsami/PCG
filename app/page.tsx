@@ -6,11 +6,10 @@ import StatsSection from './components/StatsSection'
 import TestimonialsSection from './components/TestimonialsSection'
 import FAQSection from './components/FAQSection'
 import CTASection from './components/CTASection'
+import Footer from './components/Footer'
 import { LocalBusinessSchema, WebSiteSchema, FAQSchema } from './components/SchemaOrg'
-import dynamic from 'next/dynamic'
 import type { Metadata } from 'next'
-
-const Footer = dynamic(() => import('./components/Footer'), { ssr: false })
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   alternates: {
@@ -63,6 +62,32 @@ export default function Home() {
         <StatsSection />
         <TestimonialsSection />
         <FAQSection />
+        <section style={{ margin: '40px var(--page-padding) 0', padding: '24px', borderRadius: '16px', background: '#f7f7f7' }}>
+          <h2 style={{ margin: '0 0 12px', fontSize: '1.4rem' }}>Explore More Home Repair Resources</h2>
+          <p style={{ margin: '0 0 14px' }}>
+            Learn more about our services, process, and homeowner resources.
+          </p>
+          <nav aria-label="Homepage internal links">
+            <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', margin: 0, paddingLeft: '18px' }}>
+              <li><Link href="/about">About PCG Contractors</Link></li>
+              <li><Link href="/contact">Book a Free Home Inspection</Link></li>
+              <li><Link href="/blogs">Home Repair &amp; Restoration Blog</Link></li>
+              <li><Link href="/privacy-policy">Privacy Policy</Link></li>
+              <li><Link href="/terms-and-conditions">Terms and Conditions</Link></li>
+            </ul>
+          </nav>
+          <p style={{ margin: '14px 0 0' }}>
+            Insurance education resource:{' '}
+            <a
+              href="https://www.tdi.texas.gov/tips/claims-process.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Texas Department of Insurance claims process guide
+            </a>
+            .
+          </p>
+        </section>
         <CTASection />
         <Footer />
       </main>
