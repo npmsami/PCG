@@ -134,8 +134,6 @@ export default function Navigation() {
   };
 
   const dynamicClass = isNavVisible ? 'nav-visible' : 'nav-hidden';
-  const napPhone = '+1 (956) 206-2004';
-
   return (
     <nav className={`nav-container ${dynamicClass}`.trim()} aria-label={t('NAV_MAIN_MENU')}>
       {isMenuOpen && (
@@ -171,7 +169,6 @@ export default function Navigation() {
           </button>
 
           <div className="mobile-only-items">
-            <p className="mobile-nap-phone">Call us: {napPhone}</p>
             <button
               type="button"
               className="nav-link nav-scroll-link"
@@ -215,9 +212,6 @@ export default function Navigation() {
         </div>
 
         <div className="nav-right">
-          <div className="nav-contact-chip" aria-label="Business phone">
-            <span>{napPhone}</span>
-          </div>
           <button
             type="button"
             className="nav-link nav-scroll-link"
