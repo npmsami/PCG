@@ -14,8 +14,8 @@ const en = {
   LANG_MENU_ARIA: 'Language',
   LANG_MENU_HEADING: 'Choose language',
 
-  HERO_TITLE_1: 'San Antonio Home Repair &',
-  HERO_TITLE_2: 'Storm Damage Restoration',
+  HERO_TITLE_1: 'San Antonio Repair &',
+  HERO_TITLE_2: 'Storm Restoration',
   HERO_SUBTEXT:
     'Home damage can feel overwhelming, but you do not have to handle it alone. PCG Contractors helps Texas homeowners repair, restore, and protect their homes with reliable roofing, exterior repairs, interior repairs, storm damage restoration, and insurance claim support.',
   CTA_CALL: 'Book a Free Home Inspection',

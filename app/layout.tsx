@@ -6,7 +6,7 @@ import { Providers } from './components/Providers'
 export const metadata: Metadata = {
   metadataBase: new URL('https://pcgroofing.net'),
   title: {
-    default: 'PCG Contractors | San Antonio Home Repair & Storm Damage Restoration',
+    default: 'PCG Contractors | San Antonio Repair & Storm Restoration',
     template: '%s | PCG Contractors'
   },
   description: 'PCG Contractors provides San Antonio home repair, storm damage restoration, interior and exterior repairs, plus insurance claim help. Book a free home inspection.',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://pcgroofing.net',
     siteName: 'PCG Contractors',
-    title: 'PCG Contractors | San Antonio Home Repair & Storm Damage Restoration',
+    title: 'PCG Contractors | San Antonio Repair & Storm Restoration',
     description: 'PCG Contractors provides San Antonio home repair, storm damage restoration, interior and exterior repairs, plus insurance claim help. Book a free home inspection.',
     images: [
       {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PCG Contractors | San Antonio Home Repair & Storm Damage Restoration',
+    title: 'PCG Contractors | San Antonio Repair & Storm Restoration',
     description: 'San Antonio home repair, storm damage restoration, interior and exterior repairs, and insurance claim help. Book a free home inspection.',
     images: ['/og-image.jpg'],
   },
