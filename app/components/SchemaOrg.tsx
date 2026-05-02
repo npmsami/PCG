@@ -5,12 +5,11 @@
 // Placeholder/fake data will cause schema to be rejected by Google.
 
 const BUSINESS_INFO = {
-  telephone: '+1-TODO-PHONE-NUMBER',   // e.g. "+12105550100"
-  streetAddress: 'TODO Street Address', // e.g. "123 Main St"
-  addressLocality: 'San Antonio',       // City — update if different
-  postalCode: 'TODO-ZIP',              // e.g. "78201"
-  latitude: 29.4241,                   // San Antonio default — update to exact office location
-  longitude: -98.4936,                 // San Antonio default — update to exact office location
+  telephone: '+1 (956) 206-2004',
+  streetAddress: '[ADD STREET ADDRESS]',
+  addressLocality: 'San Antonio',
+  postalCode: '[ADD ZIP CODE]',
+  openingHours: '8am to 9pm, 7 days a week',
   facebookUrl: 'https://www.facebook.com/yourtrueroofingexperts',
   instagramUrl: 'https://www.instagram.com/pcgroofing',
 };
@@ -18,7 +17,7 @@ const BUSINESS_INFO = {
 export function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": ["GeneralContractor", "RoofingContractor"],
+    "@type": "HomeAndConstructionBusiness",
     "name": "PCG Contractors",
     "image": "https://pcgroofing.net/logo.png",
     "url": "https://pcgroofing.net",
@@ -32,46 +31,28 @@ export function LocalBusinessSchema() {
       "postalCode": BUSINESS_INFO.postalCode,
       "addressCountry": "US"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": BUSINESS_INFO.latitude,
-      "longitude": BUSINESS_INFO.longitude
-    },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "08:00",
-        "closes": "18:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "09:00",
-        "closes": "15:00"
-      }
-    ],
+    "openingHours": BUSINESS_INFO.openingHours,
     "sameAs": [
       BUSINESS_INFO.facebookUrl,
       BUSINESS_INFO.instagramUrl,
     ],
     "areaServed": [
-      { "@type": "City", "name": "San Antonio", "containedInPlace": { "@type": "State", "name": "Texas" } },
-      { "@type": "City", "name": "Austin", "containedInPlace": { "@type": "State", "name": "Texas" } },
-      { "@type": "City", "name": "Houston", "containedInPlace": { "@type": "State", "name": "Texas" } },
-      { "@type": "City", "name": "New Braunfels", "containedInPlace": { "@type": "State", "name": "Texas" } },
-      { "@type": "City", "name": "Seguin", "containedInPlace": { "@type": "State", "name": "Texas" } },
+      {
+        "@type": "City",
+        "name": "San Antonio",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "Texas"
+        }
+      }
     ],
     "description": "PCG Contractors is a licensed and insured Texas home repair and restoration company. We provide roofing, exterior and interior repairs, storm damage restoration, emergency protection, and insurance claim documentation assistance.",
     "serviceType": [
-      "Roof Repair",
-      "Roofing and Exterior Restoration",
-      "Exterior Home Repairs",
-      "Interior Home Repairs",
+      "Home Repair",
       "Storm Damage Restoration",
-      "Insurance Claim Assistance",
-      "Emergency Storm Damage Repairs",
-      "Emergency Tarping and Protection",
+      "Interior Repairs",
+      "Exterior Repairs",
+      "Insurance Claim Support",
       "Free Home Inspection"
     ],
     "hasOfferCatalog": {

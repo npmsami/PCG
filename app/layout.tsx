@@ -6,10 +6,10 @@ import { Providers } from './components/Providers'
 export const metadata: Metadata = {
   metadataBase: new URL('https://pcgroofing.net'),
   title: {
-    default: 'PCG Contractors | Texas Home Repair & Free Home Inspection',
+    default: 'PCG Contractors | San Antonio Home Repair & Storm Damage Restoration',
     template: '%s | PCG Contractors'
   },
-  description: 'PCG Contractors offers Texas home repair, storm damage restoration, and exterior and interior repairs. Book your free home inspection today.',
+  description: 'PCG Contractors provides San Antonio home repair, storm damage restoration, interior and exterior repairs, plus insurance claim help. Book a free home inspection.',
   keywords: ['PCG Contractors', 'home repair Texas', 'home repair contractor Texas', 'home repair contractor San Antonio', 'storm damage restoration Texas', 'book free home inspection', 'free home inspection', 'roofing and home repairs', 'exterior home repairs', 'interior home repairs', 'roof repair Texas', 'general contractor San Antonio'],
   authors: [{ name: 'PCG Contractors' }],
   creator: 'PCG Contractors',
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://pcgroofing.net',
     siteName: 'PCG Contractors',
-    title: 'PCG Contractors | Texas Home Repair & Free Home Inspection',
-    description: 'PCG Contractors offers Texas home repair, storm damage restoration, and exterior and interior repairs. Book your free home inspection today.',
+    title: 'PCG Contractors | San Antonio Home Repair & Storm Damage Restoration',
+    description: 'PCG Contractors provides San Antonio home repair, storm damage restoration, interior and exterior repairs, plus insurance claim help. Book a free home inspection.',
     images: [
       {
         url: '/og-image.jpg',
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PCG Contractors | Texas Home Repair & Free Home Inspection',
-    description: 'Texas home repair, storm damage restoration, and exterior and interior repairs. Book your free home inspection today.',
+    title: 'PCG Contractors | San Antonio Home Repair & Storm Damage Restoration',
+    description: 'San Antonio home repair, storm damage restoration, interior and exterior repairs, and insurance claim help. Book a free home inspection.',
     images: ['/og-image.jpg'],
   },
   alternates: {

@@ -1,45 +1,63 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useLanguage } from '../context/LanguageContext';
 import type { MessageKey } from '../i18n/messages';
 
-const SERVICE_ITEMS: { titleKey: MessageKey; image: string }[] = [
+const SERVICE_ITEMS: { titleKey: MessageKey; altKey: MessageKey; image: string; anchorId?: string }[] = [
   {
     titleKey: 'SVC_ITEM_1',
+    altKey: 'SVC_ITEM_1_ALT',
     image:
       'https://api.builder.io/api/v1/image/assets/TEMP/f6236692f79bebe3f92a08329f72112d49f892a1?width=722',
   },
   {
     titleKey: 'SVC_ITEM_2',
+    altKey: 'SVC_ITEM_2_ALT',
     image:
       'https://api.builder.io/api/v1/image/assets/TEMP/d5676b2f651575ad0183c0ddc95e21eed74ec271?width=722',
   },
   {
     titleKey: 'SVC_ITEM_3',
+    altKey: 'SVC_ITEM_3_ALT',
+    anchorId: 'insurance-claims',
     image:
       'https://api.builder.io/api/v1/image/assets/TEMP/f80eb218a6215c804c6f6a5b4a0190fa0dbcea61?width=722',
   },
   {
     titleKey: 'SVC_ITEM_4',
+    altKey: 'SVC_ITEM_4_ALT',
+    anchorId: 'exterior-repairs',
     image: '/services/exterior-home-repairs.png',
   },
   {
     titleKey: 'SVC_ITEM_5',
+    altKey: 'SVC_ITEM_5_ALT',
+    anchorId: 'interior-repairs',
     image: '/services/interior-home-repairs.png',
   },
   {
     titleKey: 'SVC_ITEM_6',
-    image:
-      'https://api.builder.io/api/v1/image/assets/TEMP/b6491b01922b2e5f70adb1165c523e552d0c9715?width=722',
+    altKey: 'SVC_ITEM_6_ALT',
+    anchorId: 'storm-damage',
+    image: '/services/professional-home-remodeling.png',
   },
+];
+
+const SERVICE_DETAILS: { titleKey: MessageKey; bodyKey: MessageKey }[] = [
+  { titleKey: 'SVC_DETAIL_1_TITLE', bodyKey: 'SVC_DETAIL_1_BODY' },
+  { titleKey: 'SVC_DETAIL_2_TITLE', bodyKey: 'SVC_DETAIL_2_BODY' },
+  { titleKey: 'SVC_DETAIL_3_TITLE', bodyKey: 'SVC_DETAIL_3_BODY' },
+  { titleKey: 'SVC_DETAIL_4_TITLE', bodyKey: 'SVC_DETAIL_4_BODY' },
+  { titleKey: 'SVC_DETAIL_5_TITLE', bodyKey: 'SVC_DETAIL_5_BODY' },
 ];
 
 export default function ServicesSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="services-section" className="services-section">
+    <section id="services" className="services-section">
       <div className="container">
         {/* Header with confidence message */}
         <div className="services-header">
@@ -97,11 +115,11 @@ export default function ServicesSection() {
             {SERVICE_ITEMS.map((service, index) => {
               const title = t(service.titleKey);
               return (
-                <div key={index} className="service-item">
+                <div key={index} id={service.anchorId} className="service-item">
                   <div className="service-image">
                     <Image
                       src={service.image}
-                      alt={title}
+                      alt={t(service.altKey)}
                       width={1200}
                       height={800}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -113,6 +131,18 @@ export default function ServicesSection() {
               );
             })}
           </div>
+        </div>
+
+        <div className="service-details">
+          {SERVICE_DETAILS.map((detail) => (
+            <article key={detail.titleKey} className="service-detail-card">
+              <h4 className="service-detail-title">{t(detail.titleKey)}</h4>
+              <p className="service-detail-copy">{t(detail.bodyKey)}</p>
+              <Link href="/#contact" className="service-detail-cta">
+                {t('SVC_DETAIL_CTA')}
+              </Link>
+            </article>
+          ))}
         </div>
 
       </div>
@@ -250,6 +280,53 @@ export default function ServicesSection() {
           line-height: 130%;
         }
 
+        .service-details {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 20px;
+          margin-top: -20px;
+        }
+
+        .service-detail-card {
+          background: #101010;
+          border: 1px solid #2b2b2b;
+          border-radius: 16px;
+          padding: 20px;
+        }
+
+        .service-detail-title {
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 1.3;
+          margin-bottom: 10px;
+        }
+
+        .service-detail-copy {
+          color: #f1f1f1;
+          font-family: var(--font-roboto);
+          font-size: 17px;
+          font-weight: 400;
+          line-height: 1.6;
+          margin-bottom: 14px;
+        }
+
+        .service-detail-cta {
+          color: #ff7a59;
+          font-family: var(--font-roboto);
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 1.4;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          transition: opacity 0.2s ease;
+        }
+
+        .service-detail-cta:hover {
+          opacity: 0.85;
+        }
+
 
 
         @media (max-width: 1200px) {
@@ -267,6 +344,10 @@ export default function ServicesSection() {
           .services-grid {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
+          }
+
+          .service-details {
+            grid-template-columns: 1fr;
           }
         }
 
@@ -306,6 +387,18 @@ export default function ServicesSection() {
 
           .service-title {
             font-size: 24px;
+          }
+
+          .service-details {
+            margin-top: 0;
+          }
+
+          .service-detail-title {
+            font-size: 22px;
+          }
+
+          .service-detail-copy {
+            font-size: 16px;
           }
 
         }

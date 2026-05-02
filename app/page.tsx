@@ -23,28 +23,29 @@ export const metadata: Metadata = {
 // FAQ items mirrored here for schema (must match FAQSection content)
 const FAQ_SCHEMA_ITEMS = [
   {
-    question: 'Do I really pay $0?',
+    question: 'Do you offer free home inspections?',
     answer:
-      'In some approved insurance claims, your covered repairs may be paid by the insurance company, depending on your policy, deductible, damage type, and claim approval. PCG Contractors can help document the damage and explain the repair process, but final coverage is determined by your insurance carrier.',
+      'Yes. PCG Contractors offers free home inspections in San Antonio and nearby Texas communities. During the visit, we review visible damage, discuss your concerns, and explain practical next steps for repair.',
   },
   {
-    question: 'What if my claim is denied?',
+    question: 'Do you help with storm damage repairs?',
     answer:
-      'If your claim is denied, we can review the repair needs with you and provide a clear estimate for the necessary work. Our team will explain your options so you can make the best decision for your home.',
+      'Yes. We handle storm damage restoration for roofing, exterior areas, and interior spaces affected by wind, hail, or water intrusion. Our team documents the damage and builds a clear repair plan tailored to your property.',
   },
   {
-    question: 'How fast is the process?',
+    question: 'Do you help with insurance claims?',
     answer:
-      'Timelines depend on the repair scope, insurance approval, materials, and weather. Smaller repairs may be completed quickly, while larger restoration projects may take longer. We keep you updated through each step.',
+      'Yes. We can support your insurance claim process by organizing repair documentation, photos, and scope details. Final coverage decisions are made by your insurance carrier based on your policy terms.',
   },
   {
-    question: 'Are you licensed and insured?',
+    question: 'What areas do you serve?',
     answer:
-      'Yes. PCG Contractors is licensed and insured, with more than 15 years of experience helping Texas homeowners with repair and restoration projects.',
+      'PCG Contractors serves homeowners in San Antonio and surrounding Texas areas. Contact us to confirm service availability for your address and project timeline.',
   },
   {
-    question: 'Still have questions?',
-    answer: "We're here to help you.",
+    question: 'Do you handle interior and exterior repairs?',
+    answer:
+      'Yes. We provide both interior and exterior home repairs, including work related to storm damage and general restoration needs. We coordinate the scope so repairs are completed in a logical and efficient order.',
   },
 ];
 
@@ -62,8 +63,8 @@ export default function Home() {
         <StatsSection />
         <TestimonialsSection />
         <FAQSection />
-        <section className="home-seo-content">
-          <h2>Texas Home Repair and Storm Damage Restoration</h2>
+        <section id="storm-damage" className="home-seo-content">
+          <h2>Storm Damage Restoration &amp; Insurance Claim Support</h2>
           <p>
             PCG Contractors helps homeowners across Texas with practical, full-service
             home repair support after storms, leaks, and unexpected property damage.
@@ -80,6 +81,17 @@ export default function Home() {
             Our work includes roof repair, exterior home repairs, interior home
             repairs, emergency storm protection, and restoration planning from first
             inspection through final walkthrough.
+          </p>
+          <p>
+            Jump directly to key topics:{' '}
+            <Link href="/#home">Home</Link>,{' '}
+            <Link href="/#services">Services</Link>,{' '}
+            <Link href="/#storm-damage">Storm Damage Restoration</Link>,{' '}
+            <Link href="/#interior-repairs">Interior Repairs</Link>,{' '}
+            <Link href="/#exterior-repairs">Exterior Repairs</Link>,{' '}
+            <Link href="/#insurance-claims">Insurance Claim Help</Link>,{' '}
+            <Link href="/#faqs">FAQs</Link>, and{' '}
+            <Link href="/contact">Contact / Free Inspection</Link>.
           </p>
           <h3>Explore More Home Repair Resources</h3>
           <nav aria-label="Homepage internal links">

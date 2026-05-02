@@ -23,7 +23,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="faq-section">
+    <section id="faqs" className="faq-section">
       <div className="faq-background">
         <div className="faq-overlay"></div>
       </div>

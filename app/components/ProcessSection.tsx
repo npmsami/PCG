@@ -12,6 +12,7 @@ export default function ProcessSection() {
       {
         id: 1,
         title: t('PROCESS_S1_TITLE'),
+        imageAlt: t('PROCESS_S1_ALT'),
         description: t('PROCESS_S1_DESC'),
         image:
           'https://api.builder.io/api/v1/image/assets/TEMP/c9534831ad3921a74bf4d58466b8742783360484?width=722',
@@ -19,6 +20,7 @@ export default function ProcessSection() {
       {
         id: 2,
         title: t('PROCESS_S2_TITLE'),
+        imageAlt: t('PROCESS_S2_ALT'),
         description: t('PROCESS_S2_DESC'),
         image:
           'https://api.builder.io/api/v1/image/assets/TEMP/a0052aeeccaef6bb464025d7cd6fbe6a3d8200d3?width=722',
@@ -26,6 +28,7 @@ export default function ProcessSection() {
       {
         id: 3,
         title: t('PROCESS_S3_TITLE'),
+        imageAlt: t('PROCESS_S3_ALT'),
         description: t('PROCESS_S3_DESC'),
         image: '/services/professional-home-repair-restoration.png',
       },
@@ -34,7 +37,7 @@ export default function ProcessSection() {
   );
 
   return (
-    <section id="process-section" className="process-section">
+    <section id="process" className="process-section">
       <div className="container">
         <div className="process-header">
           <h2 className="process-title">{t('PROCESS_TITLE')}</h2>
@@ -47,7 +50,7 @@ export default function ProcessSection() {
               <div className="step-image">
                 <Image
                   src={step.image}
-                  alt={step.title}
+                  alt={step.imageAlt}
                   width={361}
                   height={202}
                   style={{ objectFit: 'cover' }}

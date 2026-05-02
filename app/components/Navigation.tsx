@@ -134,6 +134,7 @@ export default function Navigation() {
   };
 
   const dynamicClass = isNavVisible ? 'nav-visible' : 'nav-hidden';
+  const napPhone = '+1 (956) 206-2004';
 
   return (
     <nav className={`nav-container ${dynamicClass}`.trim()} aria-label={t('NAV_MAIN_MENU')}>
@@ -164,16 +165,17 @@ export default function Navigation() {
           <button
             type="button"
             className="nav-link nav-scroll-link"
-            onClick={() => handleSmoothScroll('process-section')}
+            onClick={() => handleSmoothScroll('process')}
           >
             <span>{t('NAV_ABOUT')}</span>
           </button>
 
           <div className="mobile-only-items">
+            <p className="mobile-nap-phone">Call us: {napPhone}</p>
             <button
               type="button"
               className="nav-link nav-scroll-link"
-              onClick={() => handleSmoothScroll('services-section')}
+              onClick={() => handleSmoothScroll('services')}
             >
               <span>{t('NAV_SERVICES')}</span>
             </button>
@@ -204,7 +206,7 @@ export default function Navigation() {
           <div className="logo">
             <Image
               src="https://api.builder.io/api/v1/image/assets/TEMP/c0456d8bbbc4e627a852ee0e8821dccdb98970d0?width=244"
-              alt="PCG Contractors"
+              alt="PCG Contractors logo for San Antonio home repair and storm restoration services"
               width={60}
               height={60}
               priority
@@ -213,10 +215,13 @@ export default function Navigation() {
         </div>
 
         <div className="nav-right">
+          <div className="nav-contact-chip" aria-label="Business phone">
+            <span>{napPhone}</span>
+          </div>
           <button
             type="button"
             className="nav-link nav-scroll-link"
-            onClick={() => handleSmoothScroll('services-section')}
+            onClick={() => handleSmoothScroll('services')}
           >
             <span>{t('NAV_SERVICES')}</span>
           </button>
@@ -414,6 +419,25 @@ export default function Navigation() {
           display: none;
         }
 
+        .nav-contact-chip {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 6px 14px;
+          border-radius: 999px;
+          background: var(--black);
+          border: 1px solid var(--black);
+        }
+
+        .nav-contact-chip span {
+          color: var(--white);
+          font-family: var(--font-open-sans);
+          font-size: 13px;
+          font-weight: 600;
+          line-height: 1.1;
+          white-space: nowrap;
+        }
+
         @media (max-width: 768px) {
           .mobile-menu-btn {
             display: flex;
@@ -533,6 +557,14 @@ export default function Navigation() {
             margin: 8px auto 0;
             padding-top: 16px;
             border-top: 1px solid rgba(0, 0, 0, 0.08);
+          }
+
+          .mobile-nap-phone {
+            margin: 0 auto;
+            color: var(--black);
+            font-family: var(--font-open-sans);
+            font-size: 14px;
+            font-weight: 600;
           }
 
           .nav-link span {

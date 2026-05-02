@@ -9,8 +9,8 @@ const QUICK_LINKS: { labelKey: MessageKey; href: string }[] = [
   { labelKey: 'FT_LINK_ABOUT', href: '/about' },
   { labelKey: 'FT_LINK_BLOGS', href: '/blogs' },
   { labelKey: 'FT_LINK_CONTACT', href: '/contact' },
-  { labelKey: 'FT_LINK_SVC', href: '#' },
-  { labelKey: 'FT_LINK_TST', href: '#' },
+  { labelKey: 'FT_LINK_SVC', href: '/#services' },
+  { labelKey: 'FT_LINK_TST', href: '/#testimonials' },
 ];
 
 const CONNECT_LINKS: { labelKey: MessageKey; href: string }[] = [
@@ -85,7 +85,7 @@ export default function Footer() {
             <div className="company-logo">
               <Image
                 src="https://api.builder.io/api/v1/image/assets/TEMP/ae5e99d29686311debaad341b15d6eb03412fa3a?width=268"
-                alt="PCG Contractors"
+                alt="PCG Contractors logo for Texas home repair and restoration company"
                 width={84}
                 height={36}
               />
@@ -103,6 +103,12 @@ export default function Footer() {
                 </button>
               </div>
               <p className="newsletter-disclaimer">{t('FT_DISCLAIMER')}</p>
+            </div>
+            <div className="business-info">
+              <h4>PCG Contractors</h4>
+              <p>Service Area: San Antonio, Texas</p>
+              <p>Phone: +1 (956) 206-2004</p>
+              <p>Business Hours: 8am to 9pm, 7 days a week</p>
             </div>
           </div>
 
@@ -160,7 +166,7 @@ export default function Footer() {
             <a href="/terms-and-conditions" className="legal-link">
               {t('FT_TERMS')}
             </a>
-            <a href="#" className="legal-link">
+            <a href="/privacy-policy" className="legal-link">
               {t('FT_COOKIES')}
             </a>
           </div>
@@ -256,6 +262,31 @@ export default function Footer() {
           font-size: 12px;
           font-weight: 400;
           line-height: 150%;
+        }
+
+        .business-info {
+          margin-top: 20px;
+          padding: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 14px;
+          background: rgba(255, 255, 255, 0.04);
+        }
+
+        .business-info h4 {
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 16px;
+          font-weight: 700;
+          margin-bottom: 8px;
+        }
+
+        .business-info p {
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 1.5;
+          margin: 0 0 4px;
         }
 
         .footer-links {

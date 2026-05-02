@@ -6,7 +6,7 @@ export default function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="hero-section">
+    <section id="home" className="hero-section">
       <div className="hero-background">
         <video
           autoPlay

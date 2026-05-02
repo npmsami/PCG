@@ -6,13 +6,16 @@ export default function CTASection() {
   const { t } = useLanguage();
 
   return (
-    <section className="cta-section">
+    <section id="contact" className="cta-section">
       <div className="container">
         <div className="cta-content">
-          <h2 className="cta-title">
-            <p>{t('CTA_BAND_TITLE')}</p>
-          </h2>
+          <h2 className="cta-title">{t('CTA_BAND_TITLE')}</h2>
           <blockquote className="cta-subtitle">{t('CTA_BAND_SUB')}</blockquote>
+          <div className="cta-nap" aria-label="Business contact details">
+            <p><strong>PCG Contractors</strong> | San Antonio, Texas service area</p>
+            <p>Phone: +1 (956) 206-2004</p>
+            <p>Business Hours: 8am to 9pm, 7 days a week</p>
+          </div>
           <button
             type="button"
             className="cta-button"
@@ -68,6 +71,22 @@ export default function CTASection() {
           background: var(--black);
           cursor: pointer;
           transition: all 0.3s ease;
+        }
+
+        .cta-nap {
+          margin-bottom: 24px;
+          padding: 14px 16px;
+          border-radius: 12px;
+          background: rgba(0, 0, 0, 0.16);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-nap p {
+          color: var(--white);
+          font-family: var(--font-roboto);
+          font-size: 14px;
+          line-height: 1.45;
+          margin: 0 0 4px;
         }
 
         .cta-button:hover {

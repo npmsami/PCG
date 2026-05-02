@@ -48,7 +48,7 @@ export default function TestimonialsSection() {
   );
 
   return (
-    <section className="testimonials-section">
+    <section id="testimonials" className="testimonials-section">
       <div className="container">
         <div className="testimonials-header">
           <h2 className="testimonials-title">{t('TST_TITLE')}</h2>
